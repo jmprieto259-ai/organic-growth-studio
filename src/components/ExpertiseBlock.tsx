@@ -33,45 +33,41 @@ const ExpertiseBlock = ({
 }: ExpertiseBlockProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
-  const [textVisible, setTextVisible] = useState(false);
+  const [visibility, setVisibility] = useState(0); // 0 to 1 progress
 
   useEffect(() => {
     const handleScroll = () => {
       if (!panelRef.current) return;
       const rect = panelRef.current.getBoundingClientRect();
       const windowH = window.innerHeight;
-      // Only calculate when panel is near or in viewport
       if (rect.bottom > 0 && rect.top < windowH) {
+        // Parallax offset
         const progress = (windowH - rect.top) / (windowH + rect.height);
         setOffset((progress - 0.5) * 80);
+        // Visibility progress: 0 when just entering, 1 when ~40% visible
+        const visProgress = Math.min(1, Math.max(0, (windowH - rect.top) / (windowH * 0.4)));
+        setVisibility(visProgress);
       }
     };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTextVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (panelRef.current) observer.observe(panelRef.current);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
     };
   }, []);
+
+  // Blur goes from 20px to 0 as visibility goes 0→1
+  const blurAmount = Math.max(0, 20 * (1 - visibility));
+  const textReady = visibility > 0.6;
 
   return (
     <div className="relative">
       {/* Red panel */}
       <div
         ref={panelRef}
-        className="relative bg-primary h-[75vh] min-h-[480px] overflow-hidden flex items-center justify-center"
+        className="relative bg-primary h-[75vh] min-h-[480px] overflow-hidden"
       >
         {/* Sticky bar */}
         <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-[22px] py-[14px] border-b border-black/[0.12]">
@@ -99,12 +95,14 @@ const ExpertiseBlock = ({
         {/* Image or placeholder */}
         {image ? (
           <>
-            {/* Full-cover image with multiply blend and parallax */}
+            {/* Full-cover image with multiply blend, parallax, and blur-to-sharp */}
             <div
               className="absolute inset-0 z-[2]"
               style={{
                 transform: `translateY(${offset}px)`,
-                willChange: 'transform',
+                willChange: 'transform, filter',
+                filter: `blur(${blurAmount}px)`,
+                transition: 'filter 0.3s ease-out',
               }}
             >
               <img
@@ -117,32 +115,43 @@ const ExpertiseBlock = ({
                 }}
               />
             </div>
-            {/* Overlay text */}
-            {imageOverlayText && (
-              <div
-                className={`relative z-[3] font-display font-black uppercase text-center transition-all duration-1000 ease-out ${
-                  textVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-8'
+
+            {/* Bottom-left overlay: number + text (like reference) */}
+            <div
+              className="absolute bottom-[40px] left-[40px] z-[5] flex flex-col gap-0"
+            >
+              {/* Section code */}
+              <span
+                className={`block font-body text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
+                  textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
-                style={{
-                  fontSize: 'clamp(36px, 8vw, 120px)',
-                  lineHeight: 0.9,
-                  letterSpacing: '-0.03em',
-                  color: 'rgba(0,0,0,0.7)',
-                  textShadow: '0 2px 40px rgba(0,0,0,0.15)',
-                }}
               >
-                {imageOverlayText.split('\n').map((line, i) => (
-                  <div key={i}>{line}</div>
-                ))}
-              </div>
-            )}
+                {code}
+              </span>
+              {/* Overlay text lines */}
+              {imageOverlayText && imageOverlayText.split('\n').map((line, i) => (
+                <div
+                  key={i}
+                  className={`font-display font-black uppercase text-white transition-all ease-out ${
+                    textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+                  style={{
+                    fontSize: 'clamp(32px, 6vw, 90px)',
+                    lineHeight: 0.95,
+                    letterSpacing: '-0.03em',
+                    transitionDuration: `${800 + i * 200}ms`,
+                    transitionDelay: `${i * 120}ms`,
+                  }}
+                >
+                  {line}
+                </div>
+              ))}
+            </div>
           </>
         ) : (
           <div
-            className="relative z-[2] w-[52%] h-[88%] rounded-[3px] flex items-center justify-center font-body text-[13px] tracking-[0.05em]"
-            style={{ background: 'rgba(0,0,0,0.18)', color: 'rgba(0,0,0,0.35)' }}
+            className="absolute inset-0 z-[2] flex items-center justify-center font-body text-[13px] tracking-[0.05em]"
+            style={{ color: 'rgba(0,0,0,0.35)' }}
           >
             {placeholder}
           </div>
