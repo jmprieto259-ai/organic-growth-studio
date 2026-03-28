@@ -3,6 +3,7 @@ import SideBadge from "@/components/SideBadge";
 import Hero from "@/components/Hero";
 import WorkSection from "@/components/WorkSection";
 import ExpertiseBlock from "@/components/ExpertiseBlock";
+import vaqueroImg from "@/assets/vaquero.jpg";
 import Manifesto from "@/components/Manifesto";
 import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
@@ -16,6 +17,7 @@ const expertiseBlocks = [
     stickyBarRight: "역사",
     bgWord: "VAQUERO",
     placeholder: "[ Tu foto en el llano ]",
+    image: vaqueroImg,
     number: "01",
     code: "// 01",
     title: "La<br/>Revelación",
