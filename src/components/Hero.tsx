@@ -105,20 +105,6 @@ const Hero = () => {
           </span>
         </h1>
 
-        <p
-          className="font-body mt-5 md:mt-7 max-w-[560px] text-center px-2 transition-all duration-700 ease-out"
-          style={{
-            fontSize: 'clamp(13px, 3.5vw, 17px)',
-            lineHeight: 1.6,
-            color: 'rgba(0,0,0,0.50)',
-            letterSpacing: '0.01em',
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(30px)',
-            transitionDelay: '0.9s',
-          }}
-        >
-          De vivir como vaquero a conseguir asesorar a los top founders de Latam y conseguir 1.2 millones de votos.
-        </p>
       </div>
 
       {/* Footer stats — stack on mobile */}
@@ -130,12 +116,6 @@ const Hero = () => {
           transitionDelay: '1.1s',
         }}
       >
-        <span
-          className="font-body font-medium uppercase tracking-[0.10em] text-center md:text-left"
-          style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
-        >
-          Basado en Colombia
-        </span>
         <span
           className="font-body font-medium uppercase tracking-[0.10em] text-center hidden md:block"
           style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
