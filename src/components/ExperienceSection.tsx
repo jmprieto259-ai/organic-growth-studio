@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const jobs = [
   {
@@ -44,6 +44,19 @@ const jobs = [
 
 const ExperienceSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerVis, setHeaderVis] = useState(false);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setHeaderVis(true); observer.disconnect(); } },
+      { rootMargin: '-60px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? -1 : idx);
@@ -51,13 +64,27 @@ const ExperienceSection = () => {
 
   return (
     <section id="experiencia" className="bg-off-white px-[60px] py-[100px]">
-      <div className="mb-[60px]">
-        <span className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-[14px]" style={{ color: 'rgba(0,0,0,0.35)' }}>
+      <div ref={headerRef} className="mb-[60px]">
+        <span
+          className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-[14px] transition-all duration-700 ease-out"
+          style={{
+            color: 'rgba(0,0,0,0.35)',
+            opacity: headerVis ? 1 : 0,
+            transform: headerVis ? 'translateY(0)' : 'translateY(20px)',
+          }}
+        >
           Mi Experiencia
         </span>
         <h2
-          className="font-display font-black uppercase text-background"
-          style={{ fontSize: 'clamp(24px, 4vw, 48px)', lineHeight: 1.0, letterSpacing: '-0.03em' }}
+          className="font-display font-black uppercase text-background transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+          style={{
+            fontSize: 'clamp(24px, 4vw, 48px)',
+            lineHeight: 1.0,
+            letterSpacing: '-0.03em',
+            opacity: headerVis ? 1 : 0,
+            transform: headerVis ? 'translateX(0)' : 'translateX(-50px)',
+            transitionDelay: '150ms',
+          }}
         >
           Resultados en todos<br />los frentes
         </h2>
@@ -65,55 +92,84 @@ const ExperienceSection = () => {
 
       <ul className="list-none">
         {jobs.map((job, idx) => (
-          <li key={idx} className="border-b" style={{ borderColor: 'rgba(0,0,0,0.10)' }}>
-            <div
-              onClick={() => toggle(idx)}
-              className="flex items-center justify-between py-[22px] cursor-pointer select-none"
-            >
-              <span
-                className="font-body font-semibold"
-                style={{ fontSize: 'clamp(17px, 2vw, 24px)', color: 'rgba(0,0,0,0.80)' }}
-              >
-                {job.name}
-              </span>
-              <span
-                className="w-7 h-7 rounded-full flex items-center justify-center text-[16px] flex-shrink-0 transition-all duration-[250ms]"
-                style={{ border: '1px solid rgba(0,0,0,0.20)', color: 'rgba(0,0,0,0.40)' }}
-              >
-                {openIndex === idx ? '−' : '+'}
-              </span>
-            </div>
-            <div className={openIndex === idx ? 'job-body-open' : 'job-body-closed'}>
-              <div className="flex gap-3 items-center mb-4">
-                <span
-                  className="font-body text-[12px] font-medium px-[14px] py-[5px] rounded-full"
-                  style={{ border: '1px solid rgba(0,0,0,0.15)', color: 'rgba(0,0,0,0.55)' }}
-                >
-                  {job.role}
-                </span>
-                <span className="font-body text-[12px]" style={{ color: 'rgba(0,0,0,0.35)' }}>
-                  {job.date}
-                </span>
-              </div>
-              <p className="font-body text-[14px] leading-[1.70] mb-[14px]" style={{ color: 'rgba(0,0,0,0.55)' }}>
-                {job.description}
-              </p>
-              <ul className="list-none flex flex-col gap-2">
-                {job.bullets.map((b, i) => (
-                  <li
-                    key={i}
-                    className="font-body text-[13px] pl-[14px] leading-[1.5]"
-                    style={{ color: 'rgba(0,0,0,0.50)', borderLeft: '2px solid rgba(232,43,0,0.4)' }}
-                  >
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
+          <JobItem key={idx} job={job} idx={idx} openIndex={openIndex} toggle={toggle} />
         ))}
       </ul>
     </section>
+  );
+};
+
+const JobItem = ({ job, idx, openIndex, toggle }: { job: typeof jobs[0]; idx: number; openIndex: number; toggle: (i: number) => void }) => {
+  const ref = useRef<HTMLLIElement>(null);
+  const [vis, setVis] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVis(true); observer.disconnect(); } },
+      { rootMargin: '-40px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <li
+      ref={ref}
+      className="border-b transition-all duration-700 ease-out"
+      style={{
+        borderColor: 'rgba(0,0,0,0.10)',
+        opacity: vis ? 1 : 0,
+        transform: vis ? 'translateY(0)' : 'translateY(30px)',
+        transitionDelay: `${idx * 100}ms`,
+      }}
+    >
+      <div
+        onClick={() => toggle(idx)}
+        className="flex items-center justify-between py-[22px] cursor-pointer select-none"
+      >
+        <span
+          className="font-body font-semibold"
+          style={{ fontSize: 'clamp(17px, 2vw, 24px)', color: 'rgba(0,0,0,0.80)' }}
+        >
+          {job.name}
+        </span>
+        <span
+          className="w-7 h-7 rounded-full flex items-center justify-center text-[16px] flex-shrink-0 transition-all duration-[250ms]"
+          style={{ border: '1px solid rgba(0,0,0,0.20)', color: 'rgba(0,0,0,0.40)' }}
+        >
+          {openIndex === idx ? '−' : '+'}
+        </span>
+      </div>
+      <div className={openIndex === idx ? 'job-body-open' : 'job-body-closed'}>
+        <div className="flex gap-3 items-center mb-4">
+          <span
+            className="font-body text-[12px] font-medium px-[14px] py-[5px] rounded-full"
+            style={{ border: '1px solid rgba(0,0,0,0.15)', color: 'rgba(0,0,0,0.55)' }}
+          >
+            {job.role}
+          </span>
+          <span className="font-body text-[12px]" style={{ color: 'rgba(0,0,0,0.35)' }}>
+            {job.date}
+          </span>
+        </div>
+        <p className="font-body text-[14px] leading-[1.70] mb-[14px]" style={{ color: 'rgba(0,0,0,0.55)' }}>
+          {job.description}
+        </p>
+        <ul className="list-none flex flex-col gap-2">
+          {job.bullets.map((b, i) => (
+            <li
+              key={i}
+              className="font-body text-[13px] pl-[14px] leading-[1.5]"
+              style={{ color: 'rgba(0,0,0,0.50)', borderLeft: '2px solid rgba(232,43,0,0.4)' }}
+            >
+              {b}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
   );
 };
 
