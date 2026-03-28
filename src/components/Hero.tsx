@@ -89,23 +89,22 @@ const Hero = () => {
             filter: `blur(${textBlur}px)`,
           }}
         >
-          {/* JOSE — slides from left */}
           <span
-            className="block transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="block transition-all duration-[900ms] ease-out"
             style={{
               opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateX(0)' : 'translateX(-100%)',
+              transform: loaded ? 'scale(1)' : 'scale(0.96)',
+              transitionDelay: '0.2s',
             }}
           >
             Jose
           </span>
-          {/* PRIETO — slides from right */}
           <span
-            className="block transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="block transition-all duration-[900ms] ease-out"
             style={{
               opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateX(0)' : 'translateX(100%)',
-              transitionDelay: '0.12s',
+              transform: loaded ? 'scale(1)' : 'scale(0.96)',
+              transitionDelay: '0.35s',
             }}
           >
             Prieto
