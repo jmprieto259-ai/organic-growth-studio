@@ -18,6 +18,7 @@ const expertiseBlocks = [
     bgWord: "VAQUERO",
     placeholder: "[ Tu foto en el llano ]",
     image: vaqueroImg,
+    imageOverlayText: "POR AHORA\nVAQUERO",
     number: "01",
     code: "// 01",
     title: "La<br/>Revelación",
