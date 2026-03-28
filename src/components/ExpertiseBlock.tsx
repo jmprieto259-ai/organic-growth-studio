@@ -32,39 +32,48 @@ const ExpertiseBlock = ({
   skills,
 }: ExpertiseBlockProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
+  const blackRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
-  const [visibility, setVisibility] = useState(0); // 0 to 1 progress
+  const [visibility, setVisibility] = useState(0);
+  const [blackVis, setBlackVis] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!panelRef.current) return;
-      const rect = panelRef.current.getBoundingClientRect();
-      const windowH = window.innerHeight;
-      if (rect.bottom > 0 && rect.top < windowH) {
-        // Parallax offset
-        const progress = (windowH - rect.top) / (windowH + rect.height);
-        setOffset((progress - 0.5) * 80);
-        // Visibility progress: 0 when just entering, 1 when ~40% visible
-        const visProgress = Math.min(1, Math.max(0, (windowH - rect.top) / (windowH * 0.4)));
-        setVisibility(visProgress);
+      if (panelRef.current) {
+        const rect = panelRef.current.getBoundingClientRect();
+        const wh = window.innerHeight;
+        if (rect.bottom > 0 && rect.top < wh) {
+          const progress = (wh - rect.top) / (wh + rect.height);
+          setOffset((progress - 0.5) * 80);
+          setVisibility(Math.min(1, Math.max(0, (wh - rect.top) / (wh * 0.4))));
+        }
+      }
+      if (blackRef.current) {
+        const rect = blackRef.current.getBoundingClientRect();
+        const wh = window.innerHeight;
+        const raw = (wh - rect.top) / (wh + rect.height);
+        setBlackVis(Math.min(1, Math.max(0, raw)));
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Blur goes from 20px to 0 as visibility goes 0→1
   const blurAmount = Math.max(0, 20 * (1 - visibility));
   const textReady = visibility > 0.6;
 
+  // Black panel — stagger reveals
+  const leftReady = blackVis > 0.2;
+  const rightReady = blackVis > 0.3;
+
+  // BG word parallax in black panel
+  const bgWordShift = (blackVis - 0.5) * 60;
+
   return (
     <div className="relative">
-      {/* Red panel */}
+      {/* Red panel — sticky with image parallax */}
       <div
         ref={panelRef}
         className="relative bg-primary h-[75vh] min-h-[480px] overflow-hidden"
@@ -79,7 +88,7 @@ const ExpertiseBlock = ({
           </span>
         </div>
 
-        {/* BG word */}
+        {/* BG word — parallax */}
         <div
           className="absolute inset-0 flex items-center justify-center font-display font-black uppercase overflow-hidden whitespace-nowrap select-none pointer-events-none z-[1]"
           style={{
@@ -87,6 +96,8 @@ const ExpertiseBlock = ({
             lineHeight: 1,
             letterSpacing: '-0.04em',
             color: 'rgba(0,0,0,0.22)',
+            transform: `translateY(${offset * 0.5}px)`,
+            transition: 'transform 0.1s linear',
           }}
         >
           {bgWord}
@@ -95,11 +106,10 @@ const ExpertiseBlock = ({
         {/* Image or placeholder */}
         {image ? (
           <>
-            {/* Full-cover image with multiply blend, parallax, and blur-to-sharp */}
             <div
               className="absolute inset-0 z-[2]"
               style={{
-                transform: `translateY(${offset}px)`,
+                transform: `translateY(${offset}px) scale(${1 + visibility * 0.05})`,
                 willChange: 'transform, filter',
                 filter: `blur(${blurAmount}px)`,
                 transition: 'filter 0.3s ease-out',
@@ -109,18 +119,12 @@ const ExpertiseBlock = ({
                 src={image}
                 alt={bgWord}
                 className="w-full h-[120%] object-cover"
-                style={{
-                  mixBlendMode: 'multiply',
-                  marginTop: '-10%',
-                }}
+                style={{ mixBlendMode: 'multiply', marginTop: '-10%' }}
               />
             </div>
 
-            {/* Bottom-left overlay: number + text (like reference) */}
-            <div
-              className="absolute bottom-[40px] left-[40px] z-[5] flex flex-col gap-0"
-            >
-              {/* Section code */}
+            {/* Bottom-left overlay */}
+            <div className="absolute bottom-[40px] left-[40px] z-[5] flex flex-col gap-0">
               <span
                 className={`block font-body text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
                   textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -128,19 +132,18 @@ const ExpertiseBlock = ({
               >
                 {code}
               </span>
-              {/* Overlay text lines */}
               {imageOverlayText && imageOverlayText.split('\n').map((line, i) => (
                 <div
                   key={i}
                   className={`font-display font-black uppercase text-white transition-all ease-out ${
-                    textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    textReady ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
                   }`}
                   style={{
                     fontSize: 'clamp(32px, 6vw, 90px)',
                     lineHeight: 0.95,
                     letterSpacing: '-0.03em',
                     transitionDuration: `${800 + i * 200}ms`,
-                    transitionDelay: `${i * 120}ms`,
+                    transitionDelay: `${i * 180}ms`,
                   }}
                 >
                   {line}
@@ -158,9 +161,9 @@ const ExpertiseBlock = ({
         )}
       </div>
 
-      {/* Black panel */}
-      <div className="bg-background px-[60px] py-[100px] relative overflow-hidden">
-        {/* Outline number */}
+      {/* Black panel — content slides up and reveals */}
+      <div ref={blackRef} className="bg-background px-[60px] py-[100px] relative overflow-hidden">
+        {/* Outline number — parallax */}
         <div
           className="absolute outline-num font-display font-black select-none pointer-events-none"
           style={{
@@ -169,6 +172,8 @@ const ExpertiseBlock = ({
             fontSize: 'clamp(200px, 38vw, 520px)',
             lineHeight: 0.8,
             letterSpacing: '-0.06em',
+            transform: `translateY(${bgWordShift}px)`,
+            transition: 'transform 0.15s linear',
           }}
         >
           {number}
@@ -176,8 +181,14 @@ const ExpertiseBlock = ({
 
         {/* Inner grid */}
         <div className="relative z-[2] grid grid-cols-[1fr_1.3fr] gap-20 items-start">
-          {/* Left */}
-          <div>
+          {/* Left — slides from left */}
+          <div
+            className="transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={{
+              opacity: leftReady ? 1 : 0,
+              transform: leftReady ? 'translateX(0) translateY(0)' : 'translateX(-60px) translateY(40px)',
+            }}
+          >
             <span className="block font-body text-[12px] text-muted tracking-[0.04em] mb-[18px]">
               {code}
             </span>
@@ -194,8 +205,15 @@ const ExpertiseBlock = ({
             </span>
           </div>
 
-          {/* Right */}
-          <div>
+          {/* Right — slides from right */}
+          <div
+            className="transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={{
+              opacity: rightReady ? 1 : 0,
+              transform: rightReady ? 'translateX(0) translateY(0)' : 'translateX(60px) translateY(40px)',
+              transitionDelay: '120ms',
+            }}
+          >
             <h4
               className="font-display font-black uppercase text-foreground mb-[22px]"
               style={{ fontSize: 'clamp(18px, 2.8vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
@@ -211,8 +229,13 @@ const ExpertiseBlock = ({
               {skills.map((skill, i) => (
                 <li
                   key={i}
-                  className="flex justify-between items-center py-[13px] border-b border-foreground/10 font-body text-[13px] tracking-[0.02em]"
-                  style={{ color: 'rgba(255,255,255,0.50)' }}
+                  className="flex justify-between items-center py-[13px] border-b border-foreground/10 font-body text-[13px] tracking-[0.02em] transition-all duration-500 ease-out"
+                  style={{
+                    color: 'rgba(255,255,255,0.50)',
+                    opacity: rightReady ? 1 : 0,
+                    transform: rightReady ? 'translateX(0)' : 'translateX(30px)',
+                    transitionDelay: `${300 + i * 100}ms`,
+                  }}
                 >
                   {skill}
                   <span className="text-[11px]" style={{ color: 'rgba(255,255,255,0.18)' }}>

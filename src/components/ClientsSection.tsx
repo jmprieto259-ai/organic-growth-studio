@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const accordionData = [
   {
@@ -32,33 +32,73 @@ const accordionData = [
 
 const ClientsSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: '-80px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? -1 : idx);
   };
 
   return (
-    <section className="bg-background px-[60px] py-[100px]">
+    <section ref={sectionRef} className="bg-background px-[60px] py-[100px]">
       {/* Header */}
       <div className="grid grid-cols-2 gap-10 items-end mb-[60px]">
         <div>
-          <span className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-muted mb-[14px]">
+          <span
+            className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-muted mb-[14px] transition-all duration-700 ease-out"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(20px)',
+            }}
+          >
             Clientes y Marcas
           </span>
           <div
-            className="font-display font-black uppercase mb-[14px]"
-            style={{ fontSize: 'clamp(18px, 4.5vw, 28px)', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.18)' }}
+            className="font-display font-black uppercase mb-[14px] transition-all duration-700 ease-out"
+            style={{
+              fontSize: 'clamp(18px, 4.5vw, 28px)',
+              letterSpacing: '0.05em',
+              color: 'rgba(255,255,255,0.18)',
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateX(0)' : 'translateX(-40px)',
+              transitionDelay: '100ms',
+            }}
           >
             클라이언트
           </div>
           <h2
-            className="font-display font-black uppercase text-foreground"
-            style={{ fontSize: 'clamp(24px, 4vw, 42px)', lineHeight: 1.0, letterSpacing: '-0.025em' }}
+            className="font-display font-black uppercase text-foreground transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={{
+              fontSize: 'clamp(24px, 4vw, 42px)',
+              lineHeight: 1.0,
+              letterSpacing: '-0.025em',
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(40px)',
+              transitionDelay: '200ms',
+            }}
           >
             Cualquier industria<br />puede ser viral.
           </h2>
         </div>
-        <div className="flex justify-end items-end">
+        <div
+          className="flex justify-end items-end transition-all duration-700 ease-out"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '400ms',
+          }}
+        >
           <a
             href="#contacto"
             className="inline-flex items-center gap-[10px] border border-foreground/25 text-foreground font-body text-[13px] font-medium px-[22px] py-[13px] rounded-full no-underline transition-all duration-[250ms] hover:bg-foreground hover:text-background"
@@ -74,7 +114,15 @@ const ClientsSection = () => {
       {/* Accordion */}
       <ul className="list-none">
         {accordionData.map((item, idx) => (
-          <li key={idx} className="border-b border-foreground/10">
+          <li
+            key={idx}
+            className="border-b border-foreground/10 transition-all duration-700 ease-out"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: `${500 + idx * 120}ms`,
+            }}
+          >
             <div
               onClick={() => toggle(idx)}
               className="flex items-center gap-4 py-5 cursor-pointer font-body font-medium select-none"
