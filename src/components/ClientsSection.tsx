@@ -1,0 +1,107 @@
+import { useState } from "react";
+
+const accordionData = [
+  {
+    title: "Founders & Marca Personal",
+    items: [
+      "Andrés Bilbao — Cofundador de Rappi",
+      "Daniel Bilbao — Truora",
+      "Santiago Pineda — CEO Mensajeros Urbanos",
+      "Giovanni Stella — Ex Country Manager Google",
+      "Juan Daniel Oviedo — Campaña Política",
+    ],
+    defaultOpen: true,
+  },
+  {
+    title: "Startups & Tech",
+    items: ["Trii", "Mejor CDT", "Cíclico", "TuEme"],
+    defaultOpen: false,
+  },
+  {
+    title: "Empresas Tradicionales",
+    items: [
+      "Grupo Takami",
+      "Viajero Hostels",
+      "Friogan (Frigorífico)",
+      "Subasta de Ganado (millones de vistas)",
+    ],
+    defaultOpen: false,
+  },
+];
+
+const ClientsSection = () => {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const toggle = (idx: number) => {
+    setOpenIndex(openIndex === idx ? -1 : idx);
+  };
+
+  return (
+    <section className="bg-background px-[60px] py-[100px]">
+      {/* Header */}
+      <div className="grid grid-cols-2 gap-10 items-end mb-[60px]">
+        <div>
+          <span className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-muted mb-[14px]">
+            Clientes y Marcas
+          </span>
+          <div
+            className="font-display font-black uppercase mb-[14px]"
+            style={{ fontSize: 'clamp(18px, 4.5vw, 28px)', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.18)' }}
+          >
+            클라이언트
+          </div>
+          <h2
+            className="font-display font-black uppercase text-foreground"
+            style={{ fontSize: 'clamp(24px, 4vw, 42px)', lineHeight: 1.0, letterSpacing: '-0.025em' }}
+          >
+            Cualquier industria<br />puede ser viral.
+          </h2>
+        </div>
+        <div className="flex justify-end items-end">
+          <a
+            href="#contacto"
+            className="inline-flex items-center gap-[10px] border border-foreground/25 text-foreground font-body text-[13px] font-medium px-[22px] py-[13px] rounded-full no-underline transition-all duration-[250ms] hover:bg-foreground hover:text-background"
+          >
+            Trabaja conmigo
+            <span className="w-[22px] h-[22px] border border-foreground/30 rounded-full flex items-center justify-center text-[11px]">
+              ↗
+            </span>
+          </a>
+        </div>
+      </div>
+
+      {/* Accordion */}
+      <ul className="list-none">
+        {accordionData.map((item, idx) => (
+          <li key={idx} className="border-b border-foreground/10">
+            <div
+              onClick={() => toggle(idx)}
+              className="flex items-center gap-4 py-5 cursor-pointer font-body font-medium select-none"
+              style={{ fontSize: 'clamp(15px, 1.6vw, 20px)', color: 'rgba(255,255,255,0.75)' }}
+            >
+              <span className="w-[26px] h-[26px] border border-foreground/25 rounded-full flex items-center justify-center text-[15px] flex-shrink-0 transition-all duration-[250ms]" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                {openIndex === idx ? '−' : '+'}
+              </span>
+              {item.title}
+            </div>
+            <div className={openIndex === idx ? 'acc-body-open' : 'acc-body-closed'}>
+              <ul className="list-none flex flex-col gap-2">
+                {item.items.map((name, i) => (
+                  <li
+                    key={i}
+                    className="font-body text-[14px] pl-[10px] border-l border-foreground/[0.08]"
+                    style={{ color: 'rgba(255,255,255,0.40)' }}
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+export default ClientsSection;
