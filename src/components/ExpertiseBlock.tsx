@@ -136,7 +136,7 @@ const ExpertiseBlock = ({
                 <div
                   key={i}
                   className={`font-display font-black uppercase text-white transition-all ease-out ${
-                    textReady ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+                    textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                   style={{
                     fontSize: 'clamp(32px, 6vw, 90px)',
@@ -181,12 +181,12 @@ const ExpertiseBlock = ({
 
         {/* Inner grid */}
         <div className="relative z-[2] grid grid-cols-[1fr_1.3fr] gap-20 items-start">
-          {/* Left — slides from left */}
+          {/* Left */}
           <div
-            className="transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="transition-all duration-[900ms] ease-out"
             style={{
               opacity: leftReady ? 1 : 0,
-              transform: leftReady ? 'translateX(0) translateY(0)' : 'translateX(-60px) translateY(40px)',
+              transform: leftReady ? 'translateY(0)' : 'translateY(30px)',
             }}
           >
             <span className="block font-body text-[12px] text-muted tracking-[0.04em] mb-[18px]">
@@ -205,13 +205,13 @@ const ExpertiseBlock = ({
             </span>
           </div>
 
-          {/* Right — slides from right */}
+          {/* Right */}
           <div
-            className="transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="transition-all duration-[900ms] ease-out"
             style={{
               opacity: rightReady ? 1 : 0,
-              transform: rightReady ? 'translateX(0) translateY(0)' : 'translateX(60px) translateY(40px)',
-              transitionDelay: '120ms',
+              transform: rightReady ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '150ms',
             }}
           >
             <h4
@@ -233,7 +233,7 @@ const ExpertiseBlock = ({
                   style={{
                     color: 'rgba(255,255,255,0.50)',
                     opacity: rightReady ? 1 : 0,
-                    transform: rightReady ? 'translateX(0)' : 'translateX(30px)',
+                    transform: rightReady ? 'translateY(0)' : 'translateY(15px)',
                     transitionDelay: `${300 + i * 100}ms`,
                   }}
                 >
