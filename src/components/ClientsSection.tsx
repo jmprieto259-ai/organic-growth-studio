@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import ScrollText from "./ScrollText";
 
 const accordionData = [
   {
@@ -77,19 +78,19 @@ const ClientsSection = () => {
           >
             클라이언트
           </div>
-          <h2
-            className="font-display font-black uppercase text-foreground transition-all duration-[900ms] ease-out"
+          <ScrollText
+            text="Cualquier industria puede ser viral."
+            className="font-display font-black uppercase block"
             style={{
               fontSize: 'clamp(24px, 4vw, 42px)',
               lineHeight: 1.0,
               letterSpacing: '-0.025em',
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(40px)',
-              transitionDelay: '200ms',
             }}
-          >
-            Cualquier industria<br />puede ser viral.
-          </h2>
+            activeColor="rgba(255,255,255,0.92)"
+            inactiveColor="rgba(255,255,255,0.08)"
+            startAt={0.2}
+            endAt={0.5}
+          />
         </div>
         <div
           className="flex justify-end items-end transition-all duration-700 ease-out"

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import ScrollText from "./ScrollText";
 
 const jobs = [
   {
@@ -44,19 +45,6 @@ const jobs = [
 
 const ExperienceSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [headerVis, setHeaderVis] = useState(false);
-
-  useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setHeaderVis(true); observer.disconnect(); } },
-      { rootMargin: '-60px' }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? -1 : idx);
@@ -64,30 +52,26 @@ const ExperienceSection = () => {
 
   return (
     <section id="experiencia" className="bg-off-white px-[60px] py-[100px]">
-      <div ref={headerRef} className="mb-[60px]">
+      <div className="mb-[60px]">
         <span
-          className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-[14px] transition-all duration-700 ease-out"
-          style={{
-            color: 'rgba(0,0,0,0.35)',
-            opacity: headerVis ? 1 : 0,
-            transform: headerVis ? 'translateY(0)' : 'translateY(20px)',
-          }}
+          className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-[14px]"
+          style={{ color: 'rgba(0,0,0,0.35)' }}
         >
           Mi Experiencia
         </span>
-        <h2
-          className="font-display font-black uppercase text-background transition-all duration-[900ms] ease-out"
+        <ScrollText
+          text="Resultados en todos los frentes"
+          className="font-display font-black uppercase block"
           style={{
             fontSize: 'clamp(24px, 4vw, 48px)',
             lineHeight: 1.0,
             letterSpacing: '-0.03em',
-            opacity: headerVis ? 1 : 0,
-            transform: headerVis ? 'translateY(0)' : 'translateY(25px)',
-            transitionDelay: '150ms',
           }}
-        >
-          Resultados en todos<br />los frentes
-        </h2>
+          activeColor="rgba(0,0,0,0.88)"
+          inactiveColor="rgba(0,0,0,0.08)"
+          startAt={0.15}
+          endAt={0.4}
+        />
       </div>
 
       <ul className="list-none">
@@ -121,7 +105,7 @@ const JobItem = ({ job, idx, openIndex, toggle }: { job: typeof jobs[0]; idx: nu
       style={{
         borderColor: 'rgba(0,0,0,0.10)',
         opacity: vis ? 1 : 0,
-        transform: vis ? 'translateY(0)' : 'translateY(30px)',
+        transform: vis ? 'translateY(0)' : 'translateY(20px)',
         transitionDelay: `${idx * 100}ms`,
       }}
     >

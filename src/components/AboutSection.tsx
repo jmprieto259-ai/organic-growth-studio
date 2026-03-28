@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import ScrollText from './ScrollText';
 
-const paragraphs = [
-  <>Desde que era niño tuve claro que el camino corporativo no era para mí. Trabajé como líder de tecnología en una startup — aprendí todo lo que pude — y un día le dije adiós a la oficina para irme al llano a <strong className="text-foreground font-semibold">vivir descalzo como vaquero.</strong></>,
-  <>Lo que vino después nadie lo planeó: empecé a documentar esa vida en redes sociales y sin gastar un peso en publicidad construí <em className="not-italic text-primary font-semibold">una comunidad de 1.7 millones de seguidores.</em> Ahí entendí algo que cambió todo: <strong className="text-foreground font-semibold">el algoritmo no premia los presupuestos, premia las historias reales.</strong></>,
-  <>Ese conocimiento lo validé en el escenario más exigente posible: una campaña política. Tomé las redes de Juan Daniel Oviedo, apostamos todo al orgánico, y pasamos del 1% a <strong className="text-foreground font-semibold">1.2 millones de votos reales.</strong></>,
-  <>Hoy asesoro a los founders más grandes del ecosistema tech de Latam y ayudo a empresas de cualquier industria — desde frigoríficos hasta startups que buscan ser unicornio — a entender que <em className="not-italic text-primary font-semibold">su historia es su mayor activo.</em></>,
+const aboutTexts = [
+  'Desde que era niño tuve claro que el camino corporativo no era para mí. Trabajé como líder de tecnología en una startup — aprendí todo lo que pude — y un día le dije adiós a la oficina para irme al llano a vivir descalzo como vaquero.',
+  'Lo que vino después nadie lo planeó: empecé a documentar esa vida en redes sociales y sin gastar un peso en publicidad construí una comunidad de 1.7 millones de seguidores. Ahí entendí algo que cambió todo: el algoritmo no premia los presupuestos, premia las historias reales.',
+  'Ese conocimiento lo validé en el escenario más exigente posible: una campaña política. Tomé las redes de Juan Daniel Oviedo, apostamos todo al orgánico, y pasamos del 1% a 1.2 millones de votos reales.',
+  'Hoy asesoro a los founders más grandes del ecosistema tech de Latam y ayudo a empresas de cualquier industria — desde frigoríficos hasta startups que buscan ser unicornio — a entender que su historia es su mayor activo.',
 ];
 
 const AboutSection = () => {
@@ -39,44 +40,23 @@ const AboutSection = () => {
         </h2>
       </div>
       <div>
-        {paragraphs.map((content, i) => (
-          <AboutParagraph key={i} index={i}>{content}</AboutParagraph>
+        {aboutTexts.map((text, i) => (
+          <ScrollText
+            key={i}
+            text={text}
+            className="font-body block mb-[22px]"
+            style={{
+              fontSize: 'clamp(14px, 1.15vw, 16px)',
+              lineHeight: 1.78,
+            }}
+            activeColor="rgba(255,255,255,0.55)"
+            inactiveColor="rgba(255,255,255,0.06)"
+            startAt={0.1 + i * 0.12}
+            endAt={0.3 + i * 0.12}
+          />
         ))}
       </div>
     </section>
-  );
-};
-
-const AboutParagraph = ({ children, index }: { children: React.ReactNode; index: number }) => {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const [vis, setVis] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVis(true); observer.disconnect(); } },
-      { rootMargin: '-60px' }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <p
-      ref={ref}
-      className="font-body mb-[22px] transition-all duration-[800ms] ease-out"
-      style={{
-        fontSize: 'clamp(14px, 1.15vw, 16px)',
-        lineHeight: 1.78,
-        color: 'rgba(255,255,255,0.50)',
-        opacity: vis ? 1 : 0,
-        transform: vis ? 'translateY(0)' : 'translateY(35px)',
-        transitionDelay: `${index * 80}ms`,
-      }}
-    >
-      {children}
-    </p>
   );
 };
 
