@@ -10,6 +10,7 @@ import StatsSection from "@/components/StatsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
+import SectionBlurReveal from "@/components/SectionBlurReveal";
 
 const expertiseBlocks = [
   {
@@ -84,15 +85,29 @@ const Index = () => {
       <Navigation />
       <Hero />
       {expertiseBlocks.map((block, i) => (
-        <ExpertiseBlock key={i} {...block} />
+        <SectionBlurReveal key={i}>
+          <ExpertiseBlock {...block} />
+        </SectionBlurReveal>
       ))}
       
-      <Manifesto />
-      <ClientsSection />
-      <StatsSection />
-      <ExperienceSection />
-      <AboutSection />
-      <Footer />
+      <SectionBlurReveal>
+        <Manifesto />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <ClientsSection />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <StatsSection />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <ExperienceSection />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <AboutSection />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <Footer />
+      </SectionBlurReveal>
     </>
   );
 };
