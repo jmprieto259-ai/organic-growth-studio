@@ -36,26 +36,19 @@ const Hero = () => {
         </h1>
       </div>
 
-      {/* Footer stats */}
-      <div className="relative z-[3] grid grid-cols-3 gap-4">
-        <span
-          className="font-body font-medium uppercase tracking-[0.10em]"
-          style={{ fontSize: 'clamp(10px, 0.85vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
+      {/* Statement */}
+      <div className="relative z-[3] px-[60px] pb-[44px]">
+        <p
+          className="font-display font-black uppercase text-foreground"
+          style={{
+            fontSize: 'clamp(28px, 4.5vw, 64px)',
+            lineHeight: 1.05,
+            letterSpacing: '-0.03em',
+            color: 'rgba(0,0,0,0.72)',
+          }}
         >
-          Basado en Colombia
-        </span>
-        <span
-          className="font-body font-medium uppercase tracking-[0.10em] text-center"
-          style={{ fontSize: 'clamp(10px, 0.85vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
-        >
-          Redes Sociales &amp; Crecimiento 100% Orgánico
-        </span>
-        <span
-          className="font-body font-medium uppercase tracking-[0.10em] text-right"
-          style={{ fontSize: 'clamp(10px, 0.85vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
-        >
-          1.7M+ Seguidores Construidos
-        </span>
+          De vivir como vaquero a conseguir asesorar a los top founders de Latam y conseguir 1.2 millones de votos.
+        </p>
       </div>
     </section>
   );
