@@ -3,6 +3,7 @@ interface ExpertiseBlockProps {
   stickyBarRight: string;
   bgWord: string;
   placeholder: string;
+  image?: string;
   number: string;
   code: string;
   title: string;
