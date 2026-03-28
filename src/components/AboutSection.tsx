@@ -26,13 +26,13 @@ const AboutSection = () => {
     <section id="sobre-mi" className="bg-background px-[60px] py-[100px] grid grid-cols-[1fr_1.6fr] gap-20 items-start">
       <div ref={titleRef}>
         <h2
-          className="font-display font-black uppercase text-foreground transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="font-display font-black uppercase text-foreground transition-all duration-[1000ms] ease-out"
           style={{
             fontSize: 'clamp(30px, 4.5vw, 60px)',
             lineHeight: 0.92,
             letterSpacing: '-0.03em',
             opacity: titleVis ? 1 : 0,
-            transform: titleVis ? 'translateX(0) rotate(0deg)' : 'translateX(-60px) rotate(-2deg)',
+            transform: titleVis ? 'translateY(0)' : 'translateY(25px)',
           }}
         >
           Estratega<br />Orgánico

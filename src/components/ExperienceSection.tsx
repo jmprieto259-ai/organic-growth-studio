@@ -76,13 +76,13 @@ const ExperienceSection = () => {
           Mi Experiencia
         </span>
         <h2
-          className="font-display font-black uppercase text-background transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="font-display font-black uppercase text-background transition-all duration-[900ms] ease-out"
           style={{
             fontSize: 'clamp(24px, 4vw, 48px)',
             lineHeight: 1.0,
             letterSpacing: '-0.03em',
             opacity: headerVis ? 1 : 0,
-            transform: headerVis ? 'translateX(0)' : 'translateX(-50px)',
+            transform: headerVis ? 'translateY(0)' : 'translateY(25px)',
             transitionDelay: '150ms',
           }}
         >

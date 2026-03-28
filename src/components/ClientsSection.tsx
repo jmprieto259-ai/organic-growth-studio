@@ -71,14 +71,14 @@ const ClientsSection = () => {
               letterSpacing: '0.05em',
               color: 'rgba(255,255,255,0.18)',
               opacity: visible ? 1 : 0,
-              transform: visible ? 'translateX(0)' : 'translateX(-40px)',
+              transform: visible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '100ms',
             }}
           >
             클라이언트
           </div>
           <h2
-            className="font-display font-black uppercase text-foreground transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="font-display font-black uppercase text-foreground transition-all duration-[900ms] ease-out"
             style={{
               fontSize: 'clamp(24px, 4vw, 42px)',
               lineHeight: 1.0,
