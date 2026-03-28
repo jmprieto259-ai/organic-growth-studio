@@ -133,7 +133,9 @@ const ExpertiseBlock = ({
                   textShadow: '0 2px 40px rgba(0,0,0,0.15)',
                 }}
               >
-                {imageOverlayText}
+                {imageOverlayText.split('\n').map((line, i) => (
+                  <div key={i}>{line}</div>
+                ))}
               </div>
             )}
           </>
