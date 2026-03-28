@@ -19,10 +19,10 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-[3] flex flex-col items-center justify-center text-center flex-1 pt-[60px]">
         <p
-          className="font-display font-bold uppercase tracking-[0.10em]"
+          className="font-display font-bold uppercase tracking-[0.10em] mb-1"
           style={{ fontSize: 'clamp(13px, 1.8vw, 26px)', color: 'rgba(0,0,0,0.55)' }}
         >
-          Estratega de Contenido
+          Estratega de Contenido Orgánico
         </p>
         <h1
           className="font-display font-black uppercase leading-[0.86]"
@@ -34,17 +34,13 @@ const Hero = () => {
         >
           Jose<br />Prieto
         </h1>
-      </div>
-
-      {/* Statement */}
-      <div className="relative z-[3] mb-[44px]">
         <p
-          className="font-display font-black uppercase"
+          className="font-body mt-7 max-w-[560px] text-center"
           style={{
-            fontSize: 'clamp(28px, 4.5vw, 64px)',
-            lineHeight: 1.05,
-            letterSpacing: '-0.03em',
-            color: 'rgba(0,0,0,0.72)',
+            fontSize: 'clamp(13px, 1.2vw, 17px)',
+            lineHeight: 1.6,
+            color: 'rgba(0,0,0,0.50)',
+            letterSpacing: '0.01em',
           }}
         >
           De vivir como vaquero a conseguir asesorar a los top founders de Latam y conseguir 1.2 millones de votos.
