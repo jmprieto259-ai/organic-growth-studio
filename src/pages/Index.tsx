@@ -43,7 +43,7 @@ const expertiseBlocks = [
     subtitle: "Cofundador de Rappi",
     h4Text: "El asesor detrás de los founders más grandes del ecosistema tech de Latam",
     paragraph:
-      'Soy el asesor de marca personal de los founders más influyentes de la región. Con Andrés Bilbao (Rappi), Santiago Pineda (Mensajeros Urbanos), Nicolás Quijano, Giovanni Stella (Ex Country Manager Google) y Hugo Surek, construyo sistemas de contenido que posicionan a líderes de clase mundial.',
+      'Soy el asesor de marca personal de los founders más influyentes de la región. Con <strong style="color:white">Andrés Bilbao</strong> (Rappi), <strong style="color:white">Santiago Pineda</strong> (Mensajeros Urbanos), <strong style="color:white">Nicolás Quijano</strong>, <strong style="color:white">Giovanni Stella</strong> (Ex Country Manager Google) y <strong style="color:white">Hugo Surek</strong>, construyo sistemas de contenido que posicionan a líderes de clase mundial.',
     skills: [
       "Andrés Bilbao — Cofundador de Rappi",
       "Santiago Pineda — CEO Mensajeros Urbanos",
