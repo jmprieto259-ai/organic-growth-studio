@@ -1,9 +1,12 @@
+import { useEffect, useRef, useState } from "react";
+
 interface ExpertiseBlockProps {
   stickyBarLeft: string;
   stickyBarRight: string;
   bgWord: string;
   placeholder: string;
   image?: string;
+  imageOverlayText?: string;
   number: string;
   code: string;
   title: string;
@@ -19,6 +22,7 @@ const ExpertiseBlock = ({
   bgWord,
   placeholder,
   image,
+  imageOverlayText,
   number,
   code,
   title,
@@ -27,10 +31,48 @@ const ExpertiseBlock = ({
   paragraph,
   skills,
 }: ExpertiseBlockProps) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+  const [textVisible, setTextVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!panelRef.current) return;
+      const rect = panelRef.current.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      // Only calculate when panel is near or in viewport
+      if (rect.bottom > 0 && rect.top < windowH) {
+        const progress = (windowH - rect.top) / (windowH + rect.height);
+        setOffset((progress - 0.5) * 80);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTextVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (panelRef.current) observer.observe(panelRef.current);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="relative">
       {/* Red panel */}
-      <div className="relative bg-primary h-[75vh] min-h-[480px] overflow-hidden flex items-center justify-center">
+      <div
+        ref={panelRef}
+        className="relative bg-primary h-[75vh] min-h-[480px] overflow-hidden flex items-center justify-center"
+      >
         {/* Sticky bar */}
         <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-[22px] py-[14px] border-b border-black/[0.12]">
           <span className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
@@ -43,7 +85,7 @@ const ExpertiseBlock = ({
 
         {/* BG word */}
         <div
-          className="absolute inset-0 flex items-center justify-center font-display font-black uppercase overflow-hidden whitespace-nowrap select-none pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center font-display font-black uppercase overflow-hidden whitespace-nowrap select-none pointer-events-none z-[1]"
           style={{
             fontSize: 'clamp(100px, 20vw, 320px)',
             lineHeight: 1,
@@ -54,13 +96,47 @@ const ExpertiseBlock = ({
           {bgWord}
         </div>
 
-        {/* Image placeholder */}
+        {/* Image or placeholder */}
         {image ? (
-          <img
-            src={image}
-            alt={bgWord}
-            className="relative z-[2] w-[52%] h-[88%] rounded-[3px] object-cover"
-          />
+          <>
+            {/* Full-cover image with multiply blend and parallax */}
+            <div
+              className="absolute inset-0 z-[2]"
+              style={{
+                transform: `translateY(${offset}px)`,
+                willChange: 'transform',
+              }}
+            >
+              <img
+                src={image}
+                alt={bgWord}
+                className="w-full h-[120%] object-cover"
+                style={{
+                  mixBlendMode: 'multiply',
+                  marginTop: '-10%',
+                }}
+              />
+            </div>
+            {/* Overlay text */}
+            {imageOverlayText && (
+              <div
+                className={`relative z-[3] font-display font-black uppercase text-center transition-all duration-1000 ease-out ${
+                  textVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{
+                  fontSize: 'clamp(36px, 8vw, 120px)',
+                  lineHeight: 0.9,
+                  letterSpacing: '-0.03em',
+                  color: 'rgba(0,0,0,0.7)',
+                  textShadow: '0 2px 40px rgba(0,0,0,0.15)',
+                }}
+              >
+                {imageOverlayText}
+              </div>
+            )}
+          </>
         ) : (
           <div
             className="relative z-[2] w-[52%] h-[88%] rounded-[3px] flex items-center justify-center font-body text-[13px] tracking-[0.05em]"
