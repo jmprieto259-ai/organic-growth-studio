@@ -34,9 +34,9 @@ const jobs = [
     description:
       "Asesor de los líderes más influyentes del ecosistema tech y startups de alto crecimiento en Colombia y Latam. Ayudo a founders a construir su marca personal y a startups a lograr tracción orgánica real.",
     bullets: [
-      "Andrés Bilbao (Rappi), Daniel Bilbao (Truora), Santiago Pineda (Mensajeros Urbanos)",
-      "Giovanni Stella — Ex Country Manager de Google Colombia",
-      "Trii: mayor número de descargas en la historia de la app — orgánico",
+      "Andrés Bilbao (Rappi), Santiago Pineda (Mensajeros Urbanos), Nicolás Quijano",
+      "Giovanni Stella (Ex Google), Hugo Surek",
+      "Trii + Mejor CDT: mayor tracción fintech orgánica en Colombia",
     ],
     defaultOpen: false,
   },

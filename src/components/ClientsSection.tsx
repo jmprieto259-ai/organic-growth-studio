@@ -5,15 +5,16 @@ const accordionData = [
     title: "Founders & Marca Personal",
     items: [
       "Andrés Bilbao — Cofundador de Rappi",
-      "Daniel Bilbao — Truora",
       "Santiago Pineda — CEO Mensajeros Urbanos",
+      "Nicolás Quijano",
       "Giovanni Stella — Ex Country Manager Google",
+      "Hugo Surek",
       "Juan Daniel Oviedo — Campaña Política",
     ],
     defaultOpen: true,
   },
   {
-    title: "Startups & Tech",
+    title: "Startups Fintech",
     items: ["Trii", "Mejor CDT", "Cíclico", "TuEme"],
     defaultOpen: false,
   },
