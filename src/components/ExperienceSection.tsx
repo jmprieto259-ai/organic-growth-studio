@@ -51,10 +51,10 @@ const ExperienceSection = () => {
   };
 
   return (
-    <section id="experiencia" className="bg-off-white px-[60px] py-[100px]">
-      <div className="mb-[60px]">
+    <section id="experiencia" className="bg-off-white px-5 md:px-[60px] py-14 md:py-[100px]">
+      <div className="mb-10 md:mb-[60px]">
         <span
-          className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-[14px]"
+          className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-3 md:mb-[14px]"
           style={{ color: 'rgba(0,0,0,0.35)' }}
         >
           Mi Experiencia
@@ -63,7 +63,7 @@ const ExperienceSection = () => {
           text="Resultados en todos los frentes"
           className="font-display font-black uppercase block"
           style={{
-            fontSize: 'clamp(24px, 4vw, 48px)',
+            fontSize: 'clamp(22px, 7vw, 48px)',
             lineHeight: 1.0,
             letterSpacing: '-0.03em',
           }}
@@ -111,11 +111,11 @@ const JobItem = ({ job, idx, openIndex, toggle }: { job: typeof jobs[0]; idx: nu
     >
       <div
         onClick={() => toggle(idx)}
-        className="flex items-center justify-between py-[22px] cursor-pointer select-none"
+        className="flex items-center justify-between gap-3 py-4 md:py-[22px] cursor-pointer select-none"
       >
         <span
           className="font-body font-semibold"
-          style={{ fontSize: 'clamp(17px, 2vw, 24px)', color: 'rgba(0,0,0,0.80)' }}
+          style={{ fontSize: 'clamp(14px, 4vw, 24px)', color: 'rgba(0,0,0,0.80)' }}
         >
           {job.name}
         </span>
@@ -127,25 +127,25 @@ const JobItem = ({ job, idx, openIndex, toggle }: { job: typeof jobs[0]; idx: nu
         </span>
       </div>
       <div className={openIndex === idx ? 'job-body-open' : 'job-body-closed'}>
-        <div className="flex gap-3 items-center mb-4">
+        <div className="flex flex-wrap gap-2 md:gap-3 items-center mb-4">
           <span
-            className="font-body text-[12px] font-medium px-[14px] py-[5px] rounded-full"
+            className="font-body text-[11px] md:text-[12px] font-medium px-3 md:px-[14px] py-[5px] rounded-full"
             style={{ border: '1px solid rgba(0,0,0,0.15)', color: 'rgba(0,0,0,0.55)' }}
           >
             {job.role}
           </span>
-          <span className="font-body text-[12px]" style={{ color: 'rgba(0,0,0,0.35)' }}>
+          <span className="font-body text-[11px] md:text-[12px]" style={{ color: 'rgba(0,0,0,0.35)' }}>
             {job.date}
           </span>
         </div>
-        <p className="font-body text-[14px] leading-[1.70] mb-[14px]" style={{ color: 'rgba(0,0,0,0.55)' }}>
+        <p className="font-body text-[13px] md:text-[14px] leading-[1.70] mb-[14px]" style={{ color: 'rgba(0,0,0,0.55)' }}>
           {job.description}
         </p>
         <ul className="list-none flex flex-col gap-2">
           {job.bullets.map((b, i) => (
             <li
               key={i}
-              className="font-body text-[13px] pl-[14px] leading-[1.5]"
+              className="font-body text-[12px] md:text-[13px] pl-[14px] leading-[1.5]"
               style={{ color: 'rgba(0,0,0,0.50)', borderLeft: '2px solid rgba(232,43,0,0.4)' }}
             >
               {b}

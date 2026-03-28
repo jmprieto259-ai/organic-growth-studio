@@ -52,12 +52,12 @@ const ClientsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-background px-[60px] py-[100px]">
+    <section ref={sectionRef} className="bg-background px-5 md:px-[60px] py-14 md:py-[100px]">
       {/* Header */}
-      <div className="grid grid-cols-2 gap-10 items-end mb-[60px]">
+      <div className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-10 md:items-end mb-10 md:mb-[60px]">
         <div>
           <span
-            className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-muted mb-[14px] transition-all duration-700 ease-out"
+            className="block font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-muted mb-3 md:mb-[14px] transition-all duration-700 ease-out"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -66,9 +66,9 @@ const ClientsSection = () => {
             Clientes y Marcas
           </span>
           <div
-            className="font-display font-black uppercase mb-[14px] transition-all duration-700 ease-out"
+            className="font-display font-black uppercase mb-3 md:mb-[14px] transition-all duration-700 ease-out"
             style={{
-              fontSize: 'clamp(18px, 4.5vw, 28px)',
+              fontSize: 'clamp(16px, 4.5vw, 28px)',
               letterSpacing: '0.05em',
               color: 'rgba(255,255,255,0.18)',
               opacity: visible ? 1 : 0,
@@ -82,7 +82,7 @@ const ClientsSection = () => {
             text="Cualquier industria puede ser viral."
             className="font-display font-black uppercase block"
             style={{
-              fontSize: 'clamp(24px, 4vw, 42px)',
+              fontSize: 'clamp(22px, 6vw, 42px)',
               lineHeight: 1.0,
               letterSpacing: '-0.025em',
             }}
@@ -93,7 +93,7 @@ const ClientsSection = () => {
           />
         </div>
         <div
-          className="flex justify-end items-end transition-all duration-700 ease-out"
+          className="flex md:justify-end md:items-end transition-all duration-700 ease-out"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -126,10 +126,10 @@ const ClientsSection = () => {
           >
             <div
               onClick={() => toggle(idx)}
-              className="flex items-center gap-4 py-5 cursor-pointer font-body font-medium select-none"
-              style={{ fontSize: 'clamp(15px, 1.6vw, 20px)', color: 'rgba(255,255,255,0.75)' }}
+              className="flex items-center gap-3 md:gap-4 py-4 md:py-5 cursor-pointer font-body font-medium select-none"
+              style={{ fontSize: 'clamp(14px, 4vw, 20px)', color: 'rgba(255,255,255,0.75)' }}
             >
-              <span className="w-[26px] h-[26px] border border-foreground/25 rounded-full flex items-center justify-center text-[15px] flex-shrink-0 transition-all duration-[250ms]" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <span className="w-[24px] h-[24px] md:w-[26px] md:h-[26px] border border-foreground/25 rounded-full flex items-center justify-center text-[14px] md:text-[15px] flex-shrink-0 transition-all duration-[250ms]" style={{ color: 'rgba(255,255,255,0.4)' }}>
                 {openIndex === idx ? '−' : '+'}
               </span>
               {item.title}
@@ -139,7 +139,7 @@ const ClientsSection = () => {
                 {item.items.map((name, i) => (
                   <li
                     key={i}
-                    className="font-body text-[14px] pl-[10px] border-l border-foreground/[0.08]"
+                    className="font-body text-[13px] md:text-[14px] pl-[10px] border-l border-foreground/[0.08]"
                     style={{ color: 'rgba(255,255,255,0.40)' }}
                   >
                     {name}

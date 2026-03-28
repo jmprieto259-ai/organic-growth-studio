@@ -21,17 +21,16 @@ const Manifesto = () => {
   }, []);
 
   return (
-    <section ref={ref} className="bg-background px-[60px] py-[180px] text-center">
+    <section ref={ref} className="bg-background px-5 md:px-[60px] py-20 md:py-[180px] text-center">
       <p
         className="font-display font-black uppercase max-w-[1200px] mx-auto"
         style={{
-          fontSize: 'clamp(32px, 6vw, 88px)',
+          fontSize: 'clamp(24px, 8vw, 88px)',
           lineHeight: 1.04,
           letterSpacing: '-0.03em',
         }}
       >
         {words.map((word, i) => {
-          // Each word lights up sequentially based on scroll progress
           const wordProgress = (i / words.length);
           const isLit = progress > 0.15 + wordProgress * 0.55;
           return (
