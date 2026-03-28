@@ -3,12 +3,12 @@ import { useState } from "react";
 const filters = ["Todos", "Política", "Startups", "Founders", "Empresas"];
 
 const workItems = [
-  "Caso Oviedo — 1.2M Votos",
-  "Trii — Récord de Descargas",
-  "Andrés Bilbao (Rappi)",
-  "Friogan — Viral Inesperado",
-  "De Vaquero a 1.7M Seguidores",
-  "Giovanni Stella (Ex Google)",
+  "Andrés Bilbao — Cofundador Rappi",
+  "Santiago Pineda — Mensajeros Urbanos",
+  "Nicolás Quijano",
+  "Trii & Mejor CDT — Startups Fintech",
+  "Giovanni Stella — Ex Country Manager Google",
+  "Hugo Surek",
 ];
 
 const WorkSection = () => {
