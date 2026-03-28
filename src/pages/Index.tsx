@@ -23,7 +23,7 @@ const expertiseBlocks = [
     code: "// 01",
     title: "La<br/>Revelación",
     subtitle: "Mi Historia",
-    h4Text: "Todo empezó mandando al carajo el \"deber ser\"",
+    h4Text: "De vivir como vaquero a conseguir asesorar a los top founders de Latam y conseguir 1.2 millones de votos",
     paragraph:
       'Pasé de ser líder de tecnología de una startup a perseguir mi sueño de irme al llano a vivir descalzo como vaquero. Usé las redes para documentar mi pasión. Me volví influencer sin planearlo y construí una comunidad de <strong style="color:white">1.7 millones de seguidores</strong> en TikTok, Instagram, YouTube y Facebook. Ahí descubrí que el crecimiento orgánico no necesita perfección, sino historias reales, constancia y entender cómo hackear el algoritmo.',
     skills: [
@@ -55,23 +55,23 @@ const expertiseBlocks = [
     ],
   },
   {
-    stickyBarLeft: "Los Cracks y Marcas",
-    stickyBarRight: "리그",
-    bgWord: "FOUNDERS",
-    placeholder: "[ Foto con founders / logos ]",
+    stickyBarLeft: "Caso Andrés Bilbao",
+    stickyBarRight: "라피",
+    bgWord: "RAPPI",
+    placeholder: "[ Foto con Andrés Bilbao ]",
     number: "03",
     code: "// 03",
-    title: "Grandes<br/>Ligas",
-    subtitle: "Top Founders Latam",
-    h4Text: "Asesorando a los líderes más grandes del ecosistema tech de Latam",
+    title: "Andrés<br/>Bilbao",
+    subtitle: "Cofundador de Rappi",
+    h4Text: "Asesorando al cofundador de la startup más grande de Latam",
     paragraph:
-      'Soy el asesor de los founders más influyentes: Andrés Bilbao (Rappi), Daniel Bilbao (Truora), Santiago Pineda (Mensajeros Urbanos), Giovanni Stella (Ex Country Manager de Google). En startups, ayudé a Trii a lograr <strong style="color:white">el mayor número de descargas en su historia</strong> con contenido 100% orgánico. Y logré que negocios como Friogan o una subasta de ganado generaran millones de reproducciones.',
+      'Andrés Bilbao, cofundador de Rappi, confía en mi visión para construir su marca personal y presencia en redes sociales. Una estrategia de contenido 100% orgánico para posicionar al líder detrás de una de las empresas más importantes de Latinoamérica.',
     skills: [
       "Andrés Bilbao — Cofundador de Rappi",
-      "Daniel Bilbao — Truora",
       "Santiago Pineda — Mensajeros Urbanos",
+      "Nicolás Quijano",
       "Giovanni Stella — Ex Country Manager Google",
-      "Trii, Mejor CDT, Cíclico, TuEme",
+      "Hugo Surek",
     ],
   },
   {
@@ -103,10 +103,10 @@ const Index = () => {
       <SideBadge />
       <Navigation />
       <Hero />
-      <WorkSection />
       {expertiseBlocks.map((block, i) => (
         <ExpertiseBlock key={i} {...block} />
       ))}
+      <WorkSection />
       <Manifesto />
       <ClientsSection />
       <StatsSection />

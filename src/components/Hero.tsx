@@ -22,7 +22,7 @@ const Hero = () => {
           className="font-display font-bold uppercase tracking-[0.10em]"
           style={{ fontSize: 'clamp(13px, 1.8vw, 26px)', color: 'rgba(0,0,0,0.55)' }}
         >
-          Estratega de Contenido Orgánico
+          Estratega de Contenido
         </p>
         <h1
           className="font-display font-black uppercase leading-[0.86]"
