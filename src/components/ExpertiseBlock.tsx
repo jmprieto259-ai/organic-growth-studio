@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import ScrollText from "./ScrollText";
 
 interface ExpertiseBlockProps {
   stickyBarLeft: string;
@@ -15,6 +16,9 @@ interface ExpertiseBlockProps {
   paragraph: string;
   skills: string[];
 }
+
+/** Strip HTML tags for scroll text (keeps plain text) */
+const stripHtml = (html: string) => html.replace(/<[^>]*>/g, '');
 
 const ExpertiseBlock = ({
   stickyBarLeft,
@@ -63,22 +67,16 @@ const ExpertiseBlock = ({
 
   const blurAmount = Math.max(0, 20 * (1 - visibility));
   const textReady = visibility > 0.6;
-
-  // Black panel — stagger reveals
   const leftReady = blackVis > 0.2;
-  const rightReady = blackVis > 0.3;
-
-  // BG word parallax in black panel
   const bgWordShift = (blackVis - 0.5) * 60;
 
   return (
     <div className="relative">
-      {/* Red panel — sticky with image parallax */}
+      {/* Red panel */}
       <div
         ref={panelRef}
         className="relative bg-primary h-[75vh] min-h-[480px] overflow-hidden"
       >
-        {/* Sticky bar */}
         <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-[22px] py-[14px] border-b border-black/[0.12]">
           <span className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
             {stickyBarLeft}
@@ -103,7 +101,6 @@ const ExpertiseBlock = ({
           {bgWord}
         </div>
 
-        {/* Image or placeholder */}
         {image ? (
           <>
             <div
@@ -123,7 +120,6 @@ const ExpertiseBlock = ({
               />
             </div>
 
-            {/* Bottom-left overlay */}
             <div className="absolute bottom-[40px] left-[40px] z-[5] flex flex-col gap-0">
               <span
                 className={`block font-body text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
@@ -161,7 +157,7 @@ const ExpertiseBlock = ({
         )}
       </div>
 
-      {/* Black panel — content slides up and reveals */}
+      {/* Black panel */}
       <div ref={blackRef} className="bg-background px-[60px] py-[100px] relative overflow-hidden">
         {/* Outline number — parallax */}
         <div
@@ -205,40 +201,41 @@ const ExpertiseBlock = ({
             </span>
           </div>
 
-          {/* Right */}
-          <div
-            className="transition-all duration-[900ms] ease-out"
-            style={{
-              opacity: rightReady ? 1 : 0,
-              transform: rightReady ? 'translateY(0)' : 'translateY(30px)',
-              transitionDelay: '150ms',
-            }}
-          >
-            <h4
-              className="font-display font-black uppercase text-foreground mb-[22px]"
+          {/* Right — word-by-word scroll reveal */}
+          <div>
+            <ScrollText
+              text={h4Text}
+              className="font-display font-black uppercase block mb-[22px]"
               style={{ fontSize: 'clamp(18px, 2.8vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
-            >
-              {h4Text}
-            </h4>
-            <p
-              className="font-body mb-10"
-              style={{ fontSize: 'clamp(14px, 1.1vw, 16px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.50)' }}
-              dangerouslySetInnerHTML={{ __html: paragraph }}
+              activeColor="rgba(255,255,255,0.92)"
+              inactiveColor="rgba(255,255,255,0.08)"
+              startAt={0.15}
+              endAt={0.45}
+            />
+            <ScrollText
+              text={stripHtml(paragraph)}
+              className="font-body block mb-10"
+              style={{ fontSize: 'clamp(14px, 1.1vw, 16px)', lineHeight: 1.75 }}
+              activeColor="rgba(255,255,255,0.55)"
+              inactiveColor="rgba(255,255,255,0.06)"
+              startAt={0.25}
+              endAt={0.65}
             />
             <ul className="list-none border-t border-foreground/10">
               {skills.map((skill, i) => (
                 <li
                   key={i}
-                  className="flex justify-between items-center py-[13px] border-b border-foreground/10 font-body text-[13px] tracking-[0.02em] transition-all duration-500 ease-out"
-                  style={{
-                    color: 'rgba(255,255,255,0.50)',
-                    opacity: rightReady ? 1 : 0,
-                    transform: rightReady ? 'translateY(0)' : 'translateY(15px)',
-                    transitionDelay: `${300 + i * 100}ms`,
-                  }}
+                  className="flex justify-between items-center py-[13px] border-b border-foreground/10 font-body text-[13px] tracking-[0.02em]"
+                  style={{ color: 'rgba(255,255,255,0.50)' }}
                 >
-                  {skill}
-                  <span className="text-[11px]" style={{ color: 'rgba(255,255,255,0.18)' }}>
+                  <ScrollText
+                    text={skill}
+                    activeColor="rgba(255,255,255,0.55)"
+                    inactiveColor="rgba(255,255,255,0.06)"
+                    startAt={0.4 + i * 0.06}
+                    endAt={0.55 + i * 0.06}
+                  />
+                  <span className="text-[11px] flex-shrink-0 ml-4" style={{ color: 'rgba(255,255,255,0.18)' }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </li>
