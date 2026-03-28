@@ -17,7 +17,6 @@ interface ExpertiseBlockProps {
   skills: string[];
 }
 
-/** Strip HTML tags for scroll text (keeps plain text) */
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, '');
 
 const ExpertiseBlock = ({
@@ -75,22 +74,22 @@ const ExpertiseBlock = ({
       {/* Red panel */}
       <div
         ref={panelRef}
-        className="relative bg-primary h-[75vh] min-h-[480px] overflow-hidden"
+        className="relative bg-primary h-[60vh] md:h-[75vh] min-h-[360px] md:min-h-[480px] overflow-hidden"
       >
-        <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-[22px] py-[14px] border-b border-black/[0.12]">
-          <span className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
+        <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-[22px] py-3 md:py-[14px] border-b border-black/[0.12]">
+          <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
             {stickyBarLeft}
           </span>
-          <span className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
+          <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
             {stickyBarRight}
           </span>
         </div>
 
-        {/* BG word — parallax */}
+        {/* BG word */}
         <div
           className="absolute inset-0 flex items-center justify-center font-display font-black uppercase overflow-hidden whitespace-nowrap select-none pointer-events-none z-[1]"
           style={{
-            fontSize: 'clamp(100px, 20vw, 320px)',
+            fontSize: 'clamp(70px, 20vw, 320px)',
             lineHeight: 1,
             letterSpacing: '-0.04em',
             color: 'rgba(0,0,0,0.22)',
@@ -120,9 +119,9 @@ const ExpertiseBlock = ({
               />
             </div>
 
-            <div className="absolute bottom-[40px] left-[40px] z-[5] flex flex-col gap-0">
+            <div className="absolute bottom-5 left-5 md:bottom-[40px] md:left-[40px] z-[5] flex flex-col gap-0">
               <span
-                className={`block font-body text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
+                className={`block font-body text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
                   textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -135,7 +134,7 @@ const ExpertiseBlock = ({
                     textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                   style={{
-                    fontSize: 'clamp(32px, 6vw, 90px)',
+                    fontSize: 'clamp(28px, 10vw, 90px)',
                     lineHeight: 0.95,
                     letterSpacing: '-0.03em',
                     transitionDuration: `${800 + i * 200}ms`,
@@ -158,14 +157,14 @@ const ExpertiseBlock = ({
       </div>
 
       {/* Black panel */}
-      <div ref={blackRef} className="bg-background px-[60px] py-[100px] relative overflow-hidden">
-        {/* Outline number — parallax */}
+      <div ref={blackRef} className="bg-background px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden">
+        {/* Outline number */}
         <div
           className="absolute outline-num font-display font-black select-none pointer-events-none"
           style={{
-            bottom: '-80px',
+            bottom: '-40px',
             left: '-10px',
-            fontSize: 'clamp(200px, 38vw, 520px)',
+            fontSize: 'clamp(120px, 38vw, 520px)',
             lineHeight: 0.8,
             letterSpacing: '-0.06em',
             transform: `translateY(${bgWordShift}px)`,
@@ -175,8 +174,8 @@ const ExpertiseBlock = ({
           {number}
         </div>
 
-        {/* Inner grid */}
-        <div className="relative z-[2] grid grid-cols-[1fr_1.3fr] gap-20 items-start">
+        {/* Inner grid — single column on mobile */}
+        <div className="relative z-[2] flex flex-col gap-10 md:grid md:grid-cols-[1fr_1.3fr] md:gap-20 md:items-start">
           {/* Left */}
           <div
             className="transition-all duration-[900ms] ease-out"
@@ -185,28 +184,28 @@ const ExpertiseBlock = ({
               transform: leftReady ? 'translateY(0)' : 'translateY(30px)',
             }}
           >
-            <span className="block font-body text-[12px] text-muted tracking-[0.04em] mb-[18px]">
+            <span className="block font-body text-[12px] text-muted tracking-[0.04em] mb-3 md:mb-[18px]">
               {code}
             </span>
             <h3
-              className="font-display font-black uppercase text-foreground mb-[18px]"
-              style={{ fontSize: 'clamp(36px, 7vw, 90px)', lineHeight: 0.88, letterSpacing: '-0.03em' }}
+              className="font-display font-black uppercase text-foreground mb-3 md:mb-[18px]"
+              style={{ fontSize: 'clamp(36px, 12vw, 90px)', lineHeight: 0.88, letterSpacing: '-0.03em' }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <span
               className="block font-display font-bold uppercase"
-              style={{ fontSize: 'clamp(16px, 3vw, 26px)', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.22)' }}
+              style={{ fontSize: 'clamp(14px, 4vw, 26px)', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.22)' }}
             >
               {subtitle}
             </span>
           </div>
 
-          {/* Right — word-by-word scroll reveal */}
+          {/* Right */}
           <div>
             <ScrollText
               text={h4Text}
-              className="font-display font-black uppercase block mb-[22px]"
-              style={{ fontSize: 'clamp(18px, 2.8vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
+              className="font-display font-black uppercase block mb-4 md:mb-[22px]"
+              style={{ fontSize: 'clamp(18px, 5vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
               activeColor="rgba(255,255,255,0.92)"
               inactiveColor="rgba(255,255,255,0.08)"
               startAt={0.15}
@@ -214,8 +213,8 @@ const ExpertiseBlock = ({
             />
             <ScrollText
               text={stripHtml(paragraph)}
-              className="font-body block mb-10"
-              style={{ fontSize: 'clamp(14px, 1.1vw, 16px)', lineHeight: 1.75 }}
+              className="font-body block mb-8 md:mb-10"
+              style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 1.75 }}
               activeColor="rgba(255,255,255,0.55)"
               inactiveColor="rgba(255,255,255,0.06)"
               startAt={0.25}
@@ -225,7 +224,7 @@ const ExpertiseBlock = ({
               {skills.map((skill, i) => (
                 <li
                   key={i}
-                  className="flex justify-between items-center py-[13px] border-b border-foreground/10 font-body text-[13px] tracking-[0.02em]"
+                  className="flex justify-between items-center py-3 md:py-[13px] border-b border-foreground/10 font-body text-[12px] md:text-[13px] tracking-[0.02em]"
                   style={{ color: 'rgba(255,255,255,0.50)' }}
                 >
                   <ScrollText
@@ -235,7 +234,7 @@ const ExpertiseBlock = ({
                     startAt={0.4 + i * 0.06}
                     endAt={0.55 + i * 0.06}
                   />
-                  <span className="text-[11px] flex-shrink-0 ml-4" style={{ color: 'rgba(255,255,255,0.18)' }}>
+                  <span className="text-[10px] md:text-[11px] flex-shrink-0 ml-3" style={{ color: 'rgba(255,255,255,0.18)' }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </li>

@@ -17,7 +17,6 @@ function useCountUp(target: number, started: boolean, duration = 1800) {
     const tick = (now: number) => {
       const elapsed = now - start;
       const progress = Math.min(1, elapsed / duration);
-      // ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(target * eased);
       if (progress < 1) raf.current = requestAnimationFrame(tick);
@@ -61,7 +60,7 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
     >
       <div
         className="font-display font-black text-background"
-        style={{ fontSize: 'clamp(60px, 10vw, 140px)', lineHeight: 0.85, letterSpacing: '-0.04em' }}
+        style={{ fontSize: 'clamp(48px, 14vw, 140px)', lineHeight: 0.85, letterSpacing: '-0.04em' }}
       >
         {display}
         {stat.suffix && (
@@ -72,7 +71,7 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
       </div>
       <div
         className="font-body font-medium"
-        style={{ fontSize: 'clamp(13px, 1.2vw, 16px)', color: 'rgba(0,0,0,0.60)', lineHeight: 1.35 }}
+        style={{ fontSize: 'clamp(12px, 3.2vw, 16px)', color: 'rgba(0,0,0,0.60)', lineHeight: 1.35 }}
       >
         {stat.desc.split('\n').map((line, j) => (
           <span key={j}>{line}{j === 0 && <br />}</span>
@@ -83,8 +82,8 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
 };
 
 const StatsSection = () => (
-  <section className="bg-primary px-[60px] py-[100px] relative overflow-hidden halftone-dots">
-    <div className="relative z-[2] grid grid-cols-2 gap-x-20 gap-y-[70px]">
+  <section className="bg-primary px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden halftone-dots">
+    <div className="relative z-[2] grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-20 md:gap-y-[70px]">
       {stats.map((s, i) => (
         <StatCard key={i} stat={s} index={i} />
       ))}

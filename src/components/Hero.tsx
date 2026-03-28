@@ -19,11 +19,9 @@ const Hero = () => {
     const y = (e.clientY - rect.top) / rect.height;
     setMouse({ x, y });
 
-    // Check if mouse is over the text area (center zone)
     const centerX = Math.abs(x - 0.5) < 0.35;
     const centerY = y > 0.25 && y < 0.75;
     if (centerX && centerY) {
-      // Distance from center — closer = more blur
       const dist = Math.sqrt((x - 0.5) ** 2 + ((y - 0.5) * 0.6) ** 2);
       const blur = Math.max(0, (1 - dist / 0.4) * 12);
       setTextBlur(blur);
@@ -40,7 +38,6 @@ const Hero = () => {
     setTextBlur(0);
   };
 
-  // Background shift based on mouse
   const bgX = (mouse.x - 0.5) * 30;
   const bgY = (mouse.y - 0.5) * 20;
   const bgBlur = Math.sqrt((mouse.x - 0.5) ** 2 + (mouse.y - 0.5) ** 2) * 4;
@@ -49,14 +46,12 @@ const Hero = () => {
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative w-full h-[100svh] min-h-[640px] bg-primary flex flex-col justify-between px-[60px] pb-[44px] pt-0 overflow-hidden cursor-default"
+      className="relative w-full h-[100svh] min-h-[640px] bg-primary flex flex-col justify-between px-5 md:px-[60px] pb-6 md:pb-[44px] pt-0 overflow-hidden cursor-default"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Top gradient */}
       <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[2]" />
 
-      {/* Radial glow — moves with mouse */}
       <div
         className="absolute inset-0 z-0 transition-all duration-700 ease-out"
         style={{
@@ -65,12 +60,11 @@ const Hero = () => {
         }}
       />
 
-      {/* Content */}
       <div className="relative z-[3] flex flex-col items-center justify-center text-center flex-1 pt-[60px]">
         <p
           className="font-display font-bold uppercase tracking-[0.10em] mb-1 transition-all duration-700 ease-out"
           style={{
-            fontSize: 'clamp(13px, 1.8vw, 26px)',
+            fontSize: 'clamp(11px, 3vw, 26px)',
             color: 'rgba(0,0,0,0.55)',
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(20px)',
@@ -83,7 +77,7 @@ const Hero = () => {
         <h1
           className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
           style={{
-            fontSize: 'clamp(88px, 13vw, 230px)',
+            fontSize: 'clamp(64px, 18vw, 230px)',
             letterSpacing: '-0.035em',
             color: 'rgba(0,0,0,0.72)',
             filter: `blur(${textBlur}px)`,
@@ -112,9 +106,9 @@ const Hero = () => {
         </h1>
 
         <p
-          className="font-body mt-7 max-w-[560px] text-center transition-all duration-700 ease-out"
+          className="font-body mt-5 md:mt-7 max-w-[560px] text-center px-2 transition-all duration-700 ease-out"
           style={{
-            fontSize: 'clamp(13px, 1.2vw, 17px)',
+            fontSize: 'clamp(13px, 3.5vw, 17px)',
             lineHeight: 1.6,
             color: 'rgba(0,0,0,0.50)',
             letterSpacing: '0.01em',
@@ -127,9 +121,9 @@ const Hero = () => {
         </p>
       </div>
 
-      {/* Footer stats */}
+      {/* Footer stats — stack on mobile */}
       <div
-        className="relative z-[3] grid grid-cols-3 gap-4 transition-all duration-700 ease-out"
+        className="relative z-[3] flex flex-col gap-2 md:grid md:grid-cols-3 md:gap-4 transition-all duration-700 ease-out"
         style={{
           opacity: loaded ? 1 : 0,
           transform: loaded ? 'translateY(0)' : 'translateY(20px)',
@@ -137,20 +131,20 @@ const Hero = () => {
         }}
       >
         <span
-          className="font-body font-medium uppercase tracking-[0.10em]"
-          style={{ fontSize: 'clamp(10px, 0.85vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
+          className="font-body font-medium uppercase tracking-[0.10em] text-center md:text-left"
+          style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
         >
           Basado en Colombia
         </span>
         <span
-          className="font-body font-medium uppercase tracking-[0.10em] text-center"
-          style={{ fontSize: 'clamp(10px, 0.85vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
+          className="font-body font-medium uppercase tracking-[0.10em] text-center hidden md:block"
+          style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
         >
           Redes Sociales &amp; Crecimiento 100% Orgánico
         </span>
         <span
-          className="font-body font-medium uppercase tracking-[0.10em] text-right"
-          style={{ fontSize: 'clamp(10px, 0.85vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
+          className="font-body font-medium uppercase tracking-[0.10em] text-center md:text-right"
+          style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
         >
           1.7M+ Seguidores Construidos
         </span>

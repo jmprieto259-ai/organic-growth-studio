@@ -24,12 +24,12 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section id="sobre-mi" className="bg-background px-[60px] py-[100px] grid grid-cols-[1fr_1.6fr] gap-20 items-start">
+    <section id="sobre-mi" className="bg-background px-5 md:px-[60px] py-14 md:py-[100px] flex flex-col gap-10 md:grid md:grid-cols-[1fr_1.6fr] md:gap-20 md:items-start">
       <div ref={titleRef}>
         <h2
           className="font-display font-black uppercase text-foreground transition-all duration-[1000ms] ease-out"
           style={{
-            fontSize: 'clamp(30px, 4.5vw, 60px)',
+            fontSize: 'clamp(30px, 10vw, 60px)',
             lineHeight: 0.92,
             letterSpacing: '-0.03em',
             opacity: titleVis ? 1 : 0,
@@ -44,9 +44,9 @@ const AboutSection = () => {
           <ScrollText
             key={i}
             text={text}
-            className="font-body block mb-[22px]"
+            className="font-body block mb-5 md:mb-[22px]"
             style={{
-              fontSize: 'clamp(14px, 1.15vw, 16px)',
+              fontSize: 'clamp(14px, 3.5vw, 16px)',
               lineHeight: 1.78,
             }}
             activeColor="rgba(255,255,255,0.55)"
