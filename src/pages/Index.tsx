@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import SideBadge from "@/components/SideBadge";
 import Hero from "@/components/Hero";
-import WorkSection from "@/components/WorkSection";
+
 import ExpertiseBlock from "@/components/ExpertiseBlock";
 import vaqueroImg from "@/assets/vaquero.jpg";
 import Manifesto from "@/components/Manifesto";
@@ -86,7 +86,7 @@ const Index = () => {
       {expertiseBlocks.map((block, i) => (
         <ExpertiseBlock key={i} {...block} />
       ))}
-      <WorkSection />
+      
       <Manifesto />
       <ClientsSection />
       <StatsSection />
