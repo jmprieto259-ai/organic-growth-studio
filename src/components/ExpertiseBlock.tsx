@@ -18,6 +18,7 @@ const ExpertiseBlock = ({
   stickyBarRight,
   bgWord,
   placeholder,
+  image,
   number,
   code,
   title,
@@ -54,12 +55,20 @@ const ExpertiseBlock = ({
         </div>
 
         {/* Image placeholder */}
-        <div
-          className="relative z-[2] w-[52%] h-[88%] rounded-[3px] flex items-center justify-center font-body text-[13px] tracking-[0.05em]"
-          style={{ background: 'rgba(0,0,0,0.18)', color: 'rgba(0,0,0,0.35)' }}
-        >
-          {placeholder}
-        </div>
+        {image ? (
+          <img
+            src={image}
+            alt={bgWord}
+            className="relative z-[2] w-[52%] h-[88%] rounded-[3px] object-cover"
+          />
+        ) : (
+          <div
+            className="relative z-[2] w-[52%] h-[88%] rounded-[3px] flex items-center justify-center font-body text-[13px] tracking-[0.05em]"
+            style={{ background: 'rgba(0,0,0,0.18)', color: 'rgba(0,0,0,0.35)' }}
+          >
+            {placeholder}
+          </div>
+        )}
       </div>
 
       {/* Black panel */}
