@@ -32,7 +32,7 @@ const expertiseBlocks = [
     ],
   },
   {
-    stickyBarLeft: "Grandes Ligas",
+    stickyBarLeft: "Caso Andrés Bilbao",
     stickyBarRight: "리그",
     bgWord: "RAPPI",
     placeholder: "[ Foto Jose con Andrés Bilbao ]",
@@ -40,15 +40,13 @@ const expertiseBlocks = [
     code: "// 02",
     title: "Andrés<br/>Bilbao",
     subtitle: "Cofundador de Rappi",
-    h4Text: "El asesor detrás de los founders más grandes del ecosistema tech de Latam",
+    h4Text: "Asesor en redes sociales de Andrés Bilbao y 30X. Lo ayudo con storytelling, estrategia de redes sociales y crecimiento orgánico en TikTok, Instagram, Facebook, YouTube Shorts.",
     paragraph:
-      'Soy el asesor de marca personal de los founders más influyentes de la región. Con <strong style="color:white">Andrés Bilbao</strong> (Rappi), <strong style="color:white">Santiago Pineda</strong> (Mensajeros Urbanos), <strong style="color:white">Nicolás Quijano</strong>, <strong style="color:white">Giovanni Stella</strong> (Ex Country Manager Google) y <strong style="color:white">Hugo Surek</strong>, construyo sistemas de contenido que posicionan a líderes de clase mundial.',
+      'De cero a la fama con Andrés Bilbao.',
     skills: [
-      "Andrés Bilbao — Cofundador de Rappi",
-      "Santiago Pineda — CEO Mensajeros Urbanos",
-      "Nicolás Quijano",
-      "Giovanni Stella — Ex Country Manager Google",
-      "Hugo Surek",
+      "Instagram — 480,000 seguidores",
+      "TikTok — 200,000 seguidores",
+      "LinkedIn — 110,000 seguidores",
     ],
   },
   {
