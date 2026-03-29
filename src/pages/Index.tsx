@@ -57,6 +57,7 @@ const expertiseBlocks = [
     code: "",
     title: "SABANA<br/>ADENTRO",
     subtitle: "Mi Historia",
+    subtitleColor: "#E8000D",
     h4Text: "Pase de ser líder de tecnología en startups a vivir como vaquero y crear una comunidad de 1.7 millones de seguidores.",
     paragraph:
       'Mandé a la mierda el deber ser. Me fui a cumplir mi sueño de vivir como vaquero en el llano, documentando todo en @sabana_adentro, me volví influencer y creé una comunidad de 1.7 millones de seguidores.',
