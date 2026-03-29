@@ -37,7 +37,7 @@ const expertiseBlocks = [
     subtitle: "Cofundador de Rappi",
     h4Text: "De cero a la fama. En unos meses, Andrés Bilbao paso de ser un desoconcido a estar en todos lados",
     paragraph:
-      'Hoy es una de las voces más reconocidas del mundo de negocios en redes sociales. Presente en TikTok, Instagram, YouTube Shorts, Facebook y Twitter — todo orgánico. Su meta: 1 millón en Instagram para final de año.',
+      'Ayudé a Andrés a ser una de las voces más reconocidas del mundo de negocios en redes sociales. Presente en TikTok, Instagram, YouTube Shorts, Facebook y Twitter — todo orgánico. Su meta: 1 millón en Instagram para final de año.',
     skills: [],
   },
   {
