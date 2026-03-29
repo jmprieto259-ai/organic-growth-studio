@@ -91,6 +91,9 @@ const Index = () => {
         <StatsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
+        <PlotTwistSection />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
         <ClientsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
