@@ -21,7 +21,7 @@ const Manifesto = () => {
   }, []);
 
   return (
-    <section ref={ref} className="bg-background px-5 md:px-[60px] py-20 md:py-[180px] text-center">
+    <section ref={ref} className="bg-background px-5 md:px-[60px] py-20 md:py-[180px] text-center min-h-screen flex items-center justify-center">
       <p
         className="font-display font-black uppercase max-w-[1200px] mx-auto"
         style={{

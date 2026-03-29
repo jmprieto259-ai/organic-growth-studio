@@ -93,12 +93,6 @@ const Index = () => {
         <ClientsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
-        <ExperienceSection />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
-        <AboutSection />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
         <Footer />
       </SectionBlurReveal>
     </>
