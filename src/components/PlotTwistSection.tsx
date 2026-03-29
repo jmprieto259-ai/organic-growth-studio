@@ -38,7 +38,7 @@ const PlotTwistSection = () => {
             externalProgress={progress}
             getWordStyle={(word) =>
               word.replace(/[.,!?]/g, '').toLowerCase() === 'linkedin'
-                ? { color: '#7A0A0A', fontWeight: 900, letterSpacing: '-0.02em' }
+                ? { color: '#E8000D', fontWeight: 900, letterSpacing: '-0.02em' }
                 : undefined
             }
           />
