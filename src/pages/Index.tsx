@@ -1,3 +1,4 @@
+import joseAndresBilbao from "@/assets/jose-andres-bilbao.jpg";
 import Navigation from "@/components/Navigation";
 import SideBadge from "@/components/SideBadge";
 import Hero from "@/components/Hero";
@@ -33,6 +34,8 @@ const expertiseBlocks = [
     stickyBarRight: "",
     bgWord: "RAPPI",
     placeholder: "[ Foto Jose con Andrés Bilbao ]",
+    image: joseAndresBilbao,
+    imageOverlayText: "ANDRÉS\nBILBAO",
     number: "",
     code: "",
     title: "ANDRÉS<br/>BILBAO",
