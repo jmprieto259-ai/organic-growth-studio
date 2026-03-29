@@ -38,6 +38,7 @@ interface ExpertiseBlockProps {
   code: string;
   title: string;
   subtitle: string;
+  subtitleColor?: string;
   h4Text: string;
   paragraph: string;
   skills: string[];
@@ -54,6 +55,7 @@ const ExpertiseBlock = ({
   image,
   imageOverlayText,
   imagePosition,
+  subtitleColor,
   number,
   code,
   title,
@@ -225,7 +227,7 @@ const ExpertiseBlock = ({
             />
             <span
               className="block font-display font-bold uppercase"
-              style={{ fontSize: 'clamp(14px, 4vw, 26px)', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.22)' }}
+              style={{ fontSize: 'clamp(14px, 4vw, 26px)', letterSpacing: '0.05em', color: subtitleColor || 'rgba(255,255,255,0.22)' }}
             >
               {subtitle}
             </span>
