@@ -11,10 +11,10 @@ const mainStat = {
 };
 
 const platforms = [
-  { name: 'TikTok', value: '950K' },
-  { name: 'Instagram', value: '450K' },
-  { name: 'Facebook', value: '200K' },
-  { name: 'YouTube', value: '100K' },
+  { name: 'TikTok', numValue: 950, suffix: 'K' },
+  { name: 'Instagram', numValue: 450, suffix: 'K' },
+  { name: 'Facebook', numValue: 200, suffix: 'K' },
+  { name: 'YouTube', numValue: 100, suffix: 'K' },
 ];
 
 const StatsSection = () => {
