@@ -9,6 +9,7 @@ import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
 import LinkedInClosing from "@/components/LinkedInClosing";
+import PlotTwistSection from "@/components/PlotTwistSection";
 import SectionBlurReveal from "@/components/SectionBlurReveal";
 
 
@@ -88,6 +89,9 @@ const Index = () => {
       </SectionBlurReveal>
       <SectionBlurReveal>
         <StatsSection />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <PlotTwistSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
         <ClientsSection />
