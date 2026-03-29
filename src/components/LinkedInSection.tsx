@@ -30,17 +30,6 @@ const LinkedInSection = () => {
     <section ref={sectionRef} className="relative bg-background" style={{ height: '500vh' }}>
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         {/* LINKEDIN watermark */}
-        <div
-          className="absolute inset-0 flex items-center justify-center font-display font-black uppercase select-none pointer-events-none z-[1]"
-          style={{
-            fontSize: 'clamp(80px, 22vw, 340px)',
-            lineHeight: 1,
-            letterSpacing: '-0.04em',
-            color: 'rgba(232, 0, 13, 0.12)',
-          }}
-        >
-          LINKEDIN
-        </div>
 
         {/* Content */}
         <div className="relative z-[2] w-full max-w-[1200px] mx-auto px-5 md:px-[60px]">
