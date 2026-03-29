@@ -35,7 +35,7 @@ const PlotTwistSection = () => {
             LINKEDIN
           </span>
         </div>
-        <p
+        <p style={{ position: 'relative', zIndex: 2 }}
           className="font-display font-black uppercase max-w-[800px] mx-auto text-center"
           style={{
             fontSize: 'clamp(24px, 5vw, 52px)',
