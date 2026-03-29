@@ -143,8 +143,8 @@ const ExpertiseBlock = ({
               <img
                 src={image}
                 alt={bgWord}
-                className="w-full h-[120%] object-cover object-[center_15%]"
-                style={{ mixBlendMode: 'multiply', marginTop: '-10%' }}
+                className="w-full h-[120%] object-cover"
+                style={{ mixBlendMode: 'multiply', marginTop: '-10%', objectPosition: 'left top' }}
               />
             </div>
 
