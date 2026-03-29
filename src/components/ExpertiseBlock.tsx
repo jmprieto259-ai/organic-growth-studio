@@ -242,14 +242,13 @@ const ExpertiseBlock = ({
             />
             <ScrollText
               text={stripHtml(paragraph)}
-              className="font-body block mb-8 md:mb-10"
-              style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 1.75 }}
+              className="font-body block"
+              style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 1.75, maxWidth: '65ch' }}
               activeColor="rgba(255,255,255,0.55)"
               inactiveColor="rgba(255,255,255,0.06)"
               startAt={0.30}
               endAt={0.62}
             />
-            <SkillsList skills={skills} />
           </div>
         </div>
       </div>
