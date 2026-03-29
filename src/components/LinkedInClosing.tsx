@@ -106,7 +106,7 @@ const LinkedInClosing = () => {
             letterSpacing: '0.04em',
           }}
         >
-          Las redes sociales son hoy la herramienta de marketing más poderosa del planeta.
+          Con el poder de las historias.
         </p>
 
         {/* Stat callout */}
