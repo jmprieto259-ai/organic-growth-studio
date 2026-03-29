@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ScrollText from "./ScrollText";
 
 const SkillsList = ({ skills }: { skills: string[] }) => {
+  if (skills.length === 0) return null;
   return (
     <ul className="list-none border-t border-foreground/10">
       {skills.map((skill, i) => (
