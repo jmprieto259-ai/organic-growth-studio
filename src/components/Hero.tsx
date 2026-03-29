@@ -40,8 +40,8 @@ const Hero = () => {
     // Subtitle: starts blurred, clears when JOSE/PRIETO land
     tl.to(
       subtitleRef.current,
-      { filter: 'blur(0px)', duration: 0.7, ease: 'power2.out' },
-      1.0 // starts clearing as the words are landing
+      { filter: 'blur(0px)', duration: 1.0, ease: 'power2.out' },
+      1.8 // starts clearing as the words are landing
     );
 
     // After entrance completes, set up scroll parallax
