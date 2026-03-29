@@ -7,19 +7,11 @@ gsap.registerPlugin(ScrollTrigger);
 interface PinSectionProps {
   children: ReactNode;
   className?: string;
-  /** How many viewport heights of scroll distance to pin. Default 1 (100vh) */
   scrollLength?: number;
-  /** Stagger delay in timeline between animated children. Default 0.08 */
   stagger?: number;
-  /** CSS selector for elements to animate in. Default '.pin-animate' */
   animateSelector?: string;
 }
 
-/**
- * Pins a section and reveals `.pin-animate` children progressively
- * tied to scroll position (scrub). User cannot scroll past until
- * all content is revealed — same mechanic as the Statement section.
- */
 const PinSection = ({
   children,
   className = '',
@@ -36,28 +28,31 @@ const PinSection = ({
     const items = el.querySelectorAll(animateSelector);
     if (items.length === 0) return;
 
-    // Build a timeline that reveals all items
     const tl = gsap.timeline();
 
+    // Content starts hidden, fades in over the first 80% of scroll
     items.forEach((item, i) => {
-      // Check if it's an image
       const isImg = item.querySelector('img') || item.tagName === 'IMG';
+      const pos = i * stagger;
       if (isImg) {
         tl.fromTo(
           item,
-          { opacity: 0, scale: 0.92 },
-          { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' },
-          i * stagger
+          { opacity: 0, scale: 0.94 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: 'power1.inOut' },
+          pos
         );
       } else {
         tl.fromTo(
           item,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' },
-          i * stagger
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.5, ease: 'power1.inOut' },
+          pos
         );
       }
     });
+
+    // Add a hold at the end so content stays fully visible before release
+    tl.to({}, { duration: 0.3 });
 
     const st = ScrollTrigger.create({
       trigger: el,
@@ -65,7 +60,7 @@ const PinSection = ({
       end: `+=${window.innerHeight * scrollLength}`,
       pin: true,
       anticipatePin: 1,
-      scrub: 1,
+      scrub: 2,
       animation: tl,
     });
 

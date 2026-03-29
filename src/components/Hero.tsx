@@ -16,7 +16,7 @@ const Hero = () => {
 
   // Entrance animation + scroll parallax
   useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.04, smoothWheel: true, wheelMultiplier: 0.6 });
+    const lenis = new Lenis({ lerp: 0.06, smoothWheel: true, wheelMultiplier: 0.7 });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
