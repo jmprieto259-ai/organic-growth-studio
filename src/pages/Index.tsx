@@ -58,11 +58,11 @@ const expertiseBlocks = [
     imageOverlayText: "MI HISTORIA",
     number: "",
     code: "",
-    title: "Mi<br/>Historia",
-    subtitle: "@sabana_adentro",
-    h4Text: "Mandé a la mierda el deber ser y me fui a vivir como vaquero",
+    title: "@sabana<br/>adentro",
+    subtitle: "Mi Historia",
+    h4Text: "Mandé a la mierda el deber ser y me fui a vivir como vaquero al llano",
     paragraph:
-      'Pasé de ser CEO de tecnología en una startup a perseguir mi sueño de irme al llano descalzo como vaquero. Usé las redes para contar mi historia y en año y medio pasé de cero a 1.7 millones de seguidores.',
+      'Pasé de ser líder de tecnología en una startup a perseguir mi sueño de irme a vivir al llano descalzo como vaquero en los grandes hatos del llano. Usé las redes sociales para contar mi historia y en un año y medio pasé de cero a 1.7 millones de seguidores.',
     skills: [],
   },
 ];
@@ -82,15 +82,15 @@ const Index = () => {
           <ExpertiseBlock {...block} />
         </SectionBlurReveal>
       ))}
+      <SectionBlurReveal>
+        <StatsSection />
+      </SectionBlurReveal>
       
       <SectionBlurReveal>
         <Manifesto />
       </SectionBlurReveal>
       <SectionBlurReveal>
         <ClientsSection />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
-        <StatsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
         <ExperienceSection />
