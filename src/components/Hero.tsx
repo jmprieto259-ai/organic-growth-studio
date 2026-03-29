@@ -83,11 +83,11 @@ const Hero = () => {
     const y = (e.clientY - rect.top) / rect.height;
     setMouse({ x, y });
 
-    const centerX = Math.abs(x - 0.5) < 0.35;
-    const centerY = y > 0.25 && y < 0.75;
+    const centerX = Math.abs(x - 0.5) < 0.15;
+    const centerY = y > 0.35 && y < 0.65;
     if (centerX && centerY) {
       const dist = Math.sqrt((x - 0.5) ** 2 + ((y - 0.5) * 0.6) ** 2);
-      const blur = Math.max(0, (1 - dist / 0.4) * 12);
+      const blur = Math.max(0, (1 - dist / 0.12) * 6);
       setTextBlur(blur);
     } else {
       setTextBlur(0);
