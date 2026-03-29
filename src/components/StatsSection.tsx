@@ -56,27 +56,6 @@ const StatsSection = () => {
             ))}
           </div>
         </div>
-
-        {/* Breakdown by platform */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-[800px]">
-          {breakdown.map((item) => (
-            <div key={item.platform} className="flex flex-col items-center">
-              <div
-                className="font-display font-black text-background"
-                style={{ fontSize: 'clamp(36px, 10vw, 72px)', lineHeight: 0.9, letterSpacing: '-0.03em' }}
-              >
-                {Math.round(item.value * eased)}
-                <sup className="text-[0.4em] align-top">{item.suffix}</sup>
-              </div>
-              <span
-                className="font-body font-medium mt-1"
-                style={{ fontSize: 'clamp(11px, 3vw, 14px)', color: 'rgba(0,0,0,0.50)' }}
-              >
-                {item.platform}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
