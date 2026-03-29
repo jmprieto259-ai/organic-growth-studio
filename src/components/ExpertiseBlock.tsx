@@ -33,6 +33,7 @@ interface ExpertiseBlockProps {
   placeholder: string;
   image?: string;
   imageOverlayText?: string;
+  imagePosition?: string;
   number: string;
   code: string;
   title: string;
@@ -52,6 +53,7 @@ const ExpertiseBlock = ({
   placeholder,
   image,
   imageOverlayText,
+  imagePosition,
   number,
   code,
   title,
@@ -144,7 +146,7 @@ const ExpertiseBlock = ({
                 src={image}
                 alt={bgWord}
                 className="w-full h-[120%] object-cover"
-                style={{ mixBlendMode: 'multiply', marginTop: '-10%', objectPosition: 'left top' }}
+                style={{ mixBlendMode: 'multiply', marginTop: '-10%', objectPosition: imagePosition || 'center 15%' }}
               />
             </div>
 
