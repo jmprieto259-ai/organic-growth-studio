@@ -29,10 +29,10 @@ const PlotTwistSection = () => {
               fontSize: 'clamp(120px, 28vw, 500px)',
               lineHeight: 1,
               letterSpacing: '-0.04em',
-              color: 'rgba(10, 102, 194, 0.20)',
             }}
           >
-            LINKEDIN
+            <span style={{ color: '#3D0A0A' }}>LINKED</span>
+            <span style={{ color: 'rgba(10, 102, 194, 0.20)' }}>IN</span>
           </span>
         </div>
         <div
