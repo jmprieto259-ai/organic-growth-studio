@@ -38,6 +38,12 @@ const StatementSection = () => {
             endAt={0.85}
             externalProgress={progress}
             pulseWords="millones de votos"
+            getWordStyle={(word) => {
+              const clean = word.replace(/[.,!?]/g, '').toLowerCase();
+              if (clean === '1.2' || clean === 'millones' || clean === 'de' || clean === 'votos')
+                return { color: '#E8000D' };
+              return undefined;
+            }}
           />
         </p>
       </div>
