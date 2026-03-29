@@ -176,7 +176,7 @@ const Hero = () => {
       </div>
 
       {/* Footer stats */}
-      <div className="relative z-[3] flex flex-col gap-2 md:grid md:grid-cols-3 md:gap-4">
+      <div className="relative z-[3] flex justify-center">
         <span
           className="font-body font-medium uppercase tracking-[0.10em] text-center"
           style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
