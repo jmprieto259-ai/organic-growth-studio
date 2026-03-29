@@ -38,9 +38,9 @@ const StatementSection = () => {
             endAt={0.85}
             externalProgress={progress}
             pulseWords="millones de votos"
-            getWordStyle={(word) => {
-              const clean = word.replace(/[.,!?]/g, '').toLowerCase();
-              if (clean === '1.2' || clean === 'millones' || clean === 'de' || clean === 'votos')
+            getWordStyle={(_word, index) => {
+              // "1.2" is word 13, "millones" 14, "de" 15, "votos." 16
+              if (index >= 13 && index <= 16)
                 return { color: '#E8000D' };
               return undefined;
             }}
