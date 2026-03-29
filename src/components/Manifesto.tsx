@@ -23,7 +23,7 @@ const Manifesto = () => {
   return (
     <section ref={ref} className="bg-background px-5 md:px-[60px] py-20 md:py-[180px] text-center min-h-screen flex items-center justify-center">
       <p
-        className="font-display font-black uppercase max-w-[1200px] mx-auto"
+        className="font-display font-black uppercase max-w-[1200px] mx-auto pin-animate"
         style={{
           fontSize: 'clamp(24px, 8vw, 88px)',
           lineHeight: 1.04,
