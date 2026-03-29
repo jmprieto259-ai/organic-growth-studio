@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 const mainStat = {
   value: 1.7,
   suffix: 'M',
-  label: 'Seguidores construidos',
+  label: 'Seguidores',
 };
 
 const StatsSection = () => {
