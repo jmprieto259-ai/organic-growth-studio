@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const mainStat = {
   value: 1.7,
@@ -6,8 +10,16 @@ const mainStat = {
   label: 'Seguidores',
 };
 
+const platforms = [
+  { name: 'TikTok', value: '950K' },
+  { name: 'Instagram', value: '450K' },
+  { name: 'Facebook', value: '200K' },
+  { name: 'YouTube', value: '100K' },
+];
+
 const StatsSection = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const platformsRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -16,7 +28,6 @@ const StatsSection = () => {
     const update = () => {
       const rect = el.getBoundingClientRect();
       const wh = window.innerHeight;
-      // Progress from 0 to 1 as section scrolls into view
       const raw = (wh - rect.top) / (wh * 0.7);
       setProgress(Math.min(1, Math.max(0, raw)));
     };
@@ -25,9 +36,35 @@ const StatsSection = () => {
     return () => window.removeEventListener('scroll', update);
   }, []);
 
-  // Ease-out cubic for smooth counting
-  const eased = 1 - Math.pow(1 - progress, 3);
+  // Staggered fade-up for platform items
+  useEffect(() => {
+    const el = platformsRef.current;
+    if (!el) return;
+    const items = el.querySelectorAll('.platform-item');
+    gsap.fromTo(
+      items,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger === el) st.kill();
+      });
+    };
+  }, []);
 
+  const eased = 1 - Math.pow(1 - progress, 3);
   const mainDisplay = (mainStat.value * eased).toFixed(1);
 
   return (
@@ -51,10 +88,35 @@ const StatsSection = () => {
             className="font-body font-medium mt-3"
             style={{ fontSize: 'clamp(13px, 3.5vw, 18px)', color: 'rgba(0,0,0,0.60)', lineHeight: 1.4 }}
           >
-            {mainStat.label.split('\n').map((line, j) => (
-              <span key={j}>{line}{j === 0 && <br />}</span>
-            ))}
+            {mainStat.label}
           </div>
+        </div>
+
+        {/* Platform breakdown */}
+        <div
+          ref={platformsRef}
+          className="flex flex-wrap justify-center gap-6 md:gap-12"
+        >
+          {platforms.map((p, i) => (
+            <div
+              key={p.name}
+              className="platform-item flex flex-col items-center gap-1"
+              style={{ opacity: 0 }}
+            >
+              <span
+                className="font-display font-black text-background"
+                style={{ fontSize: 'clamp(28px, 5vw, 48px)', letterSpacing: '-0.03em', lineHeight: 1 }}
+              >
+                {p.value}
+              </span>
+              <span
+                className="font-body font-medium uppercase tracking-[0.12em]"
+                style={{ fontSize: 'clamp(9px, 2vw, 12px)', color: 'rgba(0,0,0,0.50)' }}
+              >
+                {p.name}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
