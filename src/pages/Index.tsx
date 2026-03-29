@@ -63,6 +63,7 @@ const expertiseBlocks = [
     paragraph:
       'Pasé de ser líder de tecnología en una startup a perseguir mi sueño de irme a vivir al llano descalzo como vaquero en los grandes hatos del llano. Usé las redes sociales para contar mi historia y en un año y medio pasé de cero a 1.7 millones de seguidores.',
     skills: [],
+    hideTopGradient: true,
   },
 ];
 
