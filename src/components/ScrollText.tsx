@@ -4,16 +4,13 @@ interface ScrollTextProps {
   text: string;
   className?: string;
   style?: React.CSSProperties;
-  /** Color when word is revealed */
   activeColor?: string;
-  /** Color when word is not yet revealed (ignored when useOpacity is true) */
   inactiveColor?: string;
-  /** How far into scroll (0-1) the reveal starts */
   startAt?: number;
-  /** How far into scroll (0-1) all words are revealed */
   endAt?: number;
-  /** Use opacity 0→1 instead of color change */
   useOpacity?: boolean;
+  /** If provided, skip internal scroll tracking and use this value (0-1) */
+  externalProgress?: number;
 }
 
 const ScrollText = ({
@@ -25,23 +22,28 @@ const ScrollText = ({
   startAt = 0.15,
   endAt = 0.7,
   useOpacity = false,
+  externalProgress,
 }: ScrollTextProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
+  const [internalProgress, setInternalProgress] = useState(0);
+
+  const hasExternal = externalProgress !== undefined;
+  const progress = hasExternal ? externalProgress : internalProgress;
 
   useEffect(() => {
+    if (hasExternal) return;
     const el = ref.current;
     if (!el) return;
     const update = () => {
       const rect = el.getBoundingClientRect();
       const wh = window.innerHeight;
       const raw = (wh - rect.top) / (wh + rect.height);
-      setProgress(Math.min(1, Math.max(0, raw)));
+      setInternalProgress(Math.min(1, Math.max(0, raw)));
     };
     window.addEventListener('scroll', update, { passive: true });
     update();
     return () => window.removeEventListener('scroll', update);
-  }, []);
+  }, [hasExternal]);
 
   const words = text.split(' ');
 
