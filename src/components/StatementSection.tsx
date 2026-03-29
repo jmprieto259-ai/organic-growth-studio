@@ -37,6 +37,7 @@ const StatementSection = () => {
             startAt={0.05}
             endAt={0.85}
             externalProgress={progress}
+            pulseWords="millones de votos"
           />
         </p>
       </div>
