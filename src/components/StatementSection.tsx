@@ -41,7 +41,7 @@ const StatementSection = () => {
             getWordStyle={(_word, index) => {
               // words: ...conseguir(13) 1.2(14) millones(15) de(16) votos.(17)
               if (index >= 14 && index <= 17)
-                return { color: '#E8000D' };
+                return { color: '#E8000D', fontWeight: 900, letterSpacing: '-0.02em' };
               return undefined;
             }}
           />
