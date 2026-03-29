@@ -88,7 +88,7 @@ const ExpertiseBlock = ({
 
         {image ? (
           <>
-            <div className="absolute inset-0 z-[2] pin-animate">
+            <div className="absolute inset-0 z-[2]">
               <img
                 src={image}
                 alt={bgWord}
