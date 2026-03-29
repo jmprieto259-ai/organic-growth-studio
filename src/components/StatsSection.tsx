@@ -107,7 +107,7 @@ const StatsSection = () => {
                 className="font-display font-black text-background"
                 style={{ fontSize: 'clamp(28px, 5vw, 48px)', letterSpacing: '-0.03em', lineHeight: 1 }}
               >
-                {p.value}
+                {Math.round(p.numValue * eased)}{p.suffix}
               </span>
               <span
                 className="font-body font-medium uppercase tracking-[0.12em]"
