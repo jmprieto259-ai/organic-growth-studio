@@ -220,26 +220,7 @@ const ExpertiseBlock = ({
               startAt={0.25}
               endAt={0.65}
             />
-            <ul className="list-none border-t border-foreground/10">
-              {skills.map((skill, i) => (
-                <li
-                  key={i}
-                  className="flex justify-between items-center py-3 md:py-[13px] border-b border-foreground/10 font-body text-[12px] md:text-[13px] tracking-[0.02em]"
-                  style={{ color: 'rgba(255,255,255,0.50)' }}
-                >
-                  <ScrollText
-                    text={skill}
-                    activeColor="rgba(255,255,255,0.55)"
-                    inactiveColor="rgba(255,255,255,0.06)"
-                    startAt={0.4 + i * 0.06}
-                    endAt={0.55 + i * 0.06}
-                  />
-                  <span className="text-[10px] md:text-[11px] flex-shrink-0 ml-3" style={{ color: 'rgba(255,255,255,0.18)' }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <SkillsList skills={skills} />
           </div>
         </div>
       </div>
