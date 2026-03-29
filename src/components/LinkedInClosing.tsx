@@ -6,14 +6,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const LinkedInClosing = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const watermarkRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const watermark = watermarkRef.current;
     const content = contentRef.current;
-    if (!section || !watermark || !content) return;
+    if (!section || !content) return;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -22,13 +20,6 @@ const LinkedInClosing = () => {
         once: true,
       },
     });
-
-    // Watermark scales in
-    tl.fromTo(
-      watermark,
-      { scale: 0.95, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }
-    );
 
     // Content staggers in
     const children = content.querySelectorAll('[data-anim]');
@@ -50,23 +41,6 @@ const LinkedInClosing = () => {
       className="relative bg-background overflow-hidden"
       style={{ padding: 'clamp(80px, 15vh, 160px) 0' }}
     >
-      {/* LINKEDIN watermark */}
-      <div
-        ref={watermarkRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-[1] opacity-0"
-      >
-        <span
-          className="font-display font-black uppercase whitespace-nowrap"
-          style={{
-            fontSize: 'clamp(120px, 28vw, 500px)',
-            lineHeight: 1,
-            letterSpacing: '-0.04em',
-            color: '#3D0A0A',
-          }}
-        >
-          LINKEDIN
-        </span>
-      </div>
 
       {/* Content */}
       <div
