@@ -20,7 +20,7 @@ const StatementSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-background" style={{ height: '250vh' }}>
+    <section ref={sectionRef} className="relative bg-background" style={{ height: '400vh' }}>
       <div className="sticky top-0 h-screen flex items-center justify-center px-5 md:px-[60px]">
         <p
           className="font-display font-black uppercase max-w-[1100px] mx-auto text-center"
