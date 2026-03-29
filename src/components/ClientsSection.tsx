@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const accordionData = [
   {
@@ -32,18 +32,38 @@ const accordionData = [
 
 const ClientsSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: '-80px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? -1 : idx);
   };
 
   return (
-    <section className="bg-background px-5 md:px-[60px] py-14 md:py-[100px]">
+    <section ref={sectionRef} className="bg-background px-5 md:px-[60px] py-14 md:py-[100px]">
+
+      {/* Accordion */}
       <ul className="list-none">
         {accordionData.map((item, idx) => (
           <li
             key={idx}
-            className="border-b border-foreground/10 pin-animate"
+            className="border-b border-foreground/10 transition-all duration-700 ease-out"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: `${500 + idx * 120}ms`,
+            }}
           >
             <div
               onClick={() => toggle(idx)}

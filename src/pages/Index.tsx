@@ -4,12 +4,11 @@ import Hero from "@/components/Hero";
 import StatementSection from "@/components/StatementSection";
 import ExpertiseBlock from "@/components/ExpertiseBlock";
 import vaqueroImg from "@/assets/vaquero.jpg";
-import casoRappiImg from "@/assets/caso-rappi.png";
 import Manifesto from "@/components/Manifesto";
 import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
-import PinSection from "@/components/PinSection";
+import SectionBlurReveal from "@/components/SectionBlurReveal";
 
 
 const expertiseBlocks = [
@@ -35,8 +34,7 @@ const expertiseBlocks = [
     stickyBarLeft: "Caso Andrés Bilbao",
     stickyBarRight: "",
     bgWord: "RAPPI",
-    placeholder: "",
-    image: casoRappiImg,
+    placeholder: "[ Foto Jose con Andrés Bilbao ]",
     number: "",
     code: "",
     title: "Andrés<br/>Bilbao",
@@ -76,37 +74,27 @@ const Index = () => {
       <SideBadge />
       <Navigation />
       <Hero />
-
-      {/* Statement — has its own sticky system */}
-      <StatementSection />
-
-      {/* Expertise blocks — scrub-pinned */}
-      {expertiseBlocks.slice(0, 2).map((block, i) => (
-        <PinSection key={i} scrollLength={1.5} stagger={0.1}>
+      <SectionBlurReveal>
+        <StatementSection />
+      </SectionBlurReveal>
+      {expertiseBlocks.map((block, i) => (
+        <SectionBlurReveal key={i}>
           <ExpertiseBlock {...block} />
-        </PinSection>
+        </SectionBlurReveal>
       ))}
-
-      <PinSection scrollLength={1.4} stagger={0.1}>
-        <ExpertiseBlock {...expertiseBlocks[2]} />
-      </PinSection>
-
-      <StatsSection />
-
-      {/* Manifesto — scrub-pinned, longer scroll */}
-      <PinSection scrollLength={1.5} stagger={0.08}>
+      <SectionBlurReveal>
+        <StatsSection />
+      </SectionBlurReveal>
+      
+      <SectionBlurReveal>
         <Manifesto />
-      </PinSection>
-
-      {/* Clients — scrub-pinned */}
-      <PinSection scrollLength={1} stagger={0.12}>
+      </SectionBlurReveal>
+      <SectionBlurReveal>
         <ClientsSection />
-      </PinSection>
-
-      {/* Footer — scrub-pinned briefly */}
-      <PinSection scrollLength={0.8} stagger={0.1}>
+      </SectionBlurReveal>
+      <SectionBlurReveal>
         <Footer />
-      </PinSection>
+      </SectionBlurReveal>
     </>
   );
 };
