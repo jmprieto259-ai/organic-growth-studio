@@ -35,23 +35,32 @@ const PlotTwistSection = () => {
             LINKEDIN
           </span>
         </div>
-        <p
-          className="relative z-[2] font-display font-black uppercase max-w-[800px] mx-auto text-center"
+        <div
+          className="relative z-[2] font-display font-black uppercase max-w-[800px] mx-auto text-center flex flex-col"
           style={{
             fontSize: 'clamp(24px, 5vw, 52px)',
             lineHeight: 1.15,
             letterSpacing: '-0.02em',
+            gap: 'clamp(2.5rem, 5vh, 4rem)',
           }}
         >
-          <ScrollText
-            text="Cumplí mi sueño del llano y tenía claro que no quería ser influencer. Por eso construí mi empresa. Crecí por voz a voz y en 2025 me lancé a LinkedIn para buscar nuevos clientes — lo que vino después lo cambió todo."
-            activeColor="hsl(var(--foreground))"
-            useOpacity
-            startAt={0.05}
-            endAt={0.85}
-            externalProgress={progress}
-          />
-        </p>
+          {[
+            { text: 'Cumplí mi sueño del llano y tenía claro que no quería ser influencer.', start: 0.05, end: 0.25 },
+            { text: 'Por eso construí mi empresa.', start: 0.25, end: 0.42 },
+            { text: 'Empecé con voz a voz y en 2025 me lancé a LinkedIn para buscar clientes.', start: 0.42, end: 0.65 },
+            { text: 'Lo que vino después lo cambió todo.', start: 0.65, end: 0.85 },
+          ].map((line, i) => (
+            <ScrollText
+              key={i}
+              text={line.text}
+              activeColor="hsl(var(--foreground))"
+              useOpacity
+              startAt={line.start}
+              endAt={line.end}
+              externalProgress={progress}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
