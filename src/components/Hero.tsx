@@ -37,12 +37,11 @@ const Hero = () => {
       0
     );
 
-    // Subtitle fades in after words land
-    tl.fromTo(
+    // Subtitle: starts blurred, clears when JOSE/PRIETO land
+    tl.to(
       subtitleRef.current,
-      { opacity: 0, y: 8 },
-      { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
-      1.5 // 0.3s after the 1.2s entrance
+      { filter: 'blur(0px)', duration: 0.7, ease: 'power2.out' },
+      1.0 // starts clearing as the words are landing
     );
 
     // After entrance completes, set up scroll parallax
@@ -143,7 +142,8 @@ const Hero = () => {
           style={{
             fontSize: 'clamp(11px, 3vw, 26px)',
             color: 'rgba(0,0,0,0.55)',
-            opacity: 0,
+            opacity: 1,
+            filter: 'blur(8px)',
           }}
         >
           Estratega de Contenido
