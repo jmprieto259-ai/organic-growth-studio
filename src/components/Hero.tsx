@@ -33,13 +33,13 @@ const Hero = () => {
     });
     gsap.ticker.lagSmoothing(0);
 
-    // JOSE moves up faster
+    // JOSE moves LEFT
     if (joseRef.current && sectionRef.current) {
       gsap.fromTo(
         joseRef.current,
-        { yPercent: 0 },
+        { x: 0 },
         {
-          yPercent: -40,
+          x: '-30vw',
           ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -51,13 +51,13 @@ const Hero = () => {
       );
     }
 
-    // PRIETO moves up slower
+    // PRIETO moves RIGHT
     if (prietoRef.current && sectionRef.current) {
       gsap.fromTo(
         prietoRef.current,
-        { yPercent: 0 },
+        { x: 0 },
         {
-          yPercent: -10,
+          x: '30vw',
           ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
