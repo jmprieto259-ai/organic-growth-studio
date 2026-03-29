@@ -9,70 +9,82 @@ const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const joseRef = useRef<HTMLSpanElement>(null);
   const prietoRef = useRef<HTMLSpanElement>(null);
-  const [loaded, setLoaded] = useState(false);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const [textBlur, setTextBlur] = useState(0);
   const blurTimeout = useRef<number | null>(null);
 
+  // Entrance animation + scroll parallax
   useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 100);
-    return () => clearTimeout(t);
-  }, []);
-
-  // Lenis + GSAP ScrollTrigger parallax
-  useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-    });
-
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
-    // JOSE moves LEFT
-    if (joseRef.current && sectionRef.current) {
-      gsap.fromTo(
-        joseRef.current,
-        { x: 0 },
-        {
-          x: '-30vw',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
-          },
-        }
-      );
-    }
+    const tl = gsap.timeline({ delay: 0.1 });
 
-    // PRIETO moves RIGHT
-    if (prietoRef.current && sectionRef.current) {
-      gsap.fromTo(
-        prietoRef.current,
-        { x: 0 },
-        {
-          x: '30vw',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
-          },
-        }
-      );
-    }
+    // Entrance: JOSE from left, PRIETO from right — simultaneously
+    tl.fromTo(
+      joseRef.current,
+      { x: '-40vw', opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
+      0
+    );
+    tl.fromTo(
+      prietoRef.current,
+      { x: '40vw', opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
+      0
+    );
+
+    // Subtitle fades in after words land
+    tl.fromTo(
+      subtitleRef.current,
+      { opacity: 0, y: 8 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+      1.5 // 0.3s after the 1.2s entrance
+    );
+
+    // After entrance completes, set up scroll parallax
+    tl.call(() => {
+      if (joseRef.current && sectionRef.current) {
+        gsap.fromTo(
+          joseRef.current,
+          { x: 0 },
+          {
+            x: '-30vw',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 1.5,
+            },
+          }
+        );
+      }
+      if (prietoRef.current && sectionRef.current) {
+        gsap.fromTo(
+          prietoRef.current,
+          { x: 0 },
+          {
+            x: '30vw',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 1.5,
+            },
+          }
+        );
+      }
+    });
 
     return () => {
+      tl.kill();
       lenis.destroy();
       ScrollTrigger.getAll().forEach((st) => st.kill());
-      gsap.ticker.remove(lenis.raf);
     };
   }, []);
 
@@ -126,13 +138,12 @@ const Hero = () => {
 
       <div className="relative z-[3] flex flex-col items-center justify-center text-center flex-1 pt-[60px]">
         <p
-          className="font-display font-bold uppercase tracking-[0.10em] mb-1 transition-all duration-700 ease-out"
+          ref={subtitleRef}
+          className="font-display font-bold uppercase tracking-[0.10em] mb-1"
           style={{
             fontSize: 'clamp(11px, 3vw, 26px)',
             color: 'rgba(0,0,0,0.55)',
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '0.6s',
+            opacity: 0,
           }}
         >
           Estratega de Contenido
@@ -149,37 +160,23 @@ const Hero = () => {
         >
           <span
             ref={joseRef}
-            className="block will-change-transform transition-opacity duration-[900ms] ease-out"
-            style={{
-              opacity: loaded ? 1 : 0,
-              transitionDelay: '0.2s',
-            }}
+            className="block will-change-transform"
+            style={{ opacity: 0 }}
           >
             Jose
           </span>
           <span
             ref={prietoRef}
-            className="block will-change-transform transition-opacity duration-[900ms] ease-out"
-            style={{
-              opacity: loaded ? 1 : 0,
-              transitionDelay: '0.35s',
-            }}
+            className="block will-change-transform"
+            style={{ opacity: 0 }}
           >
             Prieto
           </span>
         </h1>
-
       </div>
 
-      {/* Footer stats — stack on mobile */}
-      <div
-        className="relative z-[3] flex flex-col gap-2 md:grid md:grid-cols-3 md:gap-4 transition-all duration-700 ease-out"
-        style={{
-          opacity: loaded ? 1 : 0,
-          transform: loaded ? 'translateY(0)' : 'translateY(20px)',
-          transitionDelay: '1.1s',
-        }}
-      >
+      {/* Footer stats */}
+      <div className="relative z-[3] flex flex-col gap-2 md:grid md:grid-cols-3 md:gap-4">
         <span
           className="font-body font-medium uppercase tracking-[0.10em] text-center"
           style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
