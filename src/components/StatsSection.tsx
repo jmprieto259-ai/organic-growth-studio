@@ -3,15 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 const mainStat = {
   value: 1.7,
   suffix: 'M',
-  label: 'Seguidores construidos\nde forma 100% orgánica',
+  label: 'Seguidores construidos',
 };
-
-const breakdown = [
-  { platform: 'TikTok', value: 950, suffix: 'K' },
-  { platform: 'Instagram', value: 450, suffix: 'K' },
-  { platform: 'Facebook', value: 200, suffix: 'K' },
-  { platform: 'YouTube', value: 100, suffix: 'K' },
-];
 
 const StatsSection = () => {
   const ref = useRef<HTMLDivElement>(null);

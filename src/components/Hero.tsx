@@ -71,7 +71,7 @@ const Hero = () => {
             transitionDelay: '0.6s',
           }}
         >
-          Estratega de Contenido Orgánico
+          Estratega de Contenido
         </p>
 
         <h1
