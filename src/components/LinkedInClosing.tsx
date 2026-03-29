@@ -61,7 +61,7 @@ const LinkedInClosing = () => {
             fontSize: 'clamp(120px, 28vw, 500px)',
             lineHeight: 1,
             letterSpacing: '-0.04em',
-            color: '#3D0A0A',
+            color: 'rgba(232, 0, 13, 0.35)',
           }}
         >
           LINKEDIN
