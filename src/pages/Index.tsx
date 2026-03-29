@@ -82,6 +82,9 @@ const Index = () => {
         </SectionBlurReveal>
       ))}
       <SectionBlurReveal>
+        <LinkedInSection />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
         <StatsSection />
       </SectionBlurReveal>
       
