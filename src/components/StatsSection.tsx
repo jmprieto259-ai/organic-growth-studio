@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 
-const stats = [
-  { value: 1.7, suffix: 'M', prefix: '', desc: 'Seguidores construidos\nde forma 100% orgánica' },
-  { value: 1.2, suffix: 'M', prefix: '', desc: 'Votos conseguidos\nsin publicidad paga' },
-  { value: 12, suffix: '+', prefix: '', desc: 'Videos diarios publicados\nen campaña de alto impacto' },
-  { value: 0, suffix: '', prefix: '$', desc: 'Invertidos en publicidad\npara construir 1.7M' },
+const mainStat = {
+  value: 1.7,
+  suffix: 'M',
+  label: 'Seguidores construidos\nde forma 100% orgánica',
+};
+
+const breakdown = [
+  { platform: 'TikTok', value: 950, suffix: 'K' },
+  { platform: 'Instagram', value: 450, suffix: 'K' },
+  { platform: 'Facebook', value: 200, suffix: 'K' },
+  { platform: 'YouTube', value: 100, suffix: 'K' },
 ];
 
 function useCountUp(target: number, started: boolean, duration = 1800) {
@@ -28,7 +34,7 @@ function useCountUp(target: number, started: boolean, duration = 1800) {
   return value;
 }
 
-const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => {
+const StatsSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -45,50 +51,73 @@ const StatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
     return () => observer.disconnect();
   }, []);
 
-  const animated = useCountUp(stat.value, visible);
-  const display = stat.value === 0 ? '$0' : `${stat.prefix}${stat.value % 1 === 0 ? Math.round(animated) : animated.toFixed(1)}`;
+  const mainAnimated = useCountUp(mainStat.value, visible);
 
   return (
-    <div
+    <section
       ref={ref}
-      className="flex flex-col gap-2 transition-all duration-700 ease-out"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0) scale(1)' : 'translateY(60px) scale(0.92)',
-        transitionDelay: `${index * 150}ms`,
-      }}
+      className="bg-primary px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden halftone-dots"
     >
-      <div
-        className="font-display font-black text-background"
-        style={{ fontSize: 'clamp(48px, 14vw, 140px)', lineHeight: 0.85, letterSpacing: '-0.04em' }}
-      >
-        {display}
-        {stat.suffix && (
-          <sup className="text-[0.38em] align-top" style={{ marginTop: '0.1em' }}>
-            {stat.suffix}
-          </sup>
-        )}
+      <div className="relative z-[2] flex flex-col items-center text-center gap-10 md:gap-16">
+        {/* Main number */}
+        <div
+          className="transition-all duration-700 ease-out"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0) scale(1)' : 'translateY(60px) scale(0.92)',
+          }}
+        >
+          <div
+            className="font-display font-black text-background"
+            style={{ fontSize: 'clamp(80px, 22vw, 220px)', lineHeight: 0.85, letterSpacing: '-0.04em' }}
+          >
+            {mainAnimated.toFixed(1)}
+            <sup className="text-[0.35em] align-top">{mainStat.suffix}</sup>
+          </div>
+          <div
+            className="font-body font-medium mt-3"
+            style={{ fontSize: 'clamp(13px, 3.5vw, 18px)', color: 'rgba(0,0,0,0.60)', lineHeight: 1.4 }}
+          >
+            {mainStat.label.split('\n').map((line, j) => (
+              <span key={j}>{line}{j === 0 && <br />}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Breakdown by platform */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-[800px]">
+          {breakdown.map((item, i) => {
+            const animated = useCountUp(item.value, visible, 1800 + i * 200);
+            return (
+              <div
+                key={item.platform}
+                className="flex flex-col items-center transition-all duration-700 ease-out"
+                style={{
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? 'translateY(0)' : 'translateY(40px)',
+                  transitionDelay: `${300 + i * 150}ms`,
+                }}
+              >
+                <div
+                  className="font-display font-black text-background"
+                  style={{ fontSize: 'clamp(36px, 10vw, 72px)', lineHeight: 0.9, letterSpacing: '-0.03em' }}
+                >
+                  {Math.round(animated)}
+                  <sup className="text-[0.4em] align-top">{item.suffix}</sup>
+                </div>
+                <span
+                  className="font-body font-medium mt-1"
+                  style={{ fontSize: 'clamp(11px, 3vw, 14px)', color: 'rgba(0,0,0,0.50)' }}
+                >
+                  {item.platform}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div
-        className="font-body font-medium"
-        style={{ fontSize: 'clamp(12px, 3.2vw, 16px)', color: 'rgba(0,0,0,0.60)', lineHeight: 1.35 }}
-      >
-        {stat.desc.split('\n').map((line, j) => (
-          <span key={j}>{line}{j === 0 && <br />}</span>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
-
-const StatsSection = () => (
-  <section className="bg-primary px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden halftone-dots">
-    <div className="relative z-[2] grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-20 md:gap-y-[70px]">
-      {stats.map((s, i) => (
-        <StatCard key={i} stat={s} index={i} />
-      ))}
-    </div>
-  </section>
-);
 
 export default StatsSection;
