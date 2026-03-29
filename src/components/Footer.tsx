@@ -33,10 +33,7 @@ const Footer = () => {
             Trabaja Conmigo
           </h3>
           <p className="font-body text-[11px] tracking-[0.12em] uppercase mb-[10px]" style={{ color: 'rgba(255,255,255,0.38)' }}>Contacto</p>
-          <a href="mailto:jm.prieto259@gmail.com" className="block font-body text-[13px] no-underline leading-[1.80] transition-colors duration-200 hover:text-foreground break-all" style={{ color: 'rgba(255,255,255,0.38)' }}>jm.prieto259@gmail.com</a>
-          <a href="https://instagram.com" className="block font-body text-[13px] no-underline leading-[1.80] mt-[6px] transition-colors duration-200 hover:text-foreground" style={{ color: 'rgba(255,255,255,0.38)' }}>Instagram</a>
-          <a href="https://tiktok.com" className="block font-body text-[13px] no-underline leading-[1.80] transition-colors duration-200 hover:text-foreground" style={{ color: 'rgba(255,255,255,0.38)' }}>TikTok</a>
-          <a href="https://linkedin.com" className="block font-body text-[13px] no-underline leading-[1.80] transition-colors duration-200 hover:text-foreground" style={{ color: 'rgba(255,255,255,0.38)' }}>LinkedIn</a>
+          <a href="https://www.linkedin.com/in/joseprieto" target="_blank" rel="noopener noreferrer" className="block font-body text-[13px] no-underline leading-[1.80] transition-colors duration-200 hover:text-foreground" style={{ color: 'rgba(255,255,255,0.38)' }}>LinkedIn</a>
         </div>
 
         {/* Services */}
@@ -51,10 +48,9 @@ const Footer = () => {
           <h3 className="font-display font-black uppercase text-foreground mb-4 md:mb-[18px]" style={{ fontSize: 'clamp(18px, 5vw, 22px)', letterSpacing: '-0.02em' }}>
             Servicios
           </h3>
-          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>Programa 1 a 1 — 90 días</p>
-          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>Bootcamp Marca Personal LinkedIn</p>
-          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>Asesoría para Founders</p>
-          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>Dirección de Contenido</p>
+          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>Asesoría de TikTok e Instagram</p>
+          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>Asesoría Marca Personal LinkedIn 1 a 1</p>
+          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>Bootcamp Marca Personal en LinkedIn</p>
         </div>
 
         {/* CTA */}
@@ -66,17 +62,13 @@ const Footer = () => {
             transitionDelay: '300ms',
           }}
         >
-          <h3 className="font-display font-black uppercase text-foreground mb-4 md:mb-[18px]" style={{ fontSize: 'clamp(18px, 5vw, 22px)', letterSpacing: '-0.02em' }}>
-            ¿Listo para crecer sin pagar publicidad?
-          </h3>
-          <p className="font-body text-[13px] leading-[1.80]" style={{ color: 'rgba(255,255,255,0.38)' }}>
-            Tu historia es tu mayor activo. El contenido orgánico no se puede delegar a una agencia — tiene que salir de ti. Agendemos una llamada.
-          </p>
           <a
-            href="mailto:jm.prieto259@gmail.com"
+            href="https://www.linkedin.com/in/joseprieto"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-[10px] bg-primary text-foreground font-body text-[14px] font-semibold px-6 md:px-7 py-[15px] rounded-full no-underline mt-5 cursor-pointer transition-opacity duration-[250ms] hover:opacity-[0.88]"
           >
-            Agendar llamada →
+            Contactar a Jose →
           </a>
         </div>
       </div>
