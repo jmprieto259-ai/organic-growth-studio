@@ -1,6 +1,58 @@
 import { useEffect, useRef, useState } from "react";
 import ScrollText from "./ScrollText";
 
+const SkillsList = ({ skills }: { skills: string[] }) => {
+  const listRef = useRef<HTMLUListElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
+      },
+      { rootMargin: '-40px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <ul ref={listRef} className="list-none border-t border-foreground/10">
+      {skills.map((skill, i) => (
+        <li
+          key={i}
+          className="relative flex justify-between items-center py-3 md:py-[13px] border-b border-foreground/10 font-body text-[12px] md:text-[13px] tracking-[0.02em] overflow-hidden"
+          style={{
+            color: visible ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0)',
+            transition: `color 0.3s ease-out ${i * 120}ms`,
+          }}
+        >
+          {/* Red sweep line */}
+          <span
+            className="absolute left-0 top-0 h-full bg-primary"
+            style={{
+              width: visible ? '0%' : '100%',
+              transition: `width 0.4s ease-out ${i * 120}ms`,
+            }}
+          />
+          <span className="relative z-[1]">{skill}</span>
+          <span
+            className="text-[10px] md:text-[11px] flex-shrink-0 ml-3 relative z-[1]"
+            style={{
+              color: visible ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0)',
+              transition: `color 0.3s ease-out ${i * 120 + 200}ms`,
+            }}
+          >
+            {String(i + 1).padStart(2, '0')}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 interface ExpertiseBlockProps {
   stickyBarLeft: string;
   stickyBarRight: string;
