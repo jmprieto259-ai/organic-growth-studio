@@ -15,6 +15,8 @@ interface ScrollTextProps {
   pulseWords?: string;
   /** Custom style per word */
   getWordStyle?: (word: string, index: number) => React.CSSProperties | undefined;
+  /** Allows multiple words to reveal together using the same timing index */
+  getRevealIndex?: (word: string, index: number) => number;
 }
 
 const ScrollText = ({
@@ -29,6 +31,7 @@ const ScrollText = ({
   externalProgress,
   pulseWords,
   getWordStyle,
+  getRevealIndex,
 }: ScrollTextProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [internalProgress, setInternalProgress] = useState(0);
@@ -100,7 +103,8 @@ const ScrollText = ({
   return (
     <span ref={ref} className={className} style={style}>
       {words.map((word, i) => {
-        const wordPos = i / words.length;
+        const revealIndex = getRevealIndex?.(word, i) ?? i;
+        const wordPos = revealIndex / words.length;
         const isLit = progress > startAt + wordPos * (endAt - startAt);
         const isPulseWord = i >= pulseStartIdx && i < pulseEndIdx;
 

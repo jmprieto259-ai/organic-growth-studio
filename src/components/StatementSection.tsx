@@ -38,6 +38,7 @@ const StatementSection = () => {
             endAt={0.85}
             externalProgress={progress}
             pulseWords=""
+            getRevealIndex={(_word, index) => (index >= 14 && index <= 17 ? 14 : index)}
             getWordStyle={(_word, index) => {
               // words: ...conseguir(13) 1.2(14) millones(15) de(16) votos.(17)
               if (index >= 14 && index <= 17)
