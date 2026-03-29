@@ -6,14 +6,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const LinkedInClosing = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const watermarkRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const watermark = watermarkRef.current;
     const content = contentRef.current;
-    if (!section || !watermark || !content) return;
+    if (!section || !content) return;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -22,13 +20,6 @@ const LinkedInClosing = () => {
         once: true,
       },
     });
-
-    // Watermark scales in
-    tl.fromTo(
-      watermark,
-      { scale: 0.95, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }
-    );
 
     // Content staggers in
     const children = content.querySelectorAll('[data-anim]');
