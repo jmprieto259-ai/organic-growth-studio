@@ -20,9 +20,23 @@ const PlotTwistSection = () => {
 
   return (
     <section ref={sectionRef} className="relative bg-background" style={{ height: '400vh' }}>
-      <div className="sticky top-0 h-screen flex items-center justify-center px-5 md:px-[60px]">
+      <div className="sticky top-0 h-screen flex items-center justify-center px-5 md:px-[60px] overflow-hidden">
+        {/* LINKEDIN watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-[1]">
+          <span
+            className="font-display font-black uppercase whitespace-nowrap"
+            style={{
+              fontSize: 'clamp(120px, 28vw, 500px)',
+              lineHeight: 1,
+              letterSpacing: '-0.04em',
+              color: '#3D0A0A',
+            }}
+          >
+            LINKEDIN
+          </span>
+        </div>
         <p
-          className="font-display font-black uppercase max-w-[800px] mx-auto text-center"
+          className="relative z-[2] font-display font-black uppercase max-w-[800px] mx-auto text-center"
           style={{
             fontSize: 'clamp(24px, 5vw, 52px)',
             lineHeight: 1.15,
