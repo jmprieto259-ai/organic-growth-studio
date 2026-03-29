@@ -3,15 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 const mainStat = {
   value: 1.7,
   suffix: 'M',
-  label: 'Seguidores construidos\nde forma 100% orgánica',
+  label: 'Seguidores construidos',
 };
-
-const breakdown = [
-  { platform: 'TikTok', value: 950, suffix: 'K' },
-  { platform: 'Instagram', value: 450, suffix: 'K' },
-  { platform: 'Facebook', value: 200, suffix: 'K' },
-  { platform: 'YouTube', value: 100, suffix: 'K' },
-];
 
 const StatsSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -62,27 +55,6 @@ const StatsSection = () => {
               <span key={j}>{line}{j === 0 && <br />}</span>
             ))}
           </div>
-        </div>
-
-        {/* Breakdown by platform */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-[800px]">
-          {breakdown.map((item) => (
-            <div key={item.platform} className="flex flex-col items-center">
-              <div
-                className="font-display font-black text-background"
-                style={{ fontSize: 'clamp(36px, 10vw, 72px)', lineHeight: 0.9, letterSpacing: '-0.03em' }}
-              >
-                {Math.round(item.value * eased)}
-                <sup className="text-[0.4em] align-top">{item.suffix}</sup>
-              </div>
-              <span
-                className="font-body font-medium mt-1"
-                style={{ fontSize: 'clamp(11px, 3vw, 14px)', color: 'rgba(0,0,0,0.50)' }}
-              >
-                {item.platform}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
     </section>
