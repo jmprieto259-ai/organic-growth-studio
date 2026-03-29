@@ -27,7 +27,7 @@ const LinkedInClosing = () => {
       children,
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out', stagger: 0.1 },
-      '-=0.8'
+      0
     );
 
     return () => {
