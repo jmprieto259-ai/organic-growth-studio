@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import LinkedInClosing from "@/components/LinkedInClosing";
 import PlotTwistSection from "@/components/PlotTwistSection";
 import SectionBlurReveal from "@/components/SectionBlurReveal";
-
+import BilbaoStatsSection from "@/components/BilbaoStatsSection";
 
 const expertiseBlocks = [
   {
@@ -78,6 +78,9 @@ const Index = () => {
       {/* Bilbao */}
       <SectionBlurReveal>
         <ExpertiseBlock {...expertiseBlocks[1]} />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <BilbaoStatsSection />
       </SectionBlurReveal>
       {/* Manifesto between Bilbao and Sabana Adentro */}
       <SectionBlurReveal>
