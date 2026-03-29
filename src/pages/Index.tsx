@@ -70,17 +70,24 @@ const Index = () => {
       <SectionBlurReveal>
         <StatementSection />
       </SectionBlurReveal>
-      {expertiseBlocks.map((block, i) => (
-        <SectionBlurReveal key={i}>
-          <ExpertiseBlock {...block} />
-        </SectionBlurReveal>
-      ))}
+      {/* Oviedo */}
       <SectionBlurReveal>
-        <StatsSection />
+        <ExpertiseBlock {...expertiseBlocks[0]} />
       </SectionBlurReveal>
-      
+      {/* Bilbao */}
+      <SectionBlurReveal>
+        <ExpertiseBlock {...expertiseBlocks[1]} />
+      </SectionBlurReveal>
+      {/* Manifesto between Bilbao and Sabana Adentro */}
       <SectionBlurReveal>
         <Manifesto />
+      </SectionBlurReveal>
+      {/* Sabana Adentro */}
+      <SectionBlurReveal>
+        <ExpertiseBlock {...expertiseBlocks[2]} />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
+        <StatsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
         <ClientsSection />
