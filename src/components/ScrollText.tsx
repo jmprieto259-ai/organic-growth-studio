@@ -6,18 +6,16 @@ interface ScrollTextProps {
   style?: React.CSSProperties;
   /** Color when word is revealed */
   activeColor?: string;
-  /** Color when word is not yet revealed */
+  /** Color when word is not yet revealed (ignored when useOpacity is true) */
   inactiveColor?: string;
   /** How far into scroll (0-1) the reveal starts */
   startAt?: number;
   /** How far into scroll (0-1) all words are revealed */
   endAt?: number;
+  /** Use opacity 0→1 instead of color change */
+  useOpacity?: boolean;
 }
 
-/**
- * Text that reveals word-by-word as you scroll through it.
- * Inspired by the Manifesto section style.
- */
 const ScrollText = ({
   text,
   className = '',
@@ -26,6 +24,7 @@ const ScrollText = ({
   inactiveColor = 'rgba(255,255,255,0.07)',
   startAt = 0.15,
   endAt = 0.7,
+  useOpacity = false,
 }: ScrollTextProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -51,6 +50,22 @@ const ScrollText = ({
       {words.map((word, i) => {
         const wordPos = i / words.length;
         const isLit = progress > startAt + wordPos * (endAt - startAt);
+
+        if (useOpacity) {
+          return (
+            <span
+              key={i}
+              className="inline-block mr-[0.28em] transition-opacity duration-[400ms] ease-out"
+              style={{
+                color: activeColor,
+                opacity: isLit ? 1 : 0,
+              }}
+            >
+              {word}
+            </span>
+          );
+        }
+
         return (
           <span
             key={i}
