@@ -104,8 +104,7 @@ const ClientsSection = () => {
             color: "hsl(var(--foreground))",
           }}
         >
-          No vine a ser influencer. Vine a dar influencia. Desde el 2023 ayudo a
-          personas y empresas a crecer en redes sociales.
+          Las redes sociales son hoy la herramienta de marketing más poderosa del planeta.
         </h2>
 
         {/* Accordion */}
