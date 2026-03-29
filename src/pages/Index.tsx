@@ -14,23 +14,21 @@ import SectionBlurReveal from "@/components/SectionBlurReveal";
 
 const expertiseBlocks = [
   {
-    stickyBarLeft: "El Caso Oviedo",
+    stickyBarLeft: "Caso Oviedo",
     stickyBarRight: "증명",
     bgWord: "VOTOS",
     placeholder: "[ Foto Jose con Oviedo ]",
     number: "01",
     code: "// 01",
-    title: "La Prueba<br/>de Fuego",
-    subtitle: "Caso Oviedo",
-    h4Text: "De 1% de intención de voto a 1.2 millones de votos reales",
+    title: "Caso<br/>Oviedo",
+    subtitle: "Campaña Presidencial",
+    h4Text: "De 1% de intención de voto a 1.2 millones de votos y ser la sorpresa de la gran consulta por Colombia",
     paragraph:
-      'El juego de las redes no lo gana quien tiene más plata para publicidad — lo gana quien tiene creatividad, estrategia y autenticidad. Asumí la dirección de redes de Juan Daniel Oviedo. Nos volvimos una máquina de contenido: <strong style="color:white">12 videos diarios</strong> explicando la coyuntura del país de manera simple, con libertad absoluta para ser auténtico. El resultado: 1.2 millones de votos. 100% orgánico.',
+      'Las redes no las gana quien tiene más plata — las gana quien tiene estrategia, creatividad y autenticidad. Asumí la dirección de redes de Juan Daniel Oviedo. Nos volvimos una máquina de contenido, publicando hasta 18 videos diarios, explicando la coyuntura del país de manera simple, con libertad absoluta para ser auténtico y mostrando su autenticidad. El resultado: 1.2 millones de votos.',
     skills: [
-      "Dirección estratégica de contenido político",
-      "12 videos diarios — 0 pesos en publicidad",
-      "Autenticidad como arma diferenciadora",
-      "De 1% a 1.2M votos sin pauta paga",
-      "Narrativa simple para temas complejos",
+      "Instagram — 675,000 seguidores",
+      "TikTok — 421,000 seguidores",
+      "De 1% a 1.2 millones de votos en la gran consulta por Colombia",
     ],
   },
   {
