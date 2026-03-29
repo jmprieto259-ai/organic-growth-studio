@@ -93,7 +93,7 @@ const LinkedInClosing = () => {
             letterSpacing: '-0.03em',
           }}
         >
-          De ser un desconocido en LinkedIn a 7 millones de impresiones en 8 meses.
+          De ser un desconocido en LinkedIn pasé a trabajar con los Bilbao y un candidato presidencial.
         </h2>
 
         {/* Subtext */}
@@ -106,7 +106,7 @@ const LinkedInClosing = () => {
             letterSpacing: '0.04em',
           }}
         >
-          Todo con el poder del storytelling.
+          Las redes sociales son hoy la herramienta de marketing más poderosa del planeta.
         </p>
 
         {/* Stat callout */}
@@ -118,7 +118,7 @@ const LinkedInClosing = () => {
             letterSpacing: '-0.02em',
           }}
         >
-          7M de impresiones · 8 meses · 20.000 seguidores
+          8 meses publicando · 7M de impresiones · 19K seguidores
         </div>
 
         {/* Body */}
