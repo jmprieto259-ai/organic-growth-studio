@@ -50,7 +50,7 @@ const expertiseBlocks = [
     ],
   },
   {
-    stickyBarLeft: "Mi Historia",
+    stickyBarLeft: "@sabana_adentro",
     stickyBarRight: "",
     bgWord: "VAQUERO",
     placeholder: "[ Tu foto en el llano ]",
@@ -58,18 +58,12 @@ const expertiseBlocks = [
     imageOverlayText: "MI HISTORIA",
     number: "",
     code: "",
-    title: "La<br/>Revelación",
-    subtitle: "Mi Historia",
-    h4Text: "Todo empezó mandando al carajo el \"deber ser\"",
+    title: "Mi<br/>Historia",
+    subtitle: "@sabana_adentro",
+    h4Text: "Mandé a la mierda el deber ser y me fui a vivir como vaquero",
     paragraph:
-      'Pasé de ser líder de tecnología de una startup a perseguir mi sueño de irme al llano a vivir descalzo como vaquero. Usé las redes para documentar mi pasión. Me volví influencer sin planearlo y construí una comunidad de <strong style="color:white">1.7 millones de seguidores</strong> en TikTok, Instagram, YouTube y Facebook. Ahí descubrí que el crecimiento orgánico no necesita perfección, sino historias reales, constancia y entender cómo hackear el algoritmo.',
-    skills: [
-      "Crecimiento orgánico sin inversión publicitaria",
-      "Comunidad de 1.7M en 4 plataformas simultáneas",
-      "Historias reales como motor de viralidad",
-      "Algoritmo hackeado desde adentro",
-      "Constancia sobre perfección — siempre",
-    ],
+      'Pasé de ser CEO de tecnología en una startup a perseguir mi sueño de irme al llano descalzo como vaquero. Usé las redes para contar mi historia y en año y medio pasé de cero a 1.7 millones de seguidores.',
+    skills: [],
   },
 ];
 
