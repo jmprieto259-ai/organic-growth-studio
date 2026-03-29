@@ -36,6 +36,12 @@ const Manifesto = () => {
             startAt={0.05}
             endAt={0.85}
             externalProgress={progress}
+            getWordStyle={(word) => {
+              const clean = word.replace(/[.,!?]/g, '').toLowerCase();
+              if (clean === 'historia')
+                return { color: '#E8000D', fontWeight: 900, letterSpacing: '-0.02em' };
+              return undefined;
+            }}
           />
         </p>
       </div>
