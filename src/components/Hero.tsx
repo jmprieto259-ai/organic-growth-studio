@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const joseRef = useRef<HTMLSpanElement>(null);
+  const prietoRef = useRef<HTMLSpanElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const [textBlur, setTextBlur] = useState(0);
@@ -10,6 +17,63 @@ const Hero = () => {
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(t);
+  }, []);
+
+  // Lenis + GSAP ScrollTrigger parallax
+  useEffect(() => {
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    // JOSE moves up faster
+    if (joseRef.current && sectionRef.current) {
+      gsap.fromTo(
+        joseRef.current,
+        { yPercent: 0 },
+        {
+          yPercent: -40,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        }
+      );
+    }
+
+    // PRIETO moves up slower
+    if (prietoRef.current && sectionRef.current) {
+      gsap.fromTo(
+        prietoRef.current,
+        { yPercent: 0 },
+        {
+          yPercent: -10,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        }
+      );
+    }
+
+    return () => {
+      lenis.destroy();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      gsap.ticker.remove(lenis.raf);
+    };
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -84,20 +148,20 @@ const Hero = () => {
           }}
         >
           <span
-            className="block transition-all duration-[900ms] ease-out"
+            ref={joseRef}
+            className="block will-change-transform transition-opacity duration-[900ms] ease-out"
             style={{
               opacity: loaded ? 1 : 0,
-              transform: loaded ? 'scale(1)' : 'scale(0.96)',
               transitionDelay: '0.2s',
             }}
           >
             Jose
           </span>
           <span
-            className="block transition-all duration-[900ms] ease-out"
+            ref={prietoRef}
+            className="block will-change-transform transition-opacity duration-[900ms] ease-out"
             style={{
               opacity: loaded ? 1 : 0,
-              transform: loaded ? 'scale(1)' : 'scale(0.96)',
               transitionDelay: '0.35s',
             }}
           >
