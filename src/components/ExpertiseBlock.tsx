@@ -101,6 +101,8 @@ const ExpertiseBlock = ({
         ref={panelRef}
         className="relative bg-primary h-[60vh] md:h-[75vh] min-h-[360px] md:min-h-[480px] overflow-hidden"
       >
+        {/* Top gradient fade from black */}
+        <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[3]" />
         <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-[22px] py-3 md:py-[14px] border-b border-black/[0.12]">
           <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
             {stickyBarLeft}
