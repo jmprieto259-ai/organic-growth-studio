@@ -36,11 +36,12 @@ const PlotTwistSection = () => {
             startAt={0.05}
             endAt={0.85}
             externalProgress={progress}
-            getWordStyle={(word) =>
-              word.replace(/[.,!?]/g, '').toLowerCase() === 'linkedin'
-                ? { color: '#E8000D', fontWeight: 900, letterSpacing: '-0.02em' }
-                : undefined
-            }
+            getWordStyle={(word) => {
+              const clean = word.replace(/[.,!?]/g, '').toLowerCase();
+              if (clean === 'linkedin' || clean === 'historia')
+                return { color: '#E8000D', fontWeight: 900, letterSpacing: '-0.02em' };
+              return undefined;
+            }}
           />
         </div>
       </div>
