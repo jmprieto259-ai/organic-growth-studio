@@ -27,21 +27,21 @@ const Hero = () => {
     tl.fromTo(
       joseRef.current,
       { x: '-40vw', opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
+      { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
       0
     );
     tl.fromTo(
       prietoRef.current,
       { x: '40vw', opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
+      { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
       0
     );
 
     // Subtitle: starts blurred, clears when JOSE/PRIETO land
     tl.to(
       subtitleRef.current,
-      { filter: 'blur(0px)', duration: 0.7, ease: 'power2.out' },
-      1.0 // starts clearing as the words are landing
+      { filter: 'blur(0px)', duration: 0.5, ease: 'power2.out' },
+      0.6
     );
 
     // After entrance completes, set up scroll parallax
