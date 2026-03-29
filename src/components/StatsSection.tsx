@@ -76,7 +76,7 @@ const StatsSection = () => {
       <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[1]" />
       <div className="relative z-[2] flex flex-col items-center text-center gap-10 md:gap-16">
         {/* Main number */}
-        <div>
+        <div className="pin-animate">
           <div
             className="font-display font-black text-background"
             style={{ fontSize: 'clamp(80px, 22vw, 220px)', lineHeight: 0.85, letterSpacing: '-0.04em' }}
@@ -100,7 +100,7 @@ const StatsSection = () => {
           {platforms.map((p, i) => (
             <div
               key={p.name}
-              className="platform-item flex flex-col items-center gap-1"
+              className="platform-item pin-animate flex flex-col items-center gap-1"
               style={{ opacity: 0 }}
             >
               <span

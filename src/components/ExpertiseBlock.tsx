@@ -4,7 +4,7 @@ import ScrollText from "./ScrollText";
 const SkillsList = ({ skills }: { skills: string[] }) => {
   if (skills.length === 0) return null;
   return (
-    <ul className="list-none border-t border-foreground/10">
+    <ul className="list-none border-t border-foreground/10 pin-animate">
       {skills.map((skill, i) => (
         <li
           key={i}
@@ -61,23 +61,11 @@ const ExpertiseBlock = ({
   skills,
   hideTopGradient,
 }: ExpertiseBlockProps) => {
-  const panelRef = useRef<HTMLDivElement>(null);
   const blackRef = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState(0);
-  const [visibility, setVisibility] = useState(0);
   const [blackVis, setBlackVis] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (panelRef.current) {
-        const rect = panelRef.current.getBoundingClientRect();
-        const wh = window.innerHeight;
-        if (rect.bottom > 0 && rect.top < wh) {
-          const progress = (wh - rect.top) / (wh + rect.height);
-          setOffset((progress - 0.5) * 80);
-          setVisibility(Math.min(1, Math.max(0, (wh - rect.top) / (wh * 0.4))));
-        }
-      }
       if (blackRef.current) {
         const rect = blackRef.current.getBoundingClientRect();
         const wh = window.innerHeight;
@@ -91,8 +79,6 @@ const ExpertiseBlock = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const blurAmount = Math.max(0, 20 * (1 - visibility));
-  const textReady = visibility > 0.6;
   const leftReady = blackVis > 0.2;
   const bgWordShift = (blackVis - 0.5) * 60;
 
@@ -100,12 +86,11 @@ const ExpertiseBlock = ({
     <div className="relative">
       {/* Red panel */}
       <div
-        ref={panelRef}
         className="relative bg-primary h-[60vh] md:h-[75vh] min-h-[360px] md:min-h-[480px] overflow-hidden"
       >
         {/* Top gradient fade from black */}
         {!hideTopGradient && <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[3]" />}
-        <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-[22px] py-3 md:py-[14px] border-b border-black/[0.12]">
+        <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-[22px] py-3 md:py-[14px] border-b border-black/[0.12] pin-animate">
           <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
             {stickyBarLeft}
           </span>
@@ -116,14 +101,12 @@ const ExpertiseBlock = ({
 
         {/* BG word */}
         <div
-          className="absolute inset-0 flex items-center justify-center font-display font-black uppercase overflow-hidden whitespace-nowrap select-none pointer-events-none z-[1]"
+          className="absolute inset-0 flex items-center justify-center font-display font-black uppercase overflow-hidden whitespace-nowrap select-none pointer-events-none z-[1] pin-animate"
           style={{
             fontSize: 'clamp(70px, 20vw, 320px)',
             lineHeight: 1,
             letterSpacing: '-0.04em',
             color: 'rgba(0,0,0,0.22)',
-            transform: `translateY(${offset * 0.5}px)`,
-            transition: 'transform 0.1s linear',
           }}
         >
           {bgWord}
@@ -132,13 +115,7 @@ const ExpertiseBlock = ({
         {image ? (
           <>
             <div
-              className="absolute inset-0 z-[2]"
-              style={{
-                transform: `translateY(${offset}px) scale(${1 + visibility * 0.05})`,
-                willChange: 'transform, filter',
-                filter: `blur(${blurAmount}px)`,
-                transition: 'filter 0.3s ease-out',
-              }}
+              className="absolute inset-0 z-[2] pin-animate"
             >
               <img
                 src={image}
@@ -150,24 +127,18 @@ const ExpertiseBlock = ({
 
             <div className="absolute bottom-5 left-5 md:bottom-[40px] md:left-[40px] z-[5] flex flex-col gap-0">
               <span
-                className={`block font-body text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
-                  textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
+                className="block font-body text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] pin-animate"
               >
                 {code}
               </span>
               {imageOverlayText && imageOverlayText.split('\n').map((line, i) => (
                 <div
                   key={i}
-                  className={`font-display font-black uppercase text-white transition-all ease-out ${
-                    textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                  }`}
+                  className="font-display font-black uppercase text-white pin-animate"
                   style={{
                     fontSize: 'clamp(28px, 10vw, 90px)',
                     lineHeight: 0.95,
                     letterSpacing: '-0.03em',
-                    transitionDuration: `${800 + i * 200}ms`,
-                    transitionDelay: `${i * 180}ms`,
                   }}
                 >
                   {line}
@@ -177,7 +148,7 @@ const ExpertiseBlock = ({
           </>
         ) : (
           <div
-            className="absolute inset-0 z-[2] flex items-center justify-center font-body text-[13px] tracking-[0.05em]"
+            className="absolute inset-0 z-[2] flex items-center justify-center font-body text-[13px] tracking-[0.05em] pin-animate"
             style={{ color: 'rgba(0,0,0,0.35)' }}
           >
             {placeholder}
@@ -203,7 +174,7 @@ const ExpertiseBlock = ({
           {number}
         </div>
 
-        {/* Inner grid — single column on mobile */}
+        {/* Inner grid */}
         <div className="relative z-[2] flex flex-col gap-10 md:grid md:grid-cols-[1fr_1.3fr] md:gap-20 md:items-start">
           {/* Left */}
           <div

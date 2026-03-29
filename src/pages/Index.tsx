@@ -8,7 +8,7 @@ import Manifesto from "@/components/Manifesto";
 import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
-import SectionBlurReveal from "@/components/SectionBlurReveal";
+import PinSection from "@/components/PinSection";
 
 
 const expertiseBlocks = [
@@ -74,27 +74,36 @@ const Index = () => {
       <SideBadge />
       <Navigation />
       <Hero />
-      <SectionBlurReveal>
-        <StatementSection />
-      </SectionBlurReveal>
+
+      {/* Statement — already has its own sticky/pin system */}
+      <StatementSection />
+
+      {/* Expertise blocks — pinned on enter */}
       {expertiseBlocks.map((block, i) => (
-        <SectionBlurReveal key={i}>
+        <PinSection key={i} pinDuration={1.8} stagger={0.12}>
           <ExpertiseBlock {...block} />
-        </SectionBlurReveal>
+        </PinSection>
       ))}
-      <SectionBlurReveal>
+
+      {/* Stats — pinned */}
+      <PinSection pinDuration={1.5} stagger={0.1}>
         <StatsSection />
-      </SectionBlurReveal>
-      
-      <SectionBlurReveal>
+      </PinSection>
+
+      {/* Manifesto — pinned */}
+      <PinSection pinDuration={2} stagger={0.1}>
         <Manifesto />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
+      </PinSection>
+
+      {/* Clients — pinned */}
+      <PinSection pinDuration={1.5} stagger={0.12}>
         <ClientsSection />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
+      </PinSection>
+
+      {/* Footer — pinned briefly */}
+      <PinSection pinDuration={1} stagger={0.1}>
         <Footer />
-      </SectionBlurReveal>
+      </PinSection>
     </>
   );
 };
