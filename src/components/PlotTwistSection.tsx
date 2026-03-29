@@ -21,45 +21,22 @@ const PlotTwistSection = () => {
   return (
     <section ref={sectionRef} className="relative bg-background" style={{ height: '400vh' }}>
       <div className="sticky top-0 h-screen flex items-center justify-center px-5 md:px-[60px] overflow-hidden">
-        {/* LINKEDIN watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-[1]">
-          <span
-            className="font-display font-black uppercase whitespace-nowrap"
-            style={{
-              fontSize: 'clamp(120px, 28vw, 500px)',
-              lineHeight: 1,
-              letterSpacing: '-0.04em',
-            }}
-          >
-            <span style={{ color: '#3D0A0A' }}>LINKED</span>
-            <span style={{ color: 'rgba(10, 102, 194, 0.20)' }}>IN</span>
-          </span>
-        </div>
         <div
-          className="relative z-[2] font-display font-black uppercase max-w-[800px] mx-auto text-center flex flex-col"
+          className="font-display font-black uppercase max-w-[800px] mx-auto text-center"
           style={{
             fontSize: 'clamp(24px, 5vw, 52px)',
             lineHeight: 1.15,
             letterSpacing: '-0.02em',
-            gap: 'clamp(2.5rem, 5vh, 4rem)',
           }}
         >
-          {[
-            { text: 'Cumplí mi sueño del llano y tenía claro que no quería ser influencer.', start: 0.05, end: 0.25 },
-            { text: 'Por eso construí mi empresa.', start: 0.25, end: 0.42 },
-            { text: 'Empecé con voz a voz y en 2025 me lancé a LinkedIn para buscar clientes.', start: 0.42, end: 0.65 },
-            { text: 'Lo que vino después lo cambió todo.', start: 0.65, end: 0.85 },
-          ].map((line, i) => (
-            <ScrollText
-              key={i}
-              text={line.text}
-              activeColor="hsl(var(--foreground))"
-              useOpacity
-              startAt={line.start}
-              endAt={line.end}
-              externalProgress={progress}
-            />
-          ))}
+          <ScrollText
+            text="Del llano pasé a asesorar marcas en redes sociales y en 2025 me lancé a crear contenido en LinkedIn... y mi empresa explotó."
+            activeColor="hsl(var(--foreground))"
+            useOpacity
+            startAt={0.05}
+            endAt={0.85}
+            externalProgress={progress}
+          />
         </div>
       </div>
     </section>
