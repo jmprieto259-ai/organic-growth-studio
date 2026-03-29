@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import StatementSection from "@/components/StatementSection";
 import ExpertiseBlock from "@/components/ExpertiseBlock";
 import vaqueroImg from "@/assets/vaquero.jpg";
+import casoRappiImg from "@/assets/caso-rappi.png";
 import Manifesto from "@/components/Manifesto";
 import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
