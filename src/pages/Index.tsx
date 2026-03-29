@@ -9,6 +9,7 @@ import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
 import SectionBlurReveal from "@/components/SectionBlurReveal";
+import LinkedInSection from "@/components/LinkedInSection";
 
 const expertiseBlocks = [
   {
@@ -80,6 +81,9 @@ const Index = () => {
           <ExpertiseBlock {...block} />
         </SectionBlurReveal>
       ))}
+      <SectionBlurReveal>
+        <LinkedInSection />
+      </SectionBlurReveal>
       <SectionBlurReveal>
         <StatsSection />
       </SectionBlurReveal>
