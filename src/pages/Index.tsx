@@ -8,6 +8,7 @@ import Manifesto from "@/components/Manifesto";
 import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
+import LinkedInClosing from "@/components/LinkedInClosing";
 import SectionBlurReveal from "@/components/SectionBlurReveal";
 
 
