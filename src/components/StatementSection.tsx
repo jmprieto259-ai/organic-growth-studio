@@ -39,8 +39,8 @@ const StatementSection = () => {
             externalProgress={progress}
             pulseWords="millones de votos"
             getWordStyle={(_word, index) => {
-              // "1.2" is word 13, "millones" 14, "de" 15, "votos." 16
-              if (index >= 13 && index <= 16)
+              // words: ...conseguir(13) 1.2(14) millones(15) de(16) votos.(17)
+              if (index >= 14 && index <= 17)
                 return { color: '#E8000D' };
               return undefined;
             }}
