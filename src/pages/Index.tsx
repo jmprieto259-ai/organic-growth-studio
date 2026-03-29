@@ -24,6 +24,7 @@ const expertiseBlocks = [
     code: "",
     title: "CASO<br/>OVIEDO",
     subtitle: "Campaña Presidencial",
+    subtitleColor: "#E8000D",
     h4Text: "De 1% de intención de voto a 1.2 millones de votos y ser la sorpresa de la gran consulta por Colombia.",
     paragraph:
       'Con estrategia 100% basada en redes sociales, transformamos una campaña presidencial. Aprendimos a hacer contenido orgánico, nos volvimos una máquina de producción y creamos un sistema de 18 videos diarios — y le dimos visibilidad a un candidato sin maquinaria, sin millones, sin partido. Solo contenido. El resultado: 1.2 millones de votos y quedar por encima de fuerzas políticas que llevan décadas en el poder.',
@@ -41,6 +42,7 @@ const expertiseBlocks = [
     code: "",
     title: "ANDRÉS<br/>BILBAO",
     subtitle: "Cofundador de Rappi",
+    subtitleColor: "#E8000D",
     h4Text: "De cero a la fama. En unos meses, Andrés Bilbao paso de ser un desoconcido a estar en todos lados",
     paragraph:
       'Ayudé a Andrés a ser una de las voces más reconocidas del mundo de negocios en redes sociales. Presente en TikTok, Instagram, YouTube Shorts, Facebook y Twitter — todo orgánico. Su meta: 1 millón en Instagram para final de año.',
