@@ -36,6 +36,7 @@ const expertiseBlocks = [
     placeholder: "[ Foto Jose con Andrés Bilbao ]",
     image: joseAndresBilbao,
     imageOverlayText: "ANDRÉS\nBILBAO",
+    imagePosition: "left top",
     number: "",
     code: "",
     title: "ANDRÉS<br/>BILBAO",
