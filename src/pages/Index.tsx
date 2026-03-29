@@ -86,6 +86,9 @@ const Index = () => {
         <ClientsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
+        <LinkedInClosing />
+      </SectionBlurReveal>
+      <SectionBlurReveal>
         <Footer />
       </SectionBlurReveal>
     </>
