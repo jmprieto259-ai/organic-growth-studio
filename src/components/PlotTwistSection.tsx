@@ -30,7 +30,7 @@ const PlotTwistSection = () => {
           }}
         >
           <ScrollText
-            text="Del llano pasé a asesorar marcas en redes sociales y en 2025 me lancé a crear contenido en LinkedIn y mi empresa explotó."
+            text="Del llano pasé a asesorar marcas en redes sociales y en 2025 me lancé a crear contenido en LinkedIn."
             activeColor="hsl(var(--foreground))"
             useOpacity
             startAt={0.05}
