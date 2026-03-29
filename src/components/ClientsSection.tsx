@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import ScrollText from "./ScrollText";
 
 const accordionData = [
   {
