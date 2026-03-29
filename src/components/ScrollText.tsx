@@ -13,6 +13,8 @@ interface ScrollTextProps {
   externalProgress?: number;
   /** Words to pulse red after reveal, e.g. "millones de votos" */
   pulseWords?: string;
+  /** Custom style per word */
+  getWordStyle?: (word: string, index: number) => React.CSSProperties | undefined;
 }
 
 const ScrollText = ({
@@ -26,6 +28,7 @@ const ScrollText = ({
   useOpacity = false,
   externalProgress,
   pulseWords,
+  getWordStyle,
 }: ScrollTextProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [internalProgress, setInternalProgress] = useState(0);
@@ -102,6 +105,7 @@ const ScrollText = ({
         const isPulseWord = i >= pulseStartIdx && i < pulseEndIdx;
 
         if (useOpacity) {
+          const extraStyle = getWordStyle?.(word, i) || {};
           return (
             <span
               key={i}
@@ -110,6 +114,7 @@ const ScrollText = ({
               style={{
                 color: activeColor,
                 opacity: isLit ? 1 : 0,
+                ...extraStyle,
               }}
             >
               {word}
