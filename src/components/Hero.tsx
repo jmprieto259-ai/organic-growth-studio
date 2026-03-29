@@ -23,25 +23,25 @@ const Hero = () => {
 
     const tl = gsap.timeline({ delay: 0.1 });
 
-    // Entrance: JOSE from left, PRIETO from right — simultaneously
+    // Entrance: JOSE from left, PRIETO from right — subtle and slow
     tl.fromTo(
       joseRef.current,
-      { x: '-40vw', opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
+      { x: '-12vw', opacity: 0 },
+      { x: 0, opacity: 1, duration: 2.2, ease: 'power2.out' },
       0
     );
     tl.fromTo(
       prietoRef.current,
-      { x: '40vw', opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
+      { x: '12vw', opacity: 0 },
+      { x: 0, opacity: 1, duration: 2.2, ease: 'power2.out' },
       0
     );
 
     // Subtitle: starts blurred, clears when JOSE/PRIETO land
     tl.to(
       subtitleRef.current,
-      { filter: 'blur(0px)', duration: 0.7, ease: 'power2.out' },
-      1.0 // starts clearing as the words are landing
+      { filter: 'blur(0px)', duration: 1.0, ease: 'power2.out' },
+      1.8 // starts clearing as the words are landing
     );
 
     // After entrance completes, set up scroll parallax
