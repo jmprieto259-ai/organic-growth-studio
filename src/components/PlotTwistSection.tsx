@@ -26,7 +26,7 @@ const PlotTwistSection = () => {
           <span
             className="font-display font-black uppercase whitespace-nowrap"
             style={{
-              fontSize: 'clamp(80px, 18vw, 360px)',
+              fontSize: 'clamp(120px, 28vw, 500px)',
               lineHeight: 1,
               letterSpacing: '-0.04em',
               color: 'rgba(10, 102, 194, 0.20)',
