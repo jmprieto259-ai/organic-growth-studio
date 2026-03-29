@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 const accordionData = [
   {
@@ -39,7 +39,6 @@ const ClientsSection = () => {
 
   return (
     <section className="bg-background px-5 md:px-[60px] py-14 md:py-[100px]">
-      {/* Accordion */}
       <ul className="list-none">
         {accordionData.map((item, idx) => (
           <li

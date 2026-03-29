@@ -19,7 +19,6 @@ const platforms = [
 
 const StatsSection = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const platformsRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -36,34 +35,6 @@ const StatsSection = () => {
     return () => window.removeEventListener('scroll', update);
   }, []);
 
-  // Staggered fade-up for platform items
-  useEffect(() => {
-    const el = platformsRef.current;
-    if (!el) return;
-    const items = el.querySelectorAll('.platform-item');
-    gsap.fromTo(
-      items,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.trigger === el) st.kill();
-      });
-    };
-  }, []);
-
   const eased = 1 - Math.pow(1 - progress, 3);
   const mainDisplay = (mainStat.value * eased).toFixed(1);
 
@@ -72,10 +43,8 @@ const StatsSection = () => {
       ref={ref}
       className="bg-primary px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden halftone-dots"
     >
-      {/* Top gradient fade from black */}
       <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[1]" />
       <div className="relative z-[2] flex flex-col items-center text-center gap-10 md:gap-16">
-        {/* Main number */}
         <div className="pin-animate">
           <div
             className="font-display font-black text-background"
@@ -92,16 +61,11 @@ const StatsSection = () => {
           </div>
         </div>
 
-        {/* Platform breakdown */}
-        <div
-          ref={platformsRef}
-          className="flex flex-wrap justify-center gap-6 md:gap-12"
-        >
-          {platforms.map((p, i) => (
+        <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+          {platforms.map((p) => (
             <div
               key={p.name}
-              className="platform-item pin-animate flex flex-col items-center gap-1"
-              style={{ opacity: 0 }}
+              className="pin-animate flex flex-col items-center gap-1"
             >
               <span
                 className="font-display font-black text-background"
