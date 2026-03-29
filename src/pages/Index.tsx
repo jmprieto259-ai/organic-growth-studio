@@ -102,9 +102,7 @@ const Index = () => {
       <SectionBlurReveal>
         <ClientsSection />
       </SectionBlurReveal>
-      <SectionBlurReveal>
-        <Footer />
-      </SectionBlurReveal>
+      <Footer />
     </>
   );
 };
