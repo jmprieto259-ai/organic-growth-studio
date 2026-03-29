@@ -117,7 +117,7 @@ const Hero = () => {
         }}
       >
         <span
-          className="font-body font-medium uppercase tracking-[0.10em] text-center md:text-right"
+          className="font-body font-medium uppercase tracking-[0.10em] text-center"
           style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
         >
           1.7M+ Seguidores
