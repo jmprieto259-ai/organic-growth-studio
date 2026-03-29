@@ -94,10 +94,10 @@ const Index = () => {
         <PlotTwistSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
-        <ClientsSection />
+        <LinkedInClosing />
       </SectionBlurReveal>
       <SectionBlurReveal>
-        <LinkedInClosing />
+        <ClientsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
         <Footer />
