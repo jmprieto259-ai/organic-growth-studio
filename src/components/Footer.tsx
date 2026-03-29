@@ -1,11 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-
 const Footer = () => {
   return (
     <footer id="contacto" className="bg-background border-t border-foreground/10 px-5 md:px-[60px] pt-14 md:pt-20 pb-8 md:pb-10">
-      <div
-        className="flex flex-col gap-10 md:grid md:grid-cols-[1fr_1fr_1.4fr] md:gap-[60px] mb-10 md:mb-[60px]"
-      >
+      <div className="flex flex-col gap-10 md:grid md:grid-cols-[1fr_1fr_1.4fr] md:gap-[60px] mb-10 md:mb-[60px]">
         {/* Contact */}
         <div className="pin-animate">
           <h3 className="font-display font-black uppercase text-foreground mb-4 md:mb-[18px]" style={{ fontSize: 'clamp(18px, 5vw, 22px)', letterSpacing: '-0.02em' }}>
@@ -38,7 +34,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom */}
       <div className="flex justify-between items-center pt-6 md:pt-7 border-t border-foreground/10 pin-animate">
         <span className="font-body text-[12px]" style={{ color: 'rgba(255,255,255,0.22)' }}>
           © 2024 – 2025 Jose Prieto

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import ScrollText from "./ScrollText";
 
 const SkillsList = ({ skills }: { skills: string[] }) => {
@@ -10,13 +10,7 @@ const SkillsList = ({ skills }: { skills: string[] }) => {
           key={i}
           className="flex justify-between items-center py-3 md:py-[13px] border-b border-foreground/10 font-body text-[12px] md:text-[13px] tracking-[0.02em]"
         >
-          <ScrollText
-            text={skill}
-            activeColor="rgba(255,255,255,0.55)"
-            inactiveColor="rgba(255,255,255,0.06)"
-            startAt={0.64 + i * 0.04}
-            endAt={0.68 + i * 0.04}
-          />
+          <span style={{ color: 'rgba(255,255,255,0.55)' }}>{skill}</span>
           <span className="text-[10px] md:text-[11px] flex-shrink-0 ml-3" style={{ color: 'rgba(255,255,255,0.18)' }}>
             {String(i + 1).padStart(2, '0')}
           </span>
@@ -61,35 +55,15 @@ const ExpertiseBlock = ({
   skills,
   hideTopGradient,
 }: ExpertiseBlockProps) => {
-  const blackRef = useRef<HTMLDivElement>(null);
-  const [blackVis, setBlackVis] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (blackRef.current) {
-        const rect = blackRef.current.getBoundingClientRect();
-        const wh = window.innerHeight;
-        const raw = (wh - rect.top) / (wh + rect.height);
-        setBlackVis(Math.min(1, Math.max(0, raw)));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const leftReady = blackVis > 0.2;
-  const bgWordShift = (blackVis - 0.5) * 60;
-
   return (
     <div className="relative">
       {/* Red panel */}
       <div
         className="relative bg-primary h-[60vh] md:h-[75vh] min-h-[360px] md:min-h-[480px] overflow-hidden"
       >
-        {/* Top gradient fade from black */}
         {!hideTopGradient && <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[3]" />}
+        
+        {/* Sticky bar */}
         <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-[22px] py-3 md:py-[14px] border-b border-black/[0.12] pin-animate">
           <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
             {stickyBarLeft}
@@ -114,9 +88,7 @@ const ExpertiseBlock = ({
 
         {image ? (
           <>
-            <div
-              className="absolute inset-0 z-[2] pin-animate"
-            >
+            <div className="absolute inset-0 z-[2] pin-animate">
               <img
                 src={image}
                 alt={bgWord}
@@ -126,11 +98,11 @@ const ExpertiseBlock = ({
             </div>
 
             <div className="absolute bottom-5 left-5 md:bottom-[40px] md:left-[40px] z-[5] flex flex-col gap-0">
-              <span
-                className="block font-body text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] pin-animate"
-              >
-                {code}
-              </span>
+              {code && (
+                <span className="block font-body text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] pin-animate">
+                  {code}
+                </span>
+              )}
               {imageOverlayText && imageOverlayText.split('\n').map((line, i) => (
                 <div
                   key={i}
@@ -157,36 +129,30 @@ const ExpertiseBlock = ({
       </div>
 
       {/* Black panel */}
-      <div ref={blackRef} className="bg-background px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden">
-        {/* Outline number */}
-        <div
-          className="absolute outline-num font-display font-black select-none pointer-events-none"
-          style={{
-            bottom: '-40px',
-            left: '-10px',
-            fontSize: 'clamp(120px, 38vw, 520px)',
-            lineHeight: 0.8,
-            letterSpacing: '-0.06em',
-            transform: `translateY(${bgWordShift}px)`,
-            transition: 'transform 0.15s linear',
-          }}
-        >
-          {number}
-        </div>
-
-        {/* Inner grid */}
-        <div className="relative z-[2] flex flex-col gap-10 md:grid md:grid-cols-[1fr_1.3fr] md:gap-20 md:items-start">
-          {/* Left */}
+      <div className="bg-background px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden">
+        {number && (
           <div
-            className="transition-all duration-[900ms] ease-out"
+            className="absolute outline-num font-display font-black select-none pointer-events-none"
             style={{
-              opacity: leftReady ? 1 : 0,
-              transform: leftReady ? 'translateY(0)' : 'translateY(30px)',
+              bottom: '-40px',
+              left: '-10px',
+              fontSize: 'clamp(120px, 38vw, 520px)',
+              lineHeight: 0.8,
+              letterSpacing: '-0.06em',
             }}
           >
-            <span className="block font-body text-[12px] text-muted tracking-[0.04em] mb-3 md:mb-[18px]">
-              {code}
-            </span>
+            {number}
+          </div>
+        )}
+
+        <div className="relative z-[2] flex flex-col gap-10 md:grid md:grid-cols-[1fr_1.3fr] md:gap-20 md:items-start">
+          {/* Left */}
+          <div className="pin-animate">
+            {code && (
+              <span className="block font-body text-[12px] text-muted tracking-[0.04em] mb-3 md:mb-[18px]">
+                {code}
+              </span>
+            )}
             <h3
               className="font-display font-black uppercase text-foreground mb-3 md:mb-[18px]"
               style={{ fontSize: 'clamp(36px, 12vw, 90px)', lineHeight: 0.88, letterSpacing: '-0.03em' }}
@@ -202,24 +168,22 @@ const ExpertiseBlock = ({
 
           {/* Right */}
           <div>
-            <ScrollText
-              text={h4Text}
-              className="font-display font-black uppercase block mb-4 md:mb-[22px]"
-              style={{ fontSize: 'clamp(18px, 5vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
-              activeColor="rgba(255,255,255,0.92)"
-              inactiveColor="rgba(255,255,255,0.08)"
-              startAt={0.12}
-              endAt={0.30}
-            />
-            <ScrollText
-              text={stripHtml(paragraph)}
-              className="font-body block mb-8 md:mb-10"
-              style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 1.75 }}
-              activeColor="rgba(255,255,255,0.55)"
-              inactiveColor="rgba(255,255,255,0.06)"
-              startAt={0.30}
-              endAt={0.62}
-            />
+            <div className="pin-animate">
+              <p
+                className="font-display font-black uppercase mb-4 md:mb-[22px]"
+                style={{ fontSize: 'clamp(18px, 5vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: 'rgba(255,255,255,0.92)' }}
+              >
+                {h4Text}
+              </p>
+            </div>
+            <div className="pin-animate">
+              <p
+                className="font-body mb-8 md:mb-10"
+                style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)' }}
+              >
+                {stripHtml(paragraph)}
+              </p>
+            </div>
             <SkillsList skills={skills} />
           </div>
         </div>

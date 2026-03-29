@@ -75,33 +75,33 @@ const Index = () => {
       <Navigation />
       <Hero />
 
-      {/* Statement — already has its own sticky/pin system */}
+      {/* Statement — has its own sticky system */}
       <StatementSection />
 
-      {/* Expertise blocks — pinned on enter */}
+      {/* Expertise blocks — scrub-pinned */}
       {expertiseBlocks.map((block, i) => (
-        <PinSection key={i} pinDuration={1.8} stagger={0.12}>
+        <PinSection key={i} scrollLength={1.5} stagger={0.1}>
           <ExpertiseBlock {...block} />
         </PinSection>
       ))}
 
-      {/* Stats — pinned */}
-      <PinSection pinDuration={1.5} stagger={0.1}>
+      {/* Stats — scrub-pinned */}
+      <PinSection scrollLength={1.2} stagger={0.1}>
         <StatsSection />
       </PinSection>
 
-      {/* Manifesto — pinned */}
-      <PinSection pinDuration={2} stagger={0.1}>
+      {/* Manifesto — scrub-pinned, longer scroll */}
+      <PinSection scrollLength={1.5} stagger={0.08}>
         <Manifesto />
       </PinSection>
 
-      {/* Clients — pinned */}
-      <PinSection pinDuration={1.5} stagger={0.12}>
+      {/* Clients — scrub-pinned */}
+      <PinSection scrollLength={1} stagger={0.12}>
         <ClientsSection />
       </PinSection>
 
-      {/* Footer — pinned briefly */}
-      <PinSection pinDuration={1} stagger={0.1}>
+      {/* Footer — scrub-pinned briefly */}
+      <PinSection scrollLength={0.8} stagger={0.1}>
         <Footer />
       </PinSection>
     </>
