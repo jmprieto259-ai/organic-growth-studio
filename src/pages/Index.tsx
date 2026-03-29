@@ -7,8 +7,6 @@ import vaqueroImg from "@/assets/vaquero.jpg";
 import Manifesto from "@/components/Manifesto";
 import ClientsSection from "@/components/ClientsSection";
 import StatsSection from "@/components/StatsSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
 import SectionBlurReveal from "@/components/SectionBlurReveal";
 
@@ -91,12 +89,6 @@ const Index = () => {
       </SectionBlurReveal>
       <SectionBlurReveal>
         <ClientsSection />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
-        <ExperienceSection />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
-        <AboutSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
         <Footer />
