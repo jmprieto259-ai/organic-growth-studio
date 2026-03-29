@@ -79,16 +79,17 @@ const Index = () => {
       <StatementSection />
 
       {/* Expertise blocks — scrub-pinned */}
-      {expertiseBlocks.map((block, i) => (
+      {expertiseBlocks.slice(0, 2).map((block, i) => (
         <PinSection key={i} scrollLength={1.5} stagger={0.1}>
           <ExpertiseBlock {...block} />
         </PinSection>
       ))}
 
-      {/* Stats — scrub-pinned */}
-      <PinSection scrollLength={1.2} stagger={0.1}>
-        <StatsSection />
+      <PinSection scrollLength={1.4} stagger={0.1}>
+        <ExpertiseBlock {...expertiseBlocks[2]} />
       </PinSection>
+
+      <StatsSection />
 
       {/* Manifesto — scrub-pinned, longer scroll */}
       <PinSection scrollLength={1.5} stagger={0.08}>
