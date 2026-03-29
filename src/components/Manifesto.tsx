@@ -30,7 +30,7 @@ const Manifesto = () => {
           }}
         >
           <ScrollText
-            text="Te ayudo a que tu historia y la de tu empresa sean inolvidables."
+            text="No hay maquinaria política ni presupuesto de marketing que le gane a una buena historia."
             activeColor="hsl(var(--foreground))"
             useOpacity
             startAt={0.05}
