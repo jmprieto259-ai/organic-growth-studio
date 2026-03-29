@@ -150,7 +150,7 @@ const ExpertiseBlock = ({
               />
             </div>
 
-            <div className="absolute bottom-5 left-5 md:bottom-[40px] md:left-[40px] z-[5] flex flex-col gap-0">
+            <div className="absolute top-12 left-5 md:top-[60px] md:left-[40px] z-[5] flex flex-col gap-0">
               <span
                 className={`block font-body text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
                   textReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
