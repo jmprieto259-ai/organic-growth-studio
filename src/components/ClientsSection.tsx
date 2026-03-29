@@ -1,30 +1,37 @@
 import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const accordionData = [
   {
     title: "Founders & Marca Personal",
     items: [
-      "Andrés Bilbao — Cofundador de Rappi",
-      "Santiago Pineda — CEO Mensajeros Urbanos",
-      "Nicolás Quijano",
-      "Giovanni Stella — Ex Country Manager Google",
-      "Hugo Surek",
-      "Juan Daniel Oviedo — Campaña Política",
+      { name: "Andrés Bilbao", role: "Cofundador de Rappi" },
+      { name: "Juan Daniel Oviedo", role: "Candidato Presidencial" },
+      { name: "Santiago Pinzón", role: "Mensajeros Urbanos" },
+      { name: "Giovanni Stella", role: "Ex Country Director en Google" },
+      { name: "Nicolás Quijano", role: "Founder Sueños" },
+      { name: "Antoine Crettex", role: "Founder Dermaly" },
+      { name: "Dylan Rosenberg", role: "Cofundador de 30X" },
     ],
     defaultOpen: true,
   },
   {
-    title: "Startups Fintech",
-    items: ["Trii", "Mejor CDT", "Cíclico", "TuEme"],
-    defaultOpen: false,
-  },
-  {
-    title: "Empresas Tradicionales",
+    title: "Empresas",
     items: [
-      "Grupo Takami",
-      "Viajero Hostels",
-      "Friogan (Frigorífico)",
-      "Subasta de Ganado (millones de vistas)",
+      { name: "Ciclico", role: "" },
+      { name: "Truora", role: "" },
+      { name: "Redi Food", role: "" },
+      { name: "Trii", role: "" },
+      { name: "Mejor CDT", role: "" },
+      { name: "30X", role: "" },
+      { name: "Next Gen", role: "" },
+      { name: "Friogan", role: "" },
+      { name: "Takami", role: "" },
+      { name: "Subacasanare", role: "" },
+      { name: "El Viajero Hostels", role: "" },
     ],
     defaultOpen: false,
   },
@@ -33,17 +40,35 @@ const accordionData = [
 const ClientsSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = sectionRef.current;
+    const el = contentRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { rootMargin: '-80px' }
+
+    const children = el.querySelectorAll("[data-anim]");
+    gsap.fromTo(
+      children,
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          once: true,
+        },
+      }
     );
-    observer.observe(el);
-    return () => observer.disconnect();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger === el) st.kill();
+      });
+    };
   }, []);
 
   const toggle = (idx: number) => {
@@ -51,46 +76,122 @@ const ClientsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-background px-5 md:px-[60px] py-14 md:py-[100px]">
+    <section
+      ref={sectionRef}
+      className="bg-background px-5 md:px-[60px] py-20 md:py-[120px]"
+    >
+      <div ref={contentRef} className="max-w-[900px]">
+        {/* Eyebrow */}
+        <p
+          data-anim
+          className="font-body uppercase tracking-[0.2em] mb-6"
+          style={{
+            fontSize: "clamp(10px, 2vw, 13px)",
+            color: "rgba(255,255,255,0.35)",
+          }}
+        >
+          Clientes
+        </p>
 
-      {/* Accordion */}
-      <ul className="list-none">
-        {accordionData.map((item, idx) => (
-          <li
-            key={idx}
-            className="border-b border-foreground/10 transition-all duration-700 ease-out"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(30px)',
-              transitionDelay: `${500 + idx * 120}ms`,
-            }}
-          >
-            <div
-              onClick={() => toggle(idx)}
-              className="flex items-center gap-3 md:gap-4 py-4 md:py-5 cursor-pointer font-body font-medium select-none"
-              style={{ fontSize: 'clamp(14px, 4vw, 20px)', color: 'rgba(255,255,255,0.75)' }}
-            >
-              <span className="w-[24px] h-[24px] md:w-[26px] md:h-[26px] border border-foreground/25 rounded-full flex items-center justify-center text-[14px] md:text-[15px] flex-shrink-0 transition-all duration-[250ms]" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                {openIndex === idx ? '−' : '+'}
-              </span>
-              {item.title}
-            </div>
-            <div className={openIndex === idx ? 'acc-body-open' : 'acc-body-closed'}>
-              <ul className="list-none flex flex-col gap-2">
-                {item.items.map((name, i) => (
-                  <li
-                    key={i}
-                    className="font-body text-[13px] md:text-[14px] pl-[10px] border-l border-foreground/[0.08]"
-                    style={{ color: 'rgba(255,255,255,0.40)' }}
+        {/* Title */}
+        <h2
+          data-anim
+          className="font-display font-black mb-16 md:mb-20"
+          style={{
+            fontSize: "clamp(24px, 5vw, 44px)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em",
+            color: "hsl(var(--foreground))",
+          }}
+        >
+          No vine a ser influencer. Vine a dar influencia. Desde el 2023 ayudo a
+          personas y empresas a crecer en redes sociales.
+        </h2>
+
+        {/* Accordion */}
+        <div data-anim>
+          {accordionData.map((group, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div
+                key={idx}
+                className="border-t"
+                style={{ borderColor: "rgba(255,255,255,0.1)" }}
+              >
+                {/* Header */}
+                <button
+                  onClick={() => toggle(idx)}
+                  className="w-full flex items-center justify-between py-5 md:py-6 cursor-pointer select-none group"
+                >
+                  <span
+                    className="font-display font-bold text-left"
+                    style={{
+                      fontSize: "clamp(18px, 4vw, 28px)",
+                      color: "hsl(var(--foreground))",
+                    }}
                   >
-                    {name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ul>
+                    {group.title}
+                  </span>
+                  <span
+                    className="w-[28px] h-[28px] md:w-[32px] md:h-[32px] flex items-center justify-center text-[18px] md:text-[20px] flex-shrink-0 transition-transform duration-[400ms] ease-out"
+                    style={{
+                      color: "rgba(255,255,255,0.4)",
+                      transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                    }}
+                  >
+                    +
+                  </span>
+                </button>
+
+                {/* Content */}
+                <div
+                  className="overflow-hidden transition-all duration-[400ms] ease-out"
+                  style={{
+                    maxHeight: isOpen ? "1000px" : "0px",
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                >
+                  <div className="pb-6 md:pb-8">
+                    {group.items.map((item, i) => (
+                      <div
+                        key={i}
+                        className="py-3 md:py-3.5 border-b"
+                        style={{ borderColor: "rgba(255,255,255,0.06)" }}
+                      >
+                        <span
+                          className="font-body"
+                          style={{
+                            fontSize: "clamp(14px, 3vw, 17px)",
+                            color: "hsl(var(--foreground))",
+                          }}
+                        >
+                          {item.name}
+                        </span>
+                        {item.role && (
+                          <span
+                            className="font-body ml-2"
+                            style={{
+                              fontSize: "clamp(12px, 2.5vw, 14px)",
+                              color: "rgba(255,255,255,0.35)",
+                            }}
+                          >
+                            — {item.role}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          {/* Bottom border */}
+          <div
+            className="border-t"
+            style={{ borderColor: "rgba(255,255,255,0.1)" }}
+          />
+        </div>
+      </div>
     </section>
   );
 };
