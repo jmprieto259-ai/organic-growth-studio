@@ -117,16 +117,10 @@ const Hero = () => {
         }}
       >
         <span
-          className="font-body font-medium uppercase tracking-[0.10em] text-center hidden md:block"
-          style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
-        >
-          Redes Sociales &amp; Crecimiento 100% Orgánico
-        </span>
-        <span
           className="font-body font-medium uppercase tracking-[0.10em] text-center md:text-right"
           style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
         >
-          1.7M+ Seguidores Construidos
+          1.7M+ Seguidores
         </span>
       </div>
     </section>
