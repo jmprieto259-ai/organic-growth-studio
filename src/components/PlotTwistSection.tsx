@@ -22,10 +22,10 @@ const PlotTwistSection = () => {
     <section ref={sectionRef} className="relative bg-background" style={{ height: '400vh' }}>
       <div className="sticky top-0 h-screen flex items-center justify-center px-5 md:px-[60px] overflow-hidden">
         <div
-          className="font-display font-black uppercase max-w-[800px] mx-auto text-center"
+          className="font-display font-black uppercase max-w-[1100px] mx-auto text-center"
           style={{
-            fontSize: 'clamp(24px, 5vw, 52px)',
-            lineHeight: 1.15,
+            fontSize: 'clamp(32px, 7vw, 80px)',
+            lineHeight: 1.1,
             letterSpacing: '-0.02em',
           }}
         >
