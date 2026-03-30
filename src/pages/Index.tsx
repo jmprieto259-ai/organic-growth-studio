@@ -1,4 +1,5 @@
 import joseAndresBilbao from "@/assets/jose-andres-bilbao.jpg";
+import joseOviedo from "@/assets/jose-oviedo.png";
 import Navigation from "@/components/Navigation";
 import SideBadge from "@/components/SideBadge";
 import Hero from "@/components/Hero";
@@ -20,6 +21,9 @@ const expertiseBlocks = [
     stickyBarRight: "",
     bgWord: "VOTOS",
     placeholder: "[ Foto Jose con Oviedo ]",
+    image: joseOviedo,
+    imageOverlayText: "CASO\nOVIEDO",
+    imagePosition: "center center",
     number: "",
     code: "",
     title: "CASO<br/>OVIEDO",
@@ -37,7 +41,7 @@ const expertiseBlocks = [
     placeholder: "[ Foto Jose con Andrés Bilbao ]",
     image: joseAndresBilbao,
     imageOverlayText: "ANDRÉS\nBILBAO",
-    imagePosition: "left top",
+    imagePosition: "center 35%",
     number: "",
     code: "",
     title: "ANDRÉS<br/>BILBAO",
