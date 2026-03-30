@@ -67,6 +67,7 @@ const ExpertiseBlock = ({
   skills,
   hideTopGradient,
   panelClassName,
+  mobileContain,
 }: ExpertiseBlockProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const blackRef = useRef<HTMLDivElement>(null);
