@@ -1,4 +1,5 @@
 import joseAndresBilbao from "@/assets/jose-andres-bilbao.jpg";
+import joseOviedo from "@/assets/jose-oviedo.png";
 import Navigation from "@/components/Navigation";
 import SideBadge from "@/components/SideBadge";
 import Hero from "@/components/Hero";
