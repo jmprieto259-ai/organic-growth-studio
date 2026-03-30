@@ -107,7 +107,7 @@ const ExpertiseBlock = ({
       {/* Red panel */}
       <div
         ref={panelRef}
-        className="relative bg-primary h-[60vh] md:h-[75vh] min-h-[360px] md:min-h-[480px] overflow-hidden"
+        className={panelClassName || "relative bg-primary h-[60vh] md:h-[75vh] min-h-[360px] md:min-h-[480px] overflow-hidden"}
       >
         {/* Top gradient fade from black */}
         {!hideTopGradient && <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[3]" />}
