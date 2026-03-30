@@ -23,7 +23,7 @@ const expertiseBlocks = [
     placeholder: "[ Foto Jose con Oviedo ]",
     image: joseOviedo,
     imageOverlayText: "",
-    imagePosition: "center top",
+    imagePosition: "center 15%",
     number: "",
     code: "",
     title: "CASO<br/>OVIEDO",
