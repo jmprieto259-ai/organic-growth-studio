@@ -65,6 +65,7 @@ const ExpertiseBlock = ({
   paragraph,
   skills,
   hideTopGradient,
+  panelClassName,
 }: ExpertiseBlockProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const blackRef = useRef<HTMLDivElement>(null);
