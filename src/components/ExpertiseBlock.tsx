@@ -140,7 +140,7 @@ const ExpertiseBlock = ({
         {image ? (
           <>
             <div
-              className="absolute inset-0 z-[2]"
+              className={mobileContain ? "relative md:absolute md:inset-0 z-[2]" : "absolute inset-0 z-[2]"}
               style={{
                 transform: `translateY(${offset}px) scale(${1 + visibility * 0.05})`,
                 willChange: 'transform, filter',
