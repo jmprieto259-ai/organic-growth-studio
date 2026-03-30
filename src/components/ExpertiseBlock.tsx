@@ -43,6 +43,7 @@ interface ExpertiseBlockProps {
   paragraph: string;
   skills: string[];
   hideTopGradient?: boolean;
+  panelClassName?: string;
 }
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, '');
