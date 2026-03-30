@@ -44,6 +44,7 @@ interface ExpertiseBlockProps {
   skills: string[];
   hideTopGradient?: boolean;
   panelClassName?: string;
+  mobileContain?: boolean;
 }
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, '');
@@ -66,6 +67,7 @@ const ExpertiseBlock = ({
   skills,
   hideTopGradient,
   panelClassName,
+  mobileContain,
 }: ExpertiseBlockProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const blackRef = useRef<HTMLDivElement>(null);
@@ -149,8 +151,8 @@ const ExpertiseBlock = ({
               <img
                 src={image}
                 alt={bgWord}
-                className="w-full h-[120%] object-cover"
-                style={{ mixBlendMode: 'multiply', marginTop: '-10%', objectPosition: imagePosition || 'center 15%' }}
+                className={`w-full h-[120%] ${mobileContain ? 'object-contain md:object-cover' : 'object-cover'}`}
+                style={{ mixBlendMode: 'multiply', marginTop: mobileContain ? '0' : '-10%', objectPosition: mobileContain ? 'center center' : (imagePosition || 'center 15%') }}
               />
             </div>
 
