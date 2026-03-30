@@ -140,7 +140,7 @@ const ExpertiseBlock = ({
         {image ? (
           <>
             <div
-              className="absolute inset-0 z-[2]"
+              className={mobileContain ? "relative md:absolute md:inset-0 z-[2]" : "absolute inset-0 z-[2]"}
               style={{
                 transform: `translateY(${offset}px) scale(${1 + visibility * 0.05})`,
                 willChange: 'transform, filter',
@@ -151,7 +151,7 @@ const ExpertiseBlock = ({
               <img
                 src={image}
                 alt={bgWord}
-                className={`w-full h-[120%] ${mobileContain ? 'object-contain md:object-cover' : 'object-cover'}`}
+                className={`w-full ${mobileContain ? 'h-auto md:h-[120%] object-contain md:object-cover' : 'h-[120%] object-cover'}`}
                 style={{ mixBlendMode: 'multiply', marginTop: mobileContain ? '0' : '-10%', objectPosition: mobileContain ? 'center center' : (imagePosition || 'center 15%') }}
               />
             </div>
