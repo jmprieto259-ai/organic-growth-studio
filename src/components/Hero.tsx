@@ -8,8 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const joseRef = useRef<HTMLSpanElement>(null);
-  const prietoRef = useRef<HTMLSpanElement>(null);
+  const joseDesktopRef = useRef<HTMLSpanElement>(null);
+  const prietoDesktopRef = useRef<HTMLSpanElement>(null);
+  const joseMobileRef = useRef<HTMLSpanElement>(null);
+  const prietoMobileRef = useRef<HTMLSpanElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [textBlur, setTextBlur] = useState(0);
@@ -21,16 +23,20 @@ const Hero = () => {
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    const joseEl = isDesktop ? joseDesktopRef.current : joseMobileRef.current;
+    const prietoEl = isDesktop ? prietoDesktopRef.current : prietoMobileRef.current;
+
     const tl = gsap.timeline({ delay: 0.1 });
 
     tl.fromTo(
-      joseRef.current,
+      joseEl,
       { x: '-40vw', opacity: 0 },
       { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
       0
     );
     tl.fromTo(
-      prietoRef.current,
+      prietoEl,
       { x: '40vw', opacity: 0 },
       { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
       0
@@ -43,9 +49,9 @@ const Hero = () => {
     );
 
     tl.call(() => {
-      if (joseRef.current && sectionRef.current) {
+      if (joseEl && sectionRef.current) {
         gsap.fromTo(
-          joseRef.current,
+          joseEl,
           { x: 0 },
           {
             x: '-30vw',
@@ -59,9 +65,9 @@ const Hero = () => {
           }
         );
       }
-      if (prietoRef.current && sectionRef.current) {
+      if (prietoEl && sectionRef.current) {
         gsap.fromTo(
-          prietoRef.current,
+          prietoEl,
           { x: 0 },
           {
             x: '30vw',
@@ -179,17 +185,17 @@ const Hero = () => {
             textShadow: '0 2px 40px rgba(0,0,0,0.4)',
           }}
         >
-          {/* Desktop: single line with inline words */}
+          {/* Desktop: single line, words split on scroll */}
           <span className="hidden md:flex justify-center gap-[0.15em]">
             <span
-              ref={joseRef}
+              ref={joseDesktopRef}
               className="inline-block will-change-transform"
               style={{ opacity: 0 }}
             >
               Jose
             </span>
             <span
-              ref={prietoRef}
+              ref={prietoDesktopRef}
               className="inline-block will-change-transform"
               style={{ opacity: 0 }}
             >
@@ -197,23 +203,18 @@ const Hero = () => {
             </span>
           </span>
           {/* Mobile: two lines */}
-          <span className="md:hidden">
+          <span className="block md:hidden">
             <span
+              ref={joseMobileRef}
               className="block will-change-transform"
               style={{ opacity: 0 }}
-              ref={(el) => {
-                // On mobile, sync with joseRef
-                if (el && !joseRef.current) (joseRef as any).current = el;
-              }}
             >
               Jose
             </span>
             <span
+              ref={prietoMobileRef}
               className="block will-change-transform"
               style={{ opacity: 0 }}
-              ref={(el) => {
-                if (el && !prietoRef.current) (prietoRef as any).current = el;
-              }}
             >
               Prieto
             </span>
