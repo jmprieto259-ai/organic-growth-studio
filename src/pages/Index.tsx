@@ -85,13 +85,17 @@ const Index = () => {
         <Manifesto />
       </SectionBlurReveal>
       {/* Oviedo */}
-      <SectionBlurReveal>
-        <ExpertiseBlock {...expertiseBlocks[0]} />
-      </SectionBlurReveal>
+      <div id="caso-oviedo">
+        <SectionBlurReveal>
+          <ExpertiseBlock {...expertiseBlocks[0]} />
+        </SectionBlurReveal>
+      </div>
       {/* Bilbao */}
-      <SectionBlurReveal>
-        <ExpertiseBlock {...expertiseBlocks[1]} />
-      </SectionBlurReveal>
+      <div id="caso-bilbao">
+        <SectionBlurReveal>
+          <ExpertiseBlock {...expertiseBlocks[1]} />
+        </SectionBlurReveal>
+      </div>
       <SectionBlurReveal>
         <BilbaoStatsSection />
       </SectionBlurReveal>
@@ -100,21 +104,27 @@ const Index = () => {
         <StatementSection />
       </SectionBlurReveal>
       {/* Sabana Adentro */}
-      <SectionBlurReveal>
-        <ExpertiseBlock {...expertiseBlocks[2]} />
-      </SectionBlurReveal>
+      <div id="mi-historia">
+        <SectionBlurReveal>
+          <ExpertiseBlock {...expertiseBlocks[2]} />
+        </SectionBlurReveal>
+      </div>
       <SectionBlurReveal>
         <StatsSection />
       </SectionBlurReveal>
       <SectionBlurReveal>
         <PlotTwistSection />
       </SectionBlurReveal>
-      <SectionBlurReveal>
-        <LinkedInClosing />
-      </SectionBlurReveal>
-      <SectionBlurReveal>
-        <ClientsSection />
-      </SectionBlurReveal>
+      <div id="linkedin-section">
+        <SectionBlurReveal>
+          <LinkedInClosing />
+        </SectionBlurReveal>
+      </div>
+      <div id="clientes">
+        <SectionBlurReveal>
+          <ClientsSection />
+        </SectionBlurReveal>
+      </div>
       <Footer />
     </>
   );
