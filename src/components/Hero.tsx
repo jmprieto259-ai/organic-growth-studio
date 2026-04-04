@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import heroImage from '@/assets/hero-jose.png';
+import { useSiteContent } from '@/hooks/use-site-content';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,11 @@ const Hero = () => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const [textBlur, setTextBlur] = useState(0);
   const blurTimeout = useRef<number | null>(null);
+  const { getContent } = useSiteContent();
+
+  const titleLine1 = getContent('hero', 'title_line1', 'Jose');
+  const titleLine2 = getContent('hero', 'title_line2', 'Prieto');
+  const eyebrow = getContent('hero', 'eyebrow', 'Estratega de Contenido');
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
@@ -76,7 +82,6 @@ const Hero = () => {
         );
       }
 
-      // Scroll-driven cinematic darkening
       if (overlayRef.current && sectionRef.current) {
         gsap.fromTo(
           overlayRef.current,
@@ -134,14 +139,12 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background image */}
       <img
         src={heroImage}
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
       />
 
-      {/* Scroll-driven cinematic darkening overlay */}
       <div
         ref={overlayRef}
         className="absolute inset-0 z-[1] pointer-events-none"
@@ -151,13 +154,10 @@ const Hero = () => {
         }}
       />
 
-      {/* Subtle top gradient for text readability */}
       <div className="absolute top-0 left-0 right-0 h-[30%] bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-[2]" />
 
-      {/* Spacer to push content down */}
       <div className="flex-1" />
 
-      {/* Stacked text content at bottom */}
       <div className="relative z-[3] flex flex-col items-center text-center gap-2">
         <h1
           className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
@@ -169,19 +169,11 @@ const Hero = () => {
             textShadow: '0 2px 40px rgba(0,0,0,0.4)',
           }}
         >
-          <span
-            ref={joseRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
-          >
-            Jose
+          <span ref={joseRef} className="block will-change-transform" style={{ opacity: 0 }}>
+            {titleLine1}
           </span>
-          <span
-            ref={prietoRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
-          >
-            Prieto
+          <span ref={prietoRef} className="block will-change-transform" style={{ opacity: 0 }}>
+            {titleLine2}
           </span>
         </h1>
         <p
@@ -194,7 +186,7 @@ const Hero = () => {
             filter: 'blur(8px)',
           }}
         >
-          Estratega de Contenido
+          {eyebrow}
         </p>
         <span
           className="font-body font-medium uppercase tracking-[0.10em] text-center"

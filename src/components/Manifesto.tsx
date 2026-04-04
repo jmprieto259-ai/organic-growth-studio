@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import ScrollText from './ScrollText';
+import { useSiteContent } from '@/hooks/use-site-content';
 
 const Manifesto = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const { getContent } = useSiteContent();
+
+  const phrase = getContent('bridge', 'phrase', 'No hay maquinaria política ni presupuesto de marketing que le gane a una buena historia.');
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -30,7 +34,7 @@ const Manifesto = () => {
           }}
         >
           <ScrollText
-            text="No hay maquinaria política ni presupuesto de marketing que le gane a una buena historia."
+            text={phrase}
             activeColor="hsl(var(--foreground))"
             useOpacity
             startAt={0.05}
