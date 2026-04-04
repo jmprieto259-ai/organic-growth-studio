@@ -134,11 +134,25 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background image */}
+      {/* Blurred background fill for desktop sides */}
       <img
         src={heroImage}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-top z-0"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0 blur-[40px] scale-110"
+      />
+      {/* Dark vignette over blurred background */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 50% 80% at center, transparent 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.95) 100%)',
+        }}
+      />
+      {/* Sharp centered portrait — full vertical composition */}
+      <img
+        src={heroImage}
+        alt=""
+        className="absolute inset-0 z-0 mx-auto h-full object-contain object-top pointer-events-none"
+        style={{ maxWidth: 'min(100%, 560px)' }}
       />
 
       {/* Scroll-driven cinematic darkening overlay */}
