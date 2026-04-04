@@ -81,6 +81,11 @@ const Index = () => {
       <SideBadge />
       <Navigation />
       <Hero />
+      {/* Manifesto first */}
+      <SectionBlurReveal>
+        <Manifesto />
+      </SectionBlurReveal>
+      {/* Statement second */}
       <SectionBlurReveal>
         <StatementSection />
       </SectionBlurReveal>
@@ -94,10 +99,6 @@ const Index = () => {
       </SectionBlurReveal>
       <SectionBlurReveal>
         <BilbaoStatsSection />
-      </SectionBlurReveal>
-      {/* Manifesto between Bilbao and Sabana Adentro */}
-      <SectionBlurReveal>
-        <Manifesto />
       </SectionBlurReveal>
       {/* Sabana Adentro */}
       <SectionBlurReveal>
