@@ -128,7 +128,7 @@ const Hero = () => {
         src={heroImg}
         alt=""
         className="absolute inset-0 w-full h-full object-cover z-0"
-        style={{ filter: 'saturate(0.55) brightness(0.75)' }}
+        style={{ filter: 'saturate(0.6) brightness(0.9)' }}
       />
 
       {/* Dark warm overlay that fades out on scroll */}
