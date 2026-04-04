@@ -23,14 +23,12 @@ const LinkedInClosing = () => {
       },
     });
 
-    // Watermark scales in
     tl.fromTo(
       watermark,
       { scale: 0.95, opacity: 0 },
       { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }
     );
 
-    // Content staggers in
     const children = content.querySelectorAll('[data-anim]');
     tl.fromTo(
       children,
@@ -72,7 +70,6 @@ const LinkedInClosing = () => {
       <div
         ref={contentRef}
         className="relative z-[2] flex flex-col items-center text-center px-5 md:px-[60px] max-w-[900px] mx-auto"
-        style={{ gap: 'clamp(24px, 4vh, 48px)' }}
       >
         {/* Eyebrow */}
         <span
@@ -86,40 +83,18 @@ const LinkedInClosing = () => {
         {/* Headline */}
         <h2
           data-anim
-          className="font-display font-black uppercase text-foreground"
+          className="font-display font-black uppercase text-foreground mt-6 md:mt-8"
           style={{
             fontSize: 'clamp(28px, 6vw, 64px)',
             lineHeight: 1.05,
             letterSpacing: '-0.03em',
           }}
         >
-          De ser un desconocido en LinkedIn pasé a trabajar con los Bilbao y un candidato presidencial.
+          Con mi estrategia logré en 8 meses, 7 millones de impresiones y 19K seguidores
         </h2>
 
-        {/* Subtext */}
-        <p
-          data-anim
-          className="font-display font-bold uppercase"
-          style={{
-            fontSize: 'clamp(14px, 3vw, 22px)',
-            color: 'rgba(255,255,255,0.30)',
-            letterSpacing: '0.04em',
-          }}
-        >
-          Con el poder de las historias.
-        </p>
-
-        {/* Stat callout */}
-        <div
-          data-anim
-          className="font-display font-black text-foreground"
-          style={{
-            fontSize: 'clamp(18px, 4vw, 36px)',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          8 meses publicando · 7M de impresiones · 19K seguidores
-        </div>
+        {/* Spacer — keeps LINKEDIN watermark clear */}
+        <div style={{ height: 'clamp(80px, 18vh, 200px)' }} />
 
         {/* Body */}
         <p
@@ -132,7 +107,7 @@ const LinkedInClosing = () => {
             maxWidth: '55ch',
           }}
         >
-          Ayudo a marcas personales a posicionarse y vender en LinkedIn.
+          Hoy ayudo a marcas personales y equipos a posicionarse y vender en LinkedIn.
         </p>
 
         {/* CTA */}
@@ -142,9 +117,9 @@ const LinkedInClosing = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center font-display font-black uppercase text-background bg-foreground px-8 py-4 text-[13px] md:text-[14px] tracking-[0.08em] transition-opacity duration-200 hover:opacity-80"
-          style={{ marginTop: '8px' }}
+          style={{ marginTop: 'clamp(16px, 3vh, 32px)' }}
         >
-          Aplica al Bootcamp →
+          Aplica mi Bootcamp →
         </a>
       </div>
     </section>
