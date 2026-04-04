@@ -98,12 +98,3 @@
   -webkit-text-stroke: 1px rgba(255,255,255,0.06);
   color: transparent;
 }
-
-@keyframes slideInLeft {
-  from { transform: translateX(-40vw); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-@keyframes slideInRight {
-  from { transform: translateX(40vw); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}

@@ -134,11 +134,11 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background image — fullscreen cover */}
+      {/* Background image */}
       <img
         src={heroImage}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-top md:object-center z-0"
+        className="absolute inset-0 w-full h-full object-cover object-top z-0"
       />
 
       {/* Scroll-driven cinematic darkening overlay */}
@@ -169,9 +169,8 @@ const Hero = () => {
           Estratega de Contenido
         </p>
 
-        {/* Mobile: two lines */}
         <h1
-          className="md:hidden font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
+          className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
           style={{
             fontSize: 'clamp(64px, 18vw, 230px)',
             letterSpacing: '-0.035em',
@@ -181,37 +180,15 @@ const Hero = () => {
           }}
         >
           <span
-            className="block will-change-transform animate-[slideInLeft_1.2s_ease-out_0.1s_both]"
+            ref={joseRef}
+            className="block will-change-transform"
+            style={{ opacity: 0 }}
           >
             Jose
           </span>
           <span
-            className="block will-change-transform animate-[slideInRight_1.2s_ease-out_0.1s_both]"
-          >
-            Prieto
-          </span>
-        </h1>
-        {/* Desktop: single line */}
-        <h1
-          className="hidden md:block font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out whitespace-nowrap"
-          style={{
-            fontSize: 'clamp(64px, 10vw, 180px)',
-            letterSpacing: '-0.035em',
-            color: 'rgba(255,255,255,0.9)',
-            filter: `blur(${textBlur}px)`,
-            textShadow: '0 2px 40px rgba(0,0,0,0.4)',
-          }}
-        >
-          <span
-            ref={joseRef}
-            className="inline-block will-change-transform"
-            style={{ opacity: 0 }}
-          >
-            Jose{' '}
-          </span>
-          <span
             ref={prietoRef}
-            className="inline-block will-change-transform"
+            className="block will-change-transform"
             style={{ opacity: 0 }}
           >
             Prieto
