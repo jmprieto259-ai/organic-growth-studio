@@ -134,26 +134,11 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background: blurred full-width layer (desktop only) */}
+      {/* Background image — fullscreen cover */}
       <img
         src={heroImage}
         alt=""
-        className="hidden md:block absolute inset-0 w-full h-full object-cover object-center z-0"
-        style={{ filter: 'blur(40px) brightness(0.4)', transform: 'scale(1.1)' }}
-      />
-      {/* Side fade-to-black gradients over blurred bg (desktop only) */}
-      <div
-        className="hidden md:block absolute inset-0 z-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to right, black 0%, transparent 20%, transparent 80%, black 100%)',
-        }}
-      />
-      {/* Sharp centered image: full height, natural width (desktop) / full cover (mobile) */}
-      <img
-        src={heroImage}
-        alt=""
-        className="absolute inset-0 h-full z-0 object-top md:object-center md:left-1/2 md:-translate-x-1/2 w-full md:w-auto"
-        style={{ objectFit: 'cover' }}
+        className="absolute inset-0 w-full h-full object-cover object-top md:object-center z-0"
       />
 
       {/* Scroll-driven cinematic darkening overlay */}
