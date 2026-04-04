@@ -154,8 +154,11 @@ const Hero = () => {
       {/* Subtle top gradient for text readability */}
       <div className="absolute top-0 left-0 right-0 h-[30%] bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-[2]" />
 
-      {/* Text content — shifted 10% lower with pt-[16vh] */}
-      <div className="relative z-[3] flex flex-col items-center justify-center text-center flex-1 pt-[16vh]">
+      {/* Spacer to push content down */}
+      <div className="flex-1" />
+
+      {/* Stacked text content at bottom */}
+      <div className="relative z-[3] flex flex-col items-center text-center gap-2">
         <h1
           className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
           style={{
@@ -181,10 +184,6 @@ const Hero = () => {
             Prieto
           </span>
         </h1>
-      </div>
-
-      {/* Footer stats */}
-      <div className="relative z-[3] flex flex-col items-center gap-1">
         <p
           ref={subtitleRef}
           className="font-display font-bold uppercase tracking-[0.10em]"
