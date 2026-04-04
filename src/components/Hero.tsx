@@ -156,6 +156,19 @@ const Hero = () => {
 
       {/* Text content — shifted 10% lower with pt-[16vh] */}
       <div className="relative z-[3] flex flex-col items-center justify-center text-center flex-1 pt-[16vh]">
+        <p
+          ref={subtitleRef}
+          className="font-display font-bold uppercase tracking-[0.10em] mb-1"
+          style={{
+            fontSize: 'clamp(11px, 3vw, 26px)',
+            color: 'rgba(255,255,255,0.6)',
+            opacity: 1,
+            filter: 'blur(8px)',
+          }}
+        >
+          Estratega de Contenido
+        </p>
+
         <h1
           className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
           style={{
@@ -181,19 +194,6 @@ const Hero = () => {
             Prieto
           </span>
         </h1>
-
-        <p
-          ref={subtitleRef}
-          className="font-display font-bold uppercase tracking-[0.10em] mt-4"
-          style={{
-            fontSize: 'clamp(11px, 3vw, 26px)',
-            color: 'rgba(255,255,255,0.6)',
-            opacity: 1,
-            filter: 'blur(8px)',
-          }}
-        >
-          Estratega de Contenido
-        </p>
       </div>
 
       {/* Footer stats */}
