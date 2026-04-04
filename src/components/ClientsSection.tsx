@@ -130,7 +130,7 @@ const ClientsSection = () => {
             color: "hsl(var(--foreground))",
           }}
         >
-          CLIENTES
+          {getContent('clientes', 'title', 'CLIENTES')}
         </span>
       </div>
 
