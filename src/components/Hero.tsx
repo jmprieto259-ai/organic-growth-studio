@@ -179,19 +179,44 @@ const Hero = () => {
             textShadow: '0 2px 40px rgba(0,0,0,0.4)',
           }}
         >
-          <span
-            ref={joseRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
-          >
-            Jose
+          {/* Desktop: single line with inline words */}
+          <span className="hidden md:flex justify-center gap-[0.15em]">
+            <span
+              ref={joseRef}
+              className="inline-block will-change-transform"
+              style={{ opacity: 0 }}
+            >
+              Jose
+            </span>
+            <span
+              ref={prietoRef}
+              className="inline-block will-change-transform"
+              style={{ opacity: 0 }}
+            >
+              Prieto
+            </span>
           </span>
-          <span
-            ref={prietoRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
-          >
-            Prieto
+          {/* Mobile: two lines */}
+          <span className="md:hidden">
+            <span
+              className="block will-change-transform"
+              style={{ opacity: 0 }}
+              ref={(el) => {
+                // On mobile, sync with joseRef
+                if (el && !joseRef.current) (joseRef as any).current = el;
+              }}
+            >
+              Jose
+            </span>
+            <span
+              className="block will-change-transform"
+              style={{ opacity: 0 }}
+              ref={(el) => {
+                if (el && !prietoRef.current) (prietoRef as any).current = el;
+              }}
+            >
+              Prieto
+            </span>
           </span>
         </h1>
       </div>
