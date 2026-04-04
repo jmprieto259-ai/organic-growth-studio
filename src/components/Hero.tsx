@@ -85,8 +85,8 @@ const Hero = () => {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top top',
-              end: 'bottom top',
-              scrub: 1.5,
+              end: '60% top',
+              scrub: 0.8,
             },
           }
         );
@@ -94,15 +94,15 @@ const Hero = () => {
       if (imgRef.current && sectionRef.current) {
         gsap.fromTo(
           imgRef.current,
-          { filter: 'saturate(0.4) brightness(0.6)' },
+          { filter: 'saturate(0.55) brightness(0.75)' },
           {
             filter: 'saturate(1) brightness(1)',
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top top',
-              end: 'bottom top',
-              scrub: 1.5,
+              end: '60% top',
+              scrub: 0.8,
             },
           }
         );
@@ -128,14 +128,14 @@ const Hero = () => {
         src={heroImg}
         alt=""
         className="absolute inset-0 w-full h-full object-cover z-0"
-        style={{ filter: 'saturate(0.4) brightness(0.6)' }}
+        style={{ filter: 'saturate(0.55) brightness(0.75)' }}
       />
 
       {/* Dark warm overlay that fades out on scroll */}
       <div
         ref={overlayRef}
         className="absolute inset-0 z-[1] pointer-events-none"
-        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(20,10,0,0.35) 60%, rgba(0,0,0,0.25) 100%)' }}
+        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(20,10,0,0.18) 60%, rgba(0,0,0,0.1) 100%)' }}
       />
 
       {/* Top gradient for text readability */}
