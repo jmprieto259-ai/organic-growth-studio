@@ -42,7 +42,7 @@ const expertiseBlocks = [
     bgWord: "RAPPI",
     placeholder: "[ Foto Jose con Andrés Bilbao ]",
     image: joseAndresBilbao,
-    imageOverlayText: "ANDRÉS\nBILBAO",
+    imageOverlayText: "",
     imagePosition: "center 25%",
     number: "",
     code: "",
