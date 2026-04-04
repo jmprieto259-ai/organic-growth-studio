@@ -156,19 +156,6 @@ const Hero = () => {
 
       {/* Text content — shifted 10% lower with pt-[16vh] */}
       <div className="relative z-[3] flex flex-col items-center justify-center text-center flex-1 pt-[16vh]">
-        <p
-          ref={subtitleRef}
-          className="font-display font-bold uppercase tracking-[0.10em] mb-1"
-          style={{
-            fontSize: 'clamp(11px, 3vw, 26px)',
-            color: 'rgba(255,255,255,0.6)',
-            opacity: 1,
-            filter: 'blur(8px)',
-          }}
-        >
-          Estratega de Contenido
-        </p>
-
         <h1
           className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
           style={{
@@ -197,7 +184,19 @@ const Hero = () => {
       </div>
 
       {/* Footer stats */}
-      <div className="relative z-[3] flex justify-center">
+      <div className="relative z-[3] flex flex-col items-center gap-1">
+        <p
+          ref={subtitleRef}
+          className="font-display font-bold uppercase tracking-[0.10em]"
+          style={{
+            fontSize: 'clamp(11px, 3vw, 26px)',
+            color: 'rgba(255,255,255,0.6)',
+            opacity: 1,
+            filter: 'blur(8px)',
+          }}
+        >
+          Estratega de Contenido
+        </p>
         <span
           className="font-body font-medium uppercase tracking-[0.10em] text-center"
           style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(255,255,255,0.5)' }}
