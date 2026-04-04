@@ -181,16 +181,12 @@ const Hero = () => {
           }}
         >
           <span
-            ref={joseRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
+            className="block will-change-transform animate-[slideInLeft_1.2s_ease-out_0.1s_both]"
           >
             Jose
           </span>
           <span
-            ref={prietoRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
+            className="block will-change-transform animate-[slideInRight_1.2s_ease-out_0.1s_both]"
           >
             Prieto
           </span>
