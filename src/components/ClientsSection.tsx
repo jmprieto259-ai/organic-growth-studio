@@ -39,6 +39,7 @@ const accordionData = [
 ];
 
 const ClientsSection = () => {
+  const { getContent } = useSiteContent();
   const [openIndex, setOpenIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const watermarkRef = useRef<HTMLDivElement>(null);
