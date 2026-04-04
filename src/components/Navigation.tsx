@@ -16,7 +16,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const circleRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const hamburgerRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const isAnimating = useRef(false);
 
