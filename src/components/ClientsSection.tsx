@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useSiteContent } from "@/hooks/use-site-content";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,6 +39,7 @@ const accordionData = [
 ];
 
 const ClientsSection = () => {
+  const { getContent } = useSiteContent();
   const [openIndex, setOpenIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const watermarkRef = useRef<HTMLDivElement>(null);
@@ -128,7 +130,7 @@ const ClientsSection = () => {
             color: "hsl(var(--foreground))",
           }}
         >
-          CLIENTES
+          {getContent('clientes', 'title', 'CLIENTES')}
         </span>
       </div>
 
@@ -143,7 +145,7 @@ const ClientsSection = () => {
           lineHeight: 1.6,
         }}
       >
-        Estas son algunas de las personas y empresas que han confiado en mí.
+        {getContent('clientes', 'subtitle', 'Estas son algunas de las personas y empresas que han confiado en mí.')}
       </p>
 
       {/* Accordion */}
