@@ -8,7 +8,9 @@ const Navigation = () => {
       </a>
       <div className="flex items-center gap-4 md:gap-5">
         <a
-          href="#contacto"
+          href="https://www.linkedin.com/in/josemprieto1/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden sm:inline-block border border-foreground/[0.35] text-foreground font-body text-[12px] font-medium tracking-[0.03em] px-[22px] py-[10px] rounded-full no-underline transition-all duration-[250ms] hover:bg-foreground hover:text-background"
         >
           Trabaja Conmigo
