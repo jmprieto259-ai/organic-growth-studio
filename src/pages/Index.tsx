@@ -82,7 +82,7 @@ const Index = () => {
       <Navigation />
       <Hero />
       <SectionBlurReveal>
-        <StatementSection />
+        <Manifesto />
       </SectionBlurReveal>
       {/* Oviedo */}
       <SectionBlurReveal>
@@ -95,9 +95,9 @@ const Index = () => {
       <SectionBlurReveal>
         <BilbaoStatsSection />
       </SectionBlurReveal>
-      {/* Manifesto between Bilbao and Sabana Adentro */}
+      {/* Statement between Bilbao and Sabana Adentro */}
       <SectionBlurReveal>
-        <Manifesto />
+        <StatementSection />
       </SectionBlurReveal>
       {/* Sabana Adentro */}
       <SectionBlurReveal>
