@@ -101,8 +101,8 @@ const Hero = () => {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top top',
-              end: 'bottom top',
-              scrub: 1.5,
+              end: '60% top',
+              scrub: 0.8,
             },
           }
         );
