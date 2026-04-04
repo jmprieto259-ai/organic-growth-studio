@@ -14,22 +14,19 @@ const MENU_ITEMS = [
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const circleRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const hamburgerRef = useRef<HTMLDivElement>(null);
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
   const isAnimating = useRef(false);
 
-  const open = useCallback(() => {
-    if (isAnimating.current) return;
-    isAnimating.current = true;
-    setIsOpen(true);
-
+  // Run open animation after showMenu causes the menu DOM to render
+  useEffect(() => {
+    if (!showMenu) return;
     const circle = circleRef.current;
     const menu = menuRef.current;
     if (!circle || !menu) return;
 
-    // Calculate circle size needed to cover viewport from top-right
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const maxDist = Math.sqrt(vw * vw + vh * vh) * 2;
@@ -37,9 +34,7 @@ const Navigation = () => {
     const tl = gsap.timeline({
       onComplete: () => { isAnimating.current = false; },
     });
-    tlRef.current = tl;
 
-    // Circle expand
     tl.set(circle, {
       display: 'block',
       width: maxDist,
@@ -55,7 +50,6 @@ const Navigation = () => {
       ease: 'power2.inOut',
     });
 
-    // Menu items stagger
     const items = menu.querySelectorAll('[data-menu-item]');
     tl.fromTo(
       items,
@@ -63,6 +57,13 @@ const Navigation = () => {
       { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' },
       '-=0.15'
     );
+  }, [showMenu]);
+
+  const open = useCallback(() => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+    setIsOpen(true);
+    setShowMenu(true);
   }, []);
 
   const close = useCallback(() => {
@@ -71,21 +72,24 @@ const Navigation = () => {
 
     const circle = circleRef.current;
     const menu = menuRef.current;
-    if (!circle || !menu) return;
+    if (!circle || !menu) {
+      setIsOpen(false);
+      setShowMenu(false);
+      isAnimating.current = false;
+      return;
+    }
 
     const tl = gsap.timeline({
       onComplete: () => {
         setIsOpen(false);
+        setShowMenu(false);
         isAnimating.current = false;
         gsap.set(circle, { display: 'none' });
       },
     });
 
-    // Fade out items
     const items = menu.querySelectorAll('[data-menu-item]');
     tl.to(items, { opacity: 0, duration: 0.2, ease: 'power2.in' });
-
-    // Circle collapse
     tl.to(circle, {
       scale: 0,
       duration: 0.4,
@@ -101,18 +105,15 @@ const Navigation = () => {
     }
 
     close();
-    // Wait for close animation, then scroll
     setTimeout(() => {
       const target = document.querySelector(item.href);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
-        // Refresh ScrollTrigger after scroll
         setTimeout(() => ScrollTrigger.refresh(), 600);
       }
     }, 650);
   }, [close]);
 
-  // Lock body scroll when open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -141,10 +142,11 @@ const Navigation = () => {
           </a>
 
           {/* Hamburger / X toggle */}
-          <div
+          <button
             ref={hamburgerRef}
             onClick={() => (isOpen ? close() : open())}
-            className="relative flex flex-col justify-center items-center w-[28px] h-[28px] cursor-pointer p-1 z-[1002]"
+            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+            className="relative flex flex-col justify-center items-center w-[28px] h-[28px] cursor-pointer p-1 z-[1002] bg-transparent border-none outline-none"
           >
             <span
               className="block w-[22px] h-[1.5px] bg-foreground rounded-sm transition-all duration-300 origin-center"
@@ -166,27 +168,28 @@ const Navigation = () => {
                 marginTop: isOpen ? '0' : '5px',
               }}
             />
-          </div>
+          </button>
         </div>
       </nav>
 
       {/* Radial circle overlay */}
       <div
         ref={circleRef}
-        className="fixed z-[999] bg-black pointer-events-none"
+        className="fixed z-[999] bg-black"
         style={{
           display: 'none',
           top: 0,
           right: 0,
           transformOrigin: 'top right',
+          pointerEvents: 'none',
         }}
       />
 
       {/* Menu overlay */}
-      {isOpen && (
+      {showMenu && (
         <div
           ref={menuRef}
-          className="fixed inset-0 z-[1001] flex flex-col items-center justify-center pointer-events-auto"
+          className="fixed inset-0 z-[1001] flex flex-col items-center justify-center"
         >
           <div className="flex flex-col items-center gap-6 md:gap-8">
             {MENU_ITEMS.map((item) => (
