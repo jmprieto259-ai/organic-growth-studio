@@ -3,10 +3,13 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import heroImage from '@/assets/hero-jose.png';
+import heroImageHorizontal from '@/assets/hero-jose-horizontal.png';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLDivElement>(null);
   const joseRef = useRef<HTMLSpanElement>(null);
   const prietoRef = useRef<HTMLSpanElement>(null);
@@ -134,11 +137,11 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background image */}
+      {/* Background image — horizontal on desktop, vertical on mobile */}
       <img
-        src={heroImage}
+        src={isMobile ? heroImage : heroImageHorizontal}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-top z-0"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0"
       />
 
       {/* Scroll-driven cinematic darkening overlay */}
@@ -172,27 +175,42 @@ const Hero = () => {
         <h1
           className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
           style={{
-            fontSize: 'clamp(64px, 18vw, 230px)',
+            fontSize: isMobile ? 'clamp(64px, 18vw, 230px)' : 'clamp(80px, 10vw, 200px)',
             letterSpacing: '-0.035em',
             color: 'rgba(255,255,255,0.9)',
             filter: `blur(${textBlur}px)`,
             textShadow: '0 2px 40px rgba(0,0,0,0.4)',
           }}
         >
-          <span
-            ref={joseRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
-          >
-            Jose
-          </span>
-          <span
-            ref={prietoRef}
-            className="block will-change-transform"
-            style={{ opacity: 0 }}
-          >
-            Prieto
-          </span>
+          {isMobile ? (
+            <>
+              <span
+                ref={joseRef}
+                className="block will-change-transform"
+                style={{ opacity: 0 }}
+              >
+                Jose
+              </span>
+              <span
+                ref={prietoRef}
+                className="block will-change-transform"
+                style={{ opacity: 0 }}
+              >
+                Prieto
+              </span>
+            </>
+          ) : (
+            <span
+              ref={(el) => {
+                joseRef.current = el;
+                prietoRef.current = el;
+              }}
+              className="block will-change-transform whitespace-nowrap"
+              style={{ opacity: 0 }}
+            >
+              Jose Prieto
+            </span>
+          )}
         </h1>
       </div>
 
