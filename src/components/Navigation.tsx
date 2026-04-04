@@ -141,10 +141,11 @@ const Navigation = () => {
           </a>
 
           {/* Hamburger / X toggle */}
-          <div
+          <button
             ref={hamburgerRef}
             onClick={() => (isOpen ? close() : open())}
-            className="relative flex flex-col justify-center items-center w-[28px] h-[28px] cursor-pointer p-1 z-[1002]"
+            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+            className="relative flex flex-col justify-center items-center w-[28px] h-[28px] cursor-pointer p-1 z-[1002] bg-transparent border-none outline-none"
           >
             <span
               className="block w-[22px] h-[1.5px] bg-foreground rounded-sm transition-all duration-300 origin-center"
