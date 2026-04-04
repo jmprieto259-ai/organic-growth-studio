@@ -78,9 +78,9 @@ const Hero = () => {
       if (overlayRef.current && sectionRef.current) {
         gsap.fromTo(
           overlayRef.current,
-          { opacity: 1 },
+          { opacity: 0 },
           {
-            opacity: 0,
+            opacity: 1,
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
