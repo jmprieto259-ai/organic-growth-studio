@@ -2,11 +2,15 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
+// Section anchors map to IDs or scroll positions on the live site
 const SECTIONS = [
   {
     key: 'hero',
     label: 'Hero',
+    order: 1,
     preview: '/admin-previews/hero.png',
+    description: 'Primera pantalla con foto, nombre y subtítulo',
+    siteAnchor: '#inicio',
     fields: [
       { key: 'title_line1', label: 'Título línea 1', type: 'text' as const, fallback: 'Jose' },
       { key: 'title_line2', label: 'Título línea 2', type: 'text' as const, fallback: 'Prieto' },
@@ -17,7 +21,10 @@ const SECTIONS = [
   {
     key: 'bridge',
     label: 'Puente (Manifesto)',
+    order: 2,
     preview: '/admin-previews/bridge.png',
+    description: 'Frase grande con scroll reveal: "De vivir como vaquero..."',
+    siteAnchor: null,
     fields: [
       { key: 'phrase', label: 'Frase', type: 'textarea' as const, fallback: 'No hay maquinaria política ni presupuesto de marketing que le gane a una buena historia.' },
     ],
@@ -26,7 +33,10 @@ const SECTIONS = [
   {
     key: 'oviedo',
     label: 'Caso Oviedo',
+    order: 3,
     preview: '/admin-previews/oviedo.png',
+    description: 'Caso de campaña presidencial con foto roja',
+    siteAnchor: null,
     fields: [
       { key: 'title', label: 'Título', type: 'text' as const, fallback: 'CASO<br/>OVIEDO' },
       { key: 'subtitle', label: 'Subtítulo', type: 'text' as const, fallback: 'Campaña Presidencial' },
@@ -38,7 +48,10 @@ const SECTIONS = [
   {
     key: 'bilbao',
     label: 'Andrés Bilbao',
+    order: 4,
     preview: '/admin-previews/bilbao.png',
+    description: 'Caso cofundador de Rappi — marca personal',
+    siteAnchor: null,
     fields: [
       { key: 'title', label: 'Título', type: 'text' as const, fallback: 'ANDRÉS<br/>BILBAO' },
       { key: 'subtitle', label: 'Subtítulo', type: 'text' as const, fallback: 'Cofundador de Rappi' },
@@ -50,7 +63,10 @@ const SECTIONS = [
   {
     key: 'sabana',
     label: 'Sabana Adentro',
+    order: 5,
     preview: '/admin-previews/sabana.png',
+    description: 'Historia personal — @sabana_adentro, vaquero',
+    siteAnchor: null,
     fields: [
       { key: 'title', label: 'Título', type: 'text' as const, fallback: 'SABANA<br/>ADENTRO' },
       { key: 'subtitle', label: 'Subtítulo', type: 'text' as const, fallback: 'Mi Historia' },
@@ -62,7 +78,10 @@ const SECTIONS = [
   {
     key: 'clientes',
     label: 'Clientes',
+    order: 6,
     preview: '/admin-previews/clientes.png',
+    description: 'Listado de founders y empresas con acordeón',
+    siteAnchor: null,
     fields: [
       { key: 'title', label: 'Título', type: 'text' as const, fallback: 'CLIENTES' },
       { key: 'subtitle', label: 'Subtítulo', type: 'textarea' as const, fallback: 'Estas son algunas de las personas y empresas que han confiado en mí.' },
@@ -72,7 +91,10 @@ const SECTIONS = [
   {
     key: 'linkedin',
     label: 'LinkedIn',
+    order: 7,
     preview: '/admin-previews/linkedin.png',
+    description: 'Sección de LinkedIn con CTA de bootcamp',
+    siteAnchor: null,
     fields: [
       { key: 'eyebrow', label: 'Eyebrow', type: 'text' as const, fallback: 'Marca Personal' },
       { key: 'headline', label: 'Headline', type: 'textarea' as const, fallback: 'Con mi estrategia logré en 8 meses, 7 millones de impresiones y 19K seguidores' },
@@ -83,6 +105,32 @@ const SECTIONS = [
   },
 ];
 
+const PreviewModal = ({ section, onClose }: { section: typeof SECTIONS[0]; onClose: () => void }) => {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={onClose}>
+      <div className="relative w-[90vw] max-w-4xl h-[80vh] bg-neutral-900 rounded-xl overflow-hidden border border-neutral-700 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-3 border-b border-neutral-800 bg-neutral-900">
+          <div className="flex items-center gap-3">
+            <span className="w-6 h-6 rounded-full bg-red-600 text-white text-xs font-bold flex items-center justify-center">{section.order}</span>
+            <div>
+              <span className="text-white font-semibold text-sm">{section.label}</span>
+              <span className="text-neutral-500 text-xs ml-2">— Preview en vivo</span>
+            </div>
+          </div>
+          <button onClick={onClose} className="text-neutral-400 hover:text-white transition-colors text-xl leading-none px-2">✕</button>
+        </div>
+        {/* iframe preview */}
+        <iframe
+          src={`/${section.siteAnchor ? section.siteAnchor : ''}`}
+          className="w-full h-[calc(100%-48px)] border-0"
+          title={`Preview: ${section.label}`}
+        />
+      </div>
+    </div>
+  );
+};
+
 const Admin = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -92,6 +140,7 @@ const Admin = () => {
   const [images, setImages] = useState<Record<string, Record<string, string>>>({});
   const [saving, setSaving] = useState<Record<string, boolean>>({});
   const [uploading, setUploading] = useState<Record<string, boolean>>({});
+  const [previewSection, setPreviewSection] = useState<typeof SECTIONS[0] | null>(null);
 
   const loadData = useCallback(async () => {
     const { data: content } = await supabase.from('site_content').select('section, field, value');
@@ -226,27 +275,43 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-neutral-950 py-10 px-4">
+      {previewSection && <PreviewModal section={previewSection} onClose={() => setPreviewSection(null)} />}
+
       <div className="max-w-2xl mx-auto">
         <div className="mb-10">
           <h1 className="text-white text-2xl font-bold">CMS — Contenido del sitio</h1>
           <p className="text-neutral-500 text-sm mt-1">
-            Edita el contenido de cada sección. El texto gris muestra lo que aparece actualmente en la web.
+            Edita el contenido de cada sección. Usa "Ver preview" para identificar visualmente la sección.
           </p>
         </div>
 
         {SECTIONS.map((section) => (
           <div key={section.key} className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden mb-6">
-            {/* Section preview image */}
+            {/* Section header with preview thumbnail */}
             <div className="relative border-b border-neutral-800">
               <img
                 src={section.preview}
                 alt={`Preview: ${section.label}`}
-                className="w-full h-32 object-cover opacity-60"
+                className="w-full h-32 object-cover opacity-50"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/90 to-transparent" />
-              <div className="absolute bottom-3 left-4">
-                <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-neutral-500">Sección</span>
-                <h2 className="text-white text-lg font-bold leading-tight">{section.label}</h2>
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent" />
+              <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-full bg-red-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">
+                    {section.order}
+                  </span>
+                  <div>
+                    <h2 className="text-white text-lg font-bold leading-tight">{section.label}</h2>
+                    <p className="text-neutral-500 text-[11px] leading-tight mt-0.5">{section.description}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setPreviewSection(section)}
+                  className="flex items-center gap-1.5 bg-neutral-800/90 hover:bg-neutral-700 border border-neutral-600 text-neutral-300 text-xs font-medium px-3 py-1.5 rounded-lg transition-colors flex-shrink-0"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  Ver preview
+                </button>
               </div>
             </div>
 
