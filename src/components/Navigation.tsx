@@ -167,7 +167,7 @@ const Navigation = () => {
                 marginTop: isOpen ? '0' : '5px',
               }}
             />
-          </div>
+          </button>
         </div>
       </nav>
 
