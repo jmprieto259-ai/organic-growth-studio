@@ -138,7 +138,7 @@ const Hero = () => {
       <img
         src={heroImage}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-top z-0"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0"
       />
 
       {/* Scroll-driven cinematic darkening overlay */}
