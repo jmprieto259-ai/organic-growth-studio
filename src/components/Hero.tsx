@@ -204,7 +204,7 @@ const Hero = () => {
         >
           <span
             ref={joseRef}
-            className="inline will-change-transform"
+            className="inline-block will-change-transform"
             style={{ opacity: 0 }}
           >
             Jose{' '}
