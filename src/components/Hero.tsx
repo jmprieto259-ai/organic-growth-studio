@@ -137,11 +137,11 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background image */}
+      {/* Background image — horizontal on desktop, vertical on mobile */}
       <img
-        src={heroImage}
+        src={isMobile ? heroImage : heroImageHorizontal}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-top z-0"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0"
       />
 
       {/* Scroll-driven cinematic darkening overlay */}
