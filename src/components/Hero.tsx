@@ -131,11 +131,11 @@ const Hero = () => {
         style={{ filter: 'saturate(1) brightness(1)' }}
       />
 
-      {/* Dark warm overlay that fades out on scroll */}
+      {/* Dark warm overlay that fades in on scroll */}
       <div
         ref={overlayRef}
         className="absolute inset-0 z-[1] pointer-events-none"
-        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(20,10,0,0.18) 60%, rgba(0,0,0,0.1) 100%)' }}
+        style={{ opacity: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(20,10,0,0.35) 60%, rgba(0,0,0,0.3) 100%)' }}
       />
 
       {/* Top gradient for text readability */}
