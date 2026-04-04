@@ -135,7 +135,7 @@ const Hero = () => {
       <div
         ref={overlayRef}
         className="absolute inset-0 z-[1] pointer-events-none"
-        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(20,10,0,0.35) 60%, rgba(0,0,0,0.25) 100%)' }}
+        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(20,10,0,0.18) 60%, rgba(0,0,0,0.1) 100%)' }}
       />
 
       {/* Top gradient for text readability */}
