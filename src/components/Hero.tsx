@@ -141,6 +141,32 @@ const Hero = () => {
         className="absolute inset-0 w-full h-full object-cover object-top z-0"
       />
 
+      {/* Progressive blur + fade to black on left and right edges */}
+      <div
+        className="absolute inset-0 z-[0] pointer-events-none"
+        style={{
+          background: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 8%, transparent 25%, transparent 75%, rgba(0,0,0,0.85) 92%, rgba(0,0,0,1) 100%)',
+        }}
+      />
+      <div
+        className="absolute inset-y-0 left-0 w-[30%] z-[0] pointer-events-none"
+        style={{
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          maskImage: 'linear-gradient(to right, black 0%, black 30%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, black 0%, black 30%, transparent 100%)',
+        }}
+      />
+      <div
+        className="absolute inset-y-0 right-0 w-[30%] z-[0] pointer-events-none"
+        style={{
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          maskImage: 'linear-gradient(to left, black 0%, black 30%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to left, black 0%, black 30%, transparent 100%)',
+        }}
+      />
+
       {/* Scroll-driven cinematic darkening overlay */}
       <div
         ref={overlayRef}
