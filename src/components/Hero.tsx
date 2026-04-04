@@ -94,7 +94,7 @@ const Hero = () => {
       if (imgRef.current && sectionRef.current) {
         gsap.fromTo(
           imgRef.current,
-          { filter: 'saturate(0.6) brightness(0.9)' },
+          { filter: 'saturate(0.85) brightness(1)' },
           {
             filter: 'saturate(1) brightness(1)',
             ease: 'none',
