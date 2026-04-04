@@ -145,7 +145,7 @@ const ClientsSection = () => {
           lineHeight: 1.6,
         }}
       >
-        Estas son algunas de las personas y empresas que han confiado en mí.
+        {getContent('clientes', 'subtitle', 'Estas son algunas de las personas y empresas que han confiado en mí.')}
       </p>
 
       {/* Accordion */}
