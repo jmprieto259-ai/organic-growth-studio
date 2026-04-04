@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
-import heroImg from '@/assets/hero-jose.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,9 +10,11 @@ const Hero = () => {
   const joseRef = useRef<HTMLSpanElement>(null);
   const prietoRef = useRef<HTMLSpanElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
+  const [textBlur, setTextBlur] = useState(0);
+  const blurTimeout = useRef<number | null>(null);
 
+  // Entrance animation + scroll parallax
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
@@ -22,6 +23,7 @@ const Hero = () => {
 
     const tl = gsap.timeline({ delay: 0.1 });
 
+    // Entrance: JOSE from left, PRIETO from right — simultaneously
     tl.fromTo(
       joseRef.current,
       { x: '-40vw', opacity: 0 },
@@ -34,12 +36,15 @@ const Hero = () => {
       { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
       0
     );
+
+    // Subtitle: starts blurred, clears when JOSE/PRIETO land
     tl.to(
       subtitleRef.current,
       { filter: 'blur(0px)', duration: 0.7, ease: 'power2.out' },
-      1.0
+      1.0 // starts clearing as the words are landing
     );
 
+    // After entrance completes, set up scroll parallax
     tl.call(() => {
       if (joseRef.current && sectionRef.current) {
         gsap.fromTo(
@@ -73,40 +78,6 @@ const Hero = () => {
           }
         );
       }
-
-      // Scroll-driven image reveal: dark/muted → full color
-      if (overlayRef.current && sectionRef.current) {
-        gsap.fromTo(
-          overlayRef.current,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: '60% top',
-              scrub: 0.8,
-            },
-          }
-        );
-      }
-      if (imgRef.current && sectionRef.current) {
-        gsap.fromTo(
-          imgRef.current,
-          { filter: 'saturate(1) brightness(1)' },
-          {
-            filter: 'saturate(0.3) brightness(0.5)',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: '60% top',
-              scrub: 0.8,
-            },
-          }
-        );
-      }
     });
 
     return () => {
@@ -116,30 +87,53 @@ const Hero = () => {
     };
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMouse({ x, y });
+
+    const centerX = Math.abs(x - 0.5) < 0.15;
+    const centerY = y > 0.35 && y < 0.65;
+    if (centerX && centerY) {
+      const dist = Math.sqrt((x - 0.5) ** 2 + ((y - 0.5) * 0.6) ** 2);
+      const blur = Math.max(0, (1 - dist / 0.12) * 6);
+      setTextBlur(blur);
+    } else {
+      setTextBlur(0);
+    }
+
+    if (blurTimeout.current) clearTimeout(blurTimeout.current);
+    blurTimeout.current = window.setTimeout(() => setTextBlur(0), 150);
+  };
+
+  const handleMouseLeave = () => {
+    setMouse({ x: 0.5, y: 0.5 });
+    setTextBlur(0);
+  };
+
+  const bgX = (mouse.x - 0.5) * 30;
+  const bgY = (mouse.y - 0.5) * 20;
+  const bgBlur = Math.sqrt((mouse.x - 0.5) ** 2 + (mouse.y - 0.5) ** 2) * 4;
+
   return (
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative w-full h-[100svh] min-h-[640px] flex flex-col justify-between px-5 md:px-[60px] pb-6 md:pb-[44px] pt-0 overflow-hidden cursor-default"
+      className="relative w-full h-[100svh] min-h-[640px] bg-primary flex flex-col justify-between px-5 md:px-[60px] pb-6 md:pb-[44px] pt-0 overflow-hidden cursor-default"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Background image */}
-      <img
-        ref={imgRef}
-        src={heroImg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        style={{ filter: 'saturate(1) brightness(1)' }}
-      />
+      <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[2]" />
 
-      {/* Dark warm overlay that fades in on scroll */}
       <div
-        ref={overlayRef}
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{ opacity: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(20,10,0,0.35) 60%, rgba(0,0,0,0.3) 100%)' }}
+        className="absolute inset-0 z-0 transition-all duration-700 ease-out"
+        style={{
+          background: `radial-gradient(ellipse 70% 60% at ${50 + bgX}% ${55 + bgY}%, rgba(220,70,0,0.45) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at ${30 - bgX * 0.5}% ${70 - bgY * 0.5}%, rgba(180,30,0,0.3) 0%, transparent 60%)`,
+          filter: `blur(${bgBlur}px)`,
+        }}
       />
-
-      {/* Top gradient for text readability */}
-      <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/50 to-transparent pointer-events-none z-[2]" />
 
       <div className="relative z-[3] flex flex-col items-center justify-center text-center flex-1 pt-[60px]">
         <p
@@ -147,7 +141,7 @@ const Hero = () => {
           className="font-display font-bold uppercase tracking-[0.10em] mb-1"
           style={{
             fontSize: 'clamp(11px, 3vw, 26px)',
-            color: 'rgba(255,255,255,0.65)',
+            color: 'rgba(0,0,0,0.55)',
             opacity: 1,
             filter: 'blur(8px)',
           }}
@@ -156,11 +150,12 @@ const Hero = () => {
         </p>
 
         <h1
-          className="font-display font-black uppercase leading-[0.86]"
+          className="font-display font-black uppercase leading-[0.86] transition-[filter] duration-500 ease-out"
           style={{
             fontSize: 'clamp(64px, 18vw, 230px)',
             letterSpacing: '-0.035em',
-            color: '#ffffff',
+            color: 'rgba(0,0,0,0.72)',
+            filter: `blur(${textBlur}px)`,
           }}
         >
           <span
@@ -184,7 +179,7 @@ const Hero = () => {
       <div className="relative z-[3] flex justify-center">
         <span
           className="font-body font-medium uppercase tracking-[0.10em] text-center"
-          style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(255,255,255,0.6)' }}
+          style={{ fontSize: 'clamp(9px, 2.5vw, 13px)', color: 'rgba(0,0,0,0.55)' }}
         >
           1.7M+ Seguidores
         </span>
