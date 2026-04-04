@@ -9,6 +9,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLDivElement>(null);
   const joseRef = useRef<HTMLSpanElement>(null);
   const prietoRef = useRef<HTMLSpanElement>(null);
