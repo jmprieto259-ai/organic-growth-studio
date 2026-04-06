@@ -21,7 +21,9 @@ const Index = () => {
 
   const expertiseBlocks = [
     {
-      stickyBarLeft: "Caso Oviedo",
+      stickyBarLeft: "CASO OVIEDO",
+      stickyBarLeftStyle: { color: '#ffffff', fontWeight: 900, fontSize: '13px', letterSpacing: '3px' },
+      stickyBarLeftClassName: "font-body uppercase",
       stickyBarRight: "",
       bgWord: "VOTOS",
       placeholder: "[ Foto Jose con Oviedo ]",
