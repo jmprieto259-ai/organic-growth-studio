@@ -269,8 +269,8 @@ const ExpertiseBlock = ({
               style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 1.75, maxWidth: '65ch' }}
               activeColor="rgba(255,255,255,0.55)"
               inactiveColor="rgba(255,255,255,0.06)"
-              startAt={0.30}
-              endAt={0.62}
+              startAt={0.15}
+              endAt={0.38}
             />
           </div>
         </div>
