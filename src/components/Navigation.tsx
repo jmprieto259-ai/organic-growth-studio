@@ -200,6 +200,14 @@ const Navigation = () => {
           ref={menuRef}
           className="fixed inset-0 z-[1001] flex flex-col items-center justify-center"
         >
+          <button
+            onClick={close}
+            aria-label="Cerrar menú"
+            className="fixed top-4 md:top-[22px] right-5 md:right-[44px] z-[1003] flex flex-col justify-center items-center w-[28px] h-[28px] cursor-pointer p-1 bg-transparent border-none outline-none"
+          >
+            <span className="block w-[22px] h-[1.5px] bg-foreground rounded-sm" style={{ transform: 'translateY(0.75px) rotate(45deg)' }} />
+            <span className="block w-[22px] h-[1.5px] bg-foreground rounded-sm" style={{ transform: 'translateY(-0.75px) rotate(-45deg)' }} />
+          </button>
 
           <div className="flex flex-col items-center gap-6 md:gap-8">
             {MENU_ITEMS.map((item) => (
