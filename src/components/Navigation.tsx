@@ -200,15 +200,6 @@ const Navigation = () => {
           ref={menuRef}
           className="fixed inset-0 z-[1001] flex flex-col items-center justify-center"
         >
-          {/* Close button */}
-          <button
-            onClick={close}
-            aria-label="Cerrar menú"
-            className="absolute top-4 right-5 md:top-[22px] md:right-[44px] z-[1003] flex items-center justify-center w-[28px] h-[28px] bg-transparent border-none outline-none cursor-pointer"
-          >
-            <span className="block w-[22px] h-[1.5px] bg-foreground rounded-sm origin-center" style={{ transform: 'translateY(0.75px) rotate(45deg)', position: 'absolute' }} />
-            <span className="block w-[22px] h-[1.5px] bg-foreground rounded-sm origin-center" style={{ transform: 'translateY(0.75px) rotate(-45deg)', position: 'absolute' }} />
-          </button>
 
           <div className="flex flex-col items-center gap-6 md:gap-8">
             {MENU_ITEMS.map((item) => (
