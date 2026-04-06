@@ -45,6 +45,7 @@ interface ExpertiseBlockProps {
   paragraph: string;
   skills: string[];
   hideTopGradient?: boolean;
+  hideStickyBar?: boolean;
   panelClassName?: string;
   mobileContain?: boolean;
   leftDarkOverlay?: boolean;
@@ -71,6 +72,7 @@ const ExpertiseBlock = ({
   paragraph,
   skills,
   hideTopGradient,
+  hideStickyBar,
   panelClassName,
   mobileContain,
   leftDarkOverlay,
@@ -119,14 +121,16 @@ const ExpertiseBlock = ({
       >
         {/* Top gradient fade from black */}
         {!hideTopGradient && <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/30 to-transparent pointer-events-none z-[3]" />}
-        <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-[22px] py-3 md:py-[14px] border-b border-black/[0.12]">
-          <span className={stickyBarLeftClassName || "font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase"} style={stickyBarLeftStyle || { color: 'rgba(0,0,0,0.45)' }}>
-            {stickyBarLeft}
-          </span>
-          <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
-            {stickyBarRight}
-          </span>
-        </div>
+        {!hideStickyBar && (
+          <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-[22px] py-3 md:py-[14px] border-b border-black/[0.12]">
+            <span className={stickyBarLeftClassName || "font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase"} style={stickyBarLeftStyle || { color: 'rgba(0,0,0,0.45)' }}>
+              {stickyBarLeft}
+            </span>
+            <span className="font-body text-[9px] md:text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: 'rgba(0,0,0,0.45)' }}>
+              {stickyBarRight}
+            </span>
+          </div>
+        )}
 
         {/* BG word */}
         <div
