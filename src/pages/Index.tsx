@@ -21,7 +21,9 @@ const Index = () => {
 
   const expertiseBlocks = [
     {
-      stickyBarLeft: "Caso Oviedo",
+      stickyBarLeft: "CASO OVIEDO",
+      stickyBarLeftStyle: { color: '#ffffff', fontWeight: 900, fontSize: '13px', letterSpacing: '3px' },
+      stickyBarLeftClassName: "font-body uppercase",
       stickyBarRight: "",
       bgWord: "VOTOS",
       placeholder: "[ Foto Jose con Oviedo ]",
@@ -40,7 +42,9 @@ const Index = () => {
       mobileContain: true,
     },
     {
-      stickyBarLeft: "Caso Andrés Bilbao",
+      stickyBarLeft: "CASO ANDRÉS BILBAO",
+      stickyBarLeftStyle: { color: '#ffffff', fontWeight: 900, fontSize: '10px', letterSpacing: '2px', background: '#E03200', padding: '4px 12px', borderRadius: '0px' },
+      stickyBarLeftClassName: "font-body uppercase",
       stickyBarRight: "",
       bgWord: "RAPPI",
       placeholder: "[ Foto Jose con Andrés Bilbao ]",
