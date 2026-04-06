@@ -72,6 +72,17 @@ const BilbaoStatsSection = () => {
       className="bg-primary px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden halftone-dots"
     >
       <div className="relative z-[2] flex flex-col items-center text-center gap-10 md:gap-16">
+        <div
+          className="inline-block mb-4"
+          style={{ border: '2px solid rgba(0,0,0,0.3)', padding: '3px 14px' }}
+        >
+          <span
+            className="font-body font-bold uppercase"
+            style={{ fontSize: '11px', letterSpacing: '3px', color: 'rgba(0,0,0,0.7)' }}
+          >
+            @ANDRES_BILBAO
+          </span>
+        </div>
         <div>
           <div
             className="font-display font-black text-background"
