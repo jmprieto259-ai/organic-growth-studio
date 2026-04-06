@@ -14,8 +14,8 @@ const SkillsList = ({ skills }: { skills: string[] }) => {
             text={skill}
             activeColor="rgba(255,255,255,0.55)"
             inactiveColor="rgba(255,255,255,0.06)"
-            startAt={0.64 + i * 0.04}
-            endAt={0.68 + i * 0.04}
+            startAt={0.38 + i * 0.02}
+            endAt={0.42 + i * 0.02}
           />
           <span className="text-[10px] md:text-[11px] flex-shrink-0 ml-3" style={{ color: 'rgba(255,255,255,0.18)' }}>
             {String(i + 1).padStart(2, '0')}
@@ -260,8 +260,8 @@ const ExpertiseBlock = ({
               style={{ fontSize: 'clamp(18px, 5vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
               activeColor="rgba(255,255,255,0.92)"
               inactiveColor="rgba(255,255,255,0.08)"
-              startAt={0.12}
-              endAt={0.30}
+              startAt={0.05}
+              endAt={0.15}
             />
             <ScrollText
               text={stripHtml(paragraph)}
@@ -269,8 +269,8 @@ const ExpertiseBlock = ({
               style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 1.75, maxWidth: '65ch' }}
               activeColor="rgba(255,255,255,0.55)"
               inactiveColor="rgba(255,255,255,0.06)"
-              startAt={0.30}
-              endAt={0.62}
+              startAt={0.15}
+              endAt={0.38}
             />
           </div>
         </div>
