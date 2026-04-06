@@ -152,7 +152,7 @@ const ExpertiseBlock = ({
                 src={image}
                 alt={bgWord}
                 className={`w-full ${mobileContain ? 'h-auto md:h-[120%] object-contain md:object-cover' : 'h-[120%] object-cover'}`}
-                style={{ mixBlendMode: 'multiply', marginTop: mobileContain ? '0' : '-10%', objectPosition: mobileContain ? 'center center' : (imagePosition || 'center 15%') }}
+                style={{ mixBlendMode: 'multiply', marginTop: mobileContain ? '0' : '-10%', objectPosition: imagePosition || (mobileContain ? 'center center' : 'center 15%') }}
               />
             </div>
 
