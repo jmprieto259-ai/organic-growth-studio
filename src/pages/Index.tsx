@@ -55,6 +55,7 @@ const Index = () => {
       h4Text: getContent('bilbao', 'headline', "De cero a la fama. En unos meses, Andrés Bilbao paso de ser un desoconcido a estar en todos lados"),
       paragraph: getContent('bilbao', 'body', 'Ayudé a Andrés a ser una de las voces más reconocidas del mundo de negocios en redes sociales. Presente en TikTok, Instagram, YouTube Shorts, Facebook y Twitter — todo orgánico. Su meta: 1 millón en Instagram para final de año.'),
       skills: [],
+      panelClassName: "relative bg-primary h-[60vh] md:h-[90vh] min-h-[360px] md:min-h-[576px] overflow-hidden",
     },
     {
       stickyBarLeft: "@sabana_adentro",
