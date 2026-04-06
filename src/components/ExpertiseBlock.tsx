@@ -158,6 +158,15 @@ const ExpertiseBlock = ({
               />
             </div>
 
+            {leftDarkOverlay && (
+              <div
+                className="absolute top-0 left-0 w-1/2 h-full pointer-events-none z-[3]"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%)',
+                }}
+              />
+            )}
+
             <div className="absolute top-12 left-5 md:top-[60px] md:left-[40px] z-[5] flex flex-col gap-0">
               <span
                 className={`block font-body text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-white/70 mb-[10px] transition-all duration-700 ease-out ${
