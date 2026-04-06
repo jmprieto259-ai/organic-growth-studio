@@ -97,7 +97,6 @@ const BilbaoStatsSection = () => {
           >
             {mainStat.label}
           </div>
-          </div>
         </div>
 
         <div
