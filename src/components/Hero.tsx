@@ -139,11 +139,7 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <img
-        src={heroImage}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover object-center z-0"
-      />
+      <HeroImage src={heroImage} />
 
       <div
         ref={overlayRef}
