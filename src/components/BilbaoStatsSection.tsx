@@ -97,11 +97,6 @@ const BilbaoStatsSection = () => {
           >
             {mainStat.label}
           </div>
-          <div
-            className="font-body mt-2"
-            style={{ fontSize: 'clamp(11px, 2.5vw, 14px)', color: 'rgba(0,0,0,0.35)', letterSpacing: '0.02em' }}
-          >
-            @AndresBilbao
           </div>
         </div>
 
