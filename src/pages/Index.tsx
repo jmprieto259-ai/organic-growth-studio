@@ -59,7 +59,7 @@ const Index = () => {
       panelClassName: "relative bg-primary h-[60vh] md:h-[100vh] min-h-[360px] md:min-h-[576px] overflow-hidden",
     },
     {
-      stickyBarLeft: "@sabana_adentro",
+      stickyBarLeft: "",
       stickyBarRight: "",
       bgWord: "VAQUERO",
       placeholder: "[ Tu foto en el llano ]",

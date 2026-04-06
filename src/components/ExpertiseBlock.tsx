@@ -45,6 +45,7 @@ interface ExpertiseBlockProps {
   paragraph: string;
   skills: string[];
   hideTopGradient?: boolean;
+  hideStickyBar?: boolean;
   panelClassName?: string;
   mobileContain?: boolean;
   leftDarkOverlay?: boolean;
