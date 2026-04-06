@@ -55,6 +55,8 @@ const stripHtml = (html: string) => html.replace(/<[^>]*>/g, '');
 const ExpertiseBlock = ({
   stickyBarLeft,
   stickyBarRight,
+  stickyBarLeftStyle,
+  stickyBarLeftClassName,
   bgWord,
   placeholder,
   image,
