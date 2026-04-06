@@ -97,7 +97,16 @@ const Navigation = () => {
     }, '-=0.1');
   }, []);
 
-  const handleItemClick = useCallback((item: typeof MENU_ITEMS[0]) => {
+  const handleItemClick = useCallback((item: typeof MENU_ITEMS[0], e: React.MouseEvent<HTMLButtonElement>) => {
+    // Mobile tap flash
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    if (isTouchDevice) {
+      const btn = e.currentTarget;
+      gsap.to(btn, { color: '#E03200', duration: 0.15, onComplete: () => {
+        gsap.to(btn, { color: '#ffffff', duration: 0.15 });
+      }});
+    }
+
     if (item.external) {
       window.open(item.href, '_blank', 'noopener,noreferrer');
       close();
@@ -191,15 +200,44 @@ const Navigation = () => {
           ref={menuRef}
           className="fixed inset-0 z-[1001] flex flex-col items-center justify-center"
         >
+          {/* Close button */}
+          <button
+            onClick={close}
+            aria-label="Cerrar menú"
+            className="absolute top-4 right-5 md:top-[22px] md:right-[44px] z-[1003] flex items-center justify-center w-[28px] h-[28px] bg-transparent border-none outline-none cursor-pointer"
+          >
+            <span className="block w-[22px] h-[1.5px] bg-foreground rounded-sm origin-center" style={{ transform: 'translateY(0.75px) rotate(45deg)', position: 'absolute' }} />
+            <span className="block w-[22px] h-[1.5px] bg-foreground rounded-sm origin-center" style={{ transform: 'translateY(0.75px) rotate(-45deg)', position: 'absolute' }} />
+          </button>
+
           <div className="flex flex-col items-center gap-6 md:gap-8">
             {MENU_ITEMS.map((item) => (
               <button
                 key={item.label}
                 data-menu-item
-                onClick={() => handleItemClick(item)}
-                className="font-display font-black uppercase text-foreground text-[clamp(28px,7vw,56px)] leading-[1.1] tracking-[-0.02em] cursor-pointer bg-transparent border-none outline-none transition-opacity duration-200 hover:opacity-60"
-                style={{ opacity: 0 }}
+                onClick={(e) => handleItemClick(item, e)}
+                className="group relative font-display font-black uppercase text-foreground text-[clamp(28px,7vw,56px)] leading-[1.1] tracking-[-0.02em] cursor-pointer bg-transparent border-none outline-none"
+                style={{ opacity: 0, paddingLeft: '16px', transition: 'transform 0.2s ease' }}
+                onMouseEnter={(e) => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    gsap.to(e.currentTarget, { x: 8, duration: 0.2, ease: 'power2.out' });
+                    const line = e.currentTarget.querySelector('[data-hover-line]') as HTMLElement;
+                    if (line) gsap.to(line, { scaleY: 1, opacity: 1, duration: 0.2, ease: 'power2.out' });
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    gsap.to(e.currentTarget, { x: 0, duration: 0.2, ease: 'power2.out' });
+                    const line = e.currentTarget.querySelector('[data-hover-line]') as HTMLElement;
+                    if (line) gsap.to(line, { scaleY: 0, opacity: 0, duration: 0.2, ease: 'power2.out' });
+                  }
+                }}
               >
+                <span
+                  data-hover-line
+                  className="absolute left-0 top-0 h-full"
+                  style={{ width: '2px', background: '#E03200', transformOrigin: 'center', transform: 'scaleY(0)', opacity: 0 }}
+                />
                 {item.label}
               </button>
             ))}
