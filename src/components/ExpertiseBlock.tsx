@@ -260,8 +260,8 @@ const ExpertiseBlock = ({
               style={{ fontSize: 'clamp(18px, 5vw, 36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
               activeColor="rgba(255,255,255,0.92)"
               inactiveColor="rgba(255,255,255,0.08)"
-              startAt={0.12}
-              endAt={0.30}
+              startAt={0.05}
+              endAt={0.15}
             />
             <ScrollText
               text={stripHtml(paragraph)}
