@@ -36,7 +36,7 @@ const Index = () => {
       h4Text: getContent('oviedo', 'headline', "De 1% de intención de voto a 1.2 millones de votos y ser la sorpresa de la gran consulta por Colombia."),
       paragraph: getContent('oviedo', 'body', 'Con estrategia 100% basada en redes sociales, transformamos una campaña presidencial. Aprendimos a hacer contenido orgánico, nos volvimos una máquina de producción y creamos un sistema de 18 videos diarios — y le dimos visibilidad a un candidato sin maquinaria, sin millones, sin partido. Solo contenido. El resultado: 1.2 millones de votos y quedar por encima de fuerzas políticas que llevan décadas en el poder.'),
       skills: [],
-      panelClassName: "relative bg-primary h-auto md:h-[90vh] min-h-0 md:min-h-[576px] overflow-hidden",
+      panelClassName: "relative bg-primary h-auto md:h-[100vh] min-h-0 md:min-h-[576px] overflow-hidden",
       mobileContain: true,
     },
     {
