@@ -45,6 +45,7 @@ interface ExpertiseBlockProps {
   hideTopGradient?: boolean;
   panelClassName?: string;
   mobileContain?: boolean;
+  leftDarkOverlay?: boolean;
 }
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, '');
