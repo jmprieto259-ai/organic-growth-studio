@@ -21,9 +21,7 @@ const Index = () => {
 
   const expertiseBlocks = [
     {
-      stickyBarLeft: "CASO OVIEDO",
-      stickyBarLeftStyle: { color: '#ffffff', fontWeight: 900, fontSize: '13px', letterSpacing: '3px' },
-      stickyBarLeftClassName: "font-body uppercase",
+      stickyBarLeft: "",
       stickyBarRight: "",
       bgWord: "VOTOS",
       placeholder: "[ Foto Jose con Oviedo ]",
@@ -38,13 +36,11 @@ const Index = () => {
       h4Text: getContent('oviedo', 'headline', "De 1% de intención de voto a 1.2 millones de votos y ser la sorpresa de la gran consulta por Colombia."),
       paragraph: getContent('oviedo', 'body', 'Con estrategia 100% basada en redes sociales, transformamos una campaña presidencial. Aprendimos a hacer contenido orgánico, nos volvimos una máquina de producción y creamos un sistema de 18 videos diarios — y le dimos visibilidad a un candidato sin maquinaria, sin millones, sin partido. Solo contenido. El resultado: 1.2 millones de votos y quedar por encima de fuerzas políticas que llevan décadas en el poder.'),
       skills: [],
-      panelClassName: "relative bg-primary h-auto md:h-[90vh] min-h-0 md:min-h-[576px] overflow-hidden",
+      panelClassName: "relative bg-primary h-auto md:h-[100vh] min-h-0 md:min-h-[576px] overflow-hidden",
       mobileContain: true,
     },
     {
-      stickyBarLeft: "CASO ANDRÉS BILBAO",
-      stickyBarLeftStyle: { color: '#ffffff', fontWeight: 900, fontSize: '10px', letterSpacing: '2px', background: '#E03200', padding: '4px 12px', borderRadius: '0px' },
-      stickyBarLeftClassName: "font-body uppercase",
+      stickyBarLeft: "",
       stickyBarRight: "",
       bgWord: "RAPPI",
       placeholder: "[ Foto Jose con Andrés Bilbao ]",
@@ -59,7 +55,7 @@ const Index = () => {
       h4Text: getContent('bilbao', 'headline', "De cero a la fama. En unos meses, Andrés Bilbao paso de ser un desoconcido a estar en todos lados"),
       paragraph: getContent('bilbao', 'body', 'Ayudé a Andrés a ser una de las voces más reconocidas del mundo de negocios en redes sociales. Presente en TikTok, Instagram, YouTube Shorts, Facebook y Twitter — todo orgánico. Su meta: 1 millón en Instagram para final de año.'),
       skills: [],
-      panelClassName: "relative bg-primary h-[60vh] md:h-[90vh] min-h-[360px] md:min-h-[576px] overflow-hidden",
+      panelClassName: "relative bg-primary h-[60vh] md:h-[100vh] min-h-[360px] md:min-h-[576px] overflow-hidden",
     },
     {
       stickyBarLeft: "@sabana_adentro",
@@ -78,6 +74,7 @@ const Index = () => {
       skills: [],
       hideTopGradient: true,
       leftDarkOverlay: true,
+      panelClassName: "relative bg-primary h-[60vh] md:h-[100vh] min-h-[360px] md:min-h-[480px] overflow-hidden",
     },
   ];
 
