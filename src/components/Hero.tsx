@@ -7,6 +7,32 @@ import { useSiteContent } from '@/hooks/use-site-content';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const HeroImage = ({ src }: { src: string }) => {
+  const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  const onLoad = useCallback(() => setLoaded(true), []);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
+
+  return (
+    <img
+      ref={imgRef}
+      src={src}
+      alt=""
+      onLoad={onLoad}
+      className="absolute inset-0 w-full h-full object-cover object-center z-0"
+      style={{
+        filter: loaded ? 'blur(0px)' : 'blur(20px)',
+        transform: loaded ? 'scale(1)' : 'scale(1.05)',
+        transition: 'filter 1.2s ease-out, transform 1.2s ease-out',
+      }}
+    />
+  );
+};
+
 const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const joseRef = useRef<HTMLSpanElement>(null);
