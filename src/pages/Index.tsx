@@ -27,7 +27,7 @@ const Index = () => {
       placeholder: "[ Foto Jose con Oviedo ]",
       image: getImage('oviedo', 'image', joseOviedo),
       imageOverlayText: "",
-      imagePosition: "center 65%",
+      imagePosition: "center 25%",
       number: "",
       code: "",
       title: getContent('oviedo', 'title', "CASO<br/>OVIEDO"),
