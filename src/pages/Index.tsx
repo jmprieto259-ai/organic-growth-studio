@@ -73,6 +73,7 @@ const Index = () => {
       paragraph: getContent('sabana', 'body', 'Mandé a la mierda el deber ser. Me fui a cumplir mi sueño de vivir como vaquero en el llano, documentando todo en @sabana_adentro, me volví influencer y creé una comunidad de 1.7 millones de seguidores.'),
       skills: [],
       hideTopGradient: true,
+      leftDarkOverlay: true,
     },
   ];
 
