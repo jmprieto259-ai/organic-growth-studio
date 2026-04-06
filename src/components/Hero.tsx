@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
@@ -6,6 +6,32 @@ import heroImage from '@/assets/hero-jose.png';
 import { useSiteContent } from '@/hooks/use-site-content';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const HeroImage = ({ src }: { src: string }) => {
+  const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  const onLoad = useCallback(() => setLoaded(true), []);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
+
+  return (
+    <img
+      ref={imgRef}
+      src={src}
+      alt=""
+      onLoad={onLoad}
+      className="absolute inset-0 w-full h-full object-cover object-center z-0"
+      style={{
+        filter: loaded ? 'blur(0px)' : 'blur(20px)',
+        transform: loaded ? 'scale(1)' : 'scale(1.05)',
+        transition: 'filter 1.2s ease-out, transform 1.2s ease-out',
+      }}
+    />
+  );
+};
 
 const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -139,11 +165,7 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <img
-        src={heroImage}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover object-center z-0"
-      />
+      <HeroImage src={heroImage} />
 
       <div
         ref={overlayRef}
