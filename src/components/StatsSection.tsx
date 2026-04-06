@@ -72,8 +72,6 @@ const StatsSection = () => {
       ref={ref}
       className="bg-primary px-5 md:px-[60px] pt-24 pb-14 md:pt-[140px] md:pb-[100px] relative overflow-hidden halftone-dots"
     >
-      {/* Top gradient fade from black */}
-      <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[1]" />
       <div className="relative z-[2] flex flex-col items-center text-center gap-10 md:gap-16">
         {/* Main number */}
         <div>
