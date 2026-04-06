@@ -69,6 +69,7 @@ const ExpertiseBlock = ({
   hideTopGradient,
   panelClassName,
   mobileContain,
+  leftDarkOverlay,
 }: ExpertiseBlockProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const blackRef = useRef<HTMLDivElement>(null);
