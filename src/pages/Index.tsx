@@ -74,6 +74,7 @@ const Index = () => {
       skills: [],
       hideTopGradient: true,
       leftDarkOverlay: true,
+      panelClassName: "relative bg-primary h-[60vh] md:h-[100vh] min-h-[360px] md:min-h-[480px] overflow-hidden",
     },
   ];
 
