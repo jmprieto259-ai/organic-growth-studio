@@ -71,8 +71,18 @@ const BilbaoStatsSection = () => {
       ref={ref}
       className="bg-primary px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden halftone-dots"
     >
-      <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-[1]" />
       <div className="relative z-[2] flex flex-col items-center text-center gap-10 md:gap-16">
+        <div
+          className="inline-block mb-4"
+          style={{ border: '2px solid rgba(0,0,0,0.3)', padding: '3px 14px' }}
+        >
+          <span
+            className="font-body font-bold uppercase"
+            style={{ fontSize: '11px', letterSpacing: '3px', color: 'rgba(0,0,0,0.7)' }}
+          >
+            @ANDRES_BILBAO
+          </span>
+        </div>
         <div>
           <div
             className="font-display font-black text-background"
@@ -86,12 +96,6 @@ const BilbaoStatsSection = () => {
             style={{ fontSize: 'clamp(13px, 3.5vw, 18px)', color: 'rgba(0,0,0,0.60)', lineHeight: 1.4 }}
           >
             {mainStat.label}
-          </div>
-          <div
-            className="font-body mt-2"
-            style={{ fontSize: 'clamp(11px, 2.5vw, 14px)', color: 'rgba(0,0,0,0.35)', letterSpacing: '0.02em' }}
-          >
-            @AndresBilbao
           </div>
         </div>
 
