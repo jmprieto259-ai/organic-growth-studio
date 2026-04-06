@@ -72,6 +72,7 @@ const ExpertiseBlock = ({
   paragraph,
   skills,
   hideTopGradient,
+  hideStickyBar,
   panelClassName,
   mobileContain,
   leftDarkOverlay,
