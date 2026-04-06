@@ -29,6 +29,8 @@ const SkillsList = ({ skills }: { skills: string[] }) => {
 interface ExpertiseBlockProps {
   stickyBarLeft: string;
   stickyBarRight: string;
+  stickyBarLeftStyle?: React.CSSProperties;
+  stickyBarLeftClassName?: string;
   bgWord: string;
   placeholder: string;
   image?: string;
