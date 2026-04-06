@@ -209,7 +209,7 @@ const ExpertiseBlock = ({
       </div>
 
       {/* Black panel */}
-      <div ref={blackRef} className="bg-background px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden -mt-[20vh] md:mt-0" style={{ zIndex: 5 }}>
+      <div ref={blackRef} className="bg-background px-5 md:px-[60px] py-14 md:py-[100px] relative overflow-hidden">
         {/* Outline number */}
         <div
           className="absolute outline-num font-display font-black select-none pointer-events-none"
