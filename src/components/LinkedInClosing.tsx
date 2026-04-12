@@ -61,7 +61,7 @@ const LinkedInClosing = () => {
           {body}
         </p>
 
-        <a data-anim href="https://www.linkedin.com/in/josemprieto1/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center font-display font-black uppercase text-white px-8 py-4 text-[13px] md:text-[14px] tracking-[0.08em] transition-opacity duration-200 hover:opacity-80" style={{ marginTop: 'clamp(16px, 3vh, 32px)', backgroundColor: 'hsl(11, 100%, 45%)' }}>
+        <a data-anim href="https://www.notion.so/Bootcamp-Pedro-y-Jos-3-0-3232ec953e8d802b9294e3413153fe6d" target="_blank" rel="noopener noreferrer" className="inline-flex items-center font-display font-black uppercase text-white px-8 py-4 text-[13px] md:text-[14px] tracking-[0.08em] transition-opacity duration-200 hover:opacity-80" style={{ marginTop: 'clamp(16px, 3vh, 32px)', backgroundColor: 'hsl(11, 100%, 45%)' }}>
           {ctaLabel}
         </a>
       </div>
