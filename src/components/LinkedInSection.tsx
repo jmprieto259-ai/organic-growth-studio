@@ -126,7 +126,7 @@ const LinkedInSection = () => {
                 Programa de 90 días para founders y líderes que quieren construir su marca personal en LinkedIn de forma orgánica y sostenida.
               </p>
               <a
-                href="https://www.linkedin.com/in/joseprieto/"
+                href="https://www.linkedin.com/in/josemprieto1/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center mt-auto font-body text-[12px] text-foreground rounded-full px-5 py-2.5 transition-colors duration-200 hover:bg-foreground hover:text-background self-start"
@@ -149,7 +149,7 @@ const LinkedInSection = () => {
                 Intensivo grupal para profesionales y emprendedores que quieren dominar LinkedIn y empezar a crear contenido que posicione desde el día uno.
               </p>
               <a
-                href="https://www.linkedin.com/in/joseprieto/"
+                href="https://www.linkedin.com/in/josemprieto1/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center mt-auto font-body text-[12px] text-foreground rounded-full px-5 py-2.5 transition-colors duration-200 hover:bg-foreground hover:text-background self-start"
