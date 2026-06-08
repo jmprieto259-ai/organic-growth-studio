@@ -83,7 +83,7 @@ const LinkedInSection = () => {
             <span style={{ color: 'rgba(255,255,255,0.15)' }}>·</span>
             <span>7M de impresiones</span>
             <span style={{ color: 'rgba(255,255,255,0.15)' }}>·</span>
-            <span>19K seguidores</span>
+            <span>20K seguidores</span>
           </div>
 
           {/* Body text — word-by-word */}

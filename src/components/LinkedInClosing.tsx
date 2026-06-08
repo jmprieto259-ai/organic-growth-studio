@@ -12,7 +12,7 @@ const LinkedInClosing = () => {
   const { getContent } = useSiteContent();
 
   const eyebrow = getContent('linkedin', 'eyebrow', 'Marca Personal');
-  const headline = getContent('linkedin', 'headline', 'Con mi estrategia logré en 8 meses, 7 millones de impresiones y 19K seguidores');
+  const headline = getContent('linkedin', 'headline', 'Con mi estrategia logré en 8 meses, 7 millones de impresiones y 20K seguidores');
   const body = getContent('linkedin', 'body', 'Hoy ayudo a marcas personales y equipos a posicionarse y vender en LinkedIn.');
   const ctaLabel = getContent('linkedin', 'cta_label', 'Aplica mi Bootcamp →');
 
